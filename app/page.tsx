@@ -1,11 +1,17 @@
 import DeployButton from '../components/DeployButton'
 
 import { Button } from '@/components/ui/button'
+import { createClient } from '@/utils/supabase/server'
+import { cookies } from 'next/headers'
 
-import { getCountries } from '@/services/countries/actions/getCountries'
+// import { getCountries } from '@/services/countries/actions/getCountries'
 
 export default async function Page() {
-	const countries = await getCountries()
+	const cookieStore = cookies()
+	const supabase = createClient(cookieStore)
+	const { data: notes } = await supabase.from('countries').select()
+	console.log(notes)
+	// const countries = await getCountries()
 
 	return (
 		<div className='flex-1 w-full flex flex-col gap-20 items-center'>
