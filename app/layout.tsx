@@ -11,7 +11,7 @@ export const metadata = {
 	description: 'The fastest way to build apps with Next.js and Supabase'
 }
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
 	subsets: ['latin'],
 	variable: '--font-sans'
 })

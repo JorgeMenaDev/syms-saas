@@ -1,6 +1,5 @@
 import DeployButton from '../components/DeployButton'
 
-import Header from '@/components/Header'
 import { Button } from '@/components/ui/button'
 
 import { getCountries } from '@/services/countries/actions/getCountries'
