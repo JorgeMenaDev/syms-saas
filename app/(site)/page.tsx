@@ -1,11 +1,12 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import { DataTable } from './tasks/components/data-table'
+import { DataTable } from '../tasks/components/data-table'
 import { promises as fs } from 'fs'
 import path from 'path'
 import { z } from 'zod'
-import { taskSchema } from './tasks/data/schema'
-import { columns } from './tasks/components/columns'
+import { taskSchema } from '../tasks/data/schema'
+import { columns } from '../tasks/components/columns'
+import { HomePageHero } from './_components/Hero'
 
 // import { getCountries } from '@/services/countries/actions/getCountries'
 
@@ -27,7 +28,8 @@ export default async function Page() {
 
 	return (
 		<div className='flex-1 w-full flex flex-col gap-20 items-center'>
-			<nav className='w-full flex justify-center border-b border-b-foreground/10 h-16'>
+			<HomePageHero />
+			{/* <nav className='w-full flex justify-center border-b border-b-foreground/10 h-16'>
 				<div className='w-full max-w-4xl flex justify-between items-center p-3 text-sm'>
 					<div>🚀 Syms!</div>
 				</div>
@@ -55,7 +57,7 @@ export default async function Page() {
 						Supabase
 					</a>
 				</p>
-			</footer>
+			</footer> */}
 		</div>
 	)
 }
