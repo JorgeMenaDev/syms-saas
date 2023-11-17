@@ -24,7 +24,7 @@ export default async function Page() {
 	const supabase = createClient(cookieStore)
 	const { data: countries } = await supabase.from('countries').select()
 	const tasks = await getTasks()
-	console.log(countries)
+	// console.log(countries)
 
 	return (
 		<div className='flex-1 w-full flex flex-col gap-20 items-center'>
