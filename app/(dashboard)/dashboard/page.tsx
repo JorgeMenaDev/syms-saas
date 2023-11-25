@@ -1,7 +1,7 @@
 import { AreaChartCustomTooltip } from '@/components/tremor/charts/AreaChart'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-export default function DashboardPage({ data = [] }: { data?: any[] }) {
+export default function DashboardPage() {
 	const cardsData = [
 		{
 			title: 'Residuos reciclados',
