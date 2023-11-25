@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 export default function DashboardPage({ data = [] }: { data?: any[] }) {
 	const cardsData = [
 		{
-			title: 'Weight',
+			title: 'Residuos reciclados',
 			icon: (
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -20,10 +20,10 @@ export default function DashboardPage({ data = [] }: { data?: any[] }) {
 				</svg>
 			),
 			value: 200,
-			percentage: '+20.1% from last month'
+			percentage: '+20.1% desde el mes pasado'
 		},
 		{
-			title: 'Daily average steps',
+			title: 'Nivel de CO2',
 			icon: (
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -41,10 +41,10 @@ export default function DashboardPage({ data = [] }: { data?: any[] }) {
 				</svg>
 			),
 			value: 10000,
-			percentage: '+180.1% from last month'
+			percentage: '+180.1% desde el mes pasado'
 		},
 		{
-			title: 'Workout weekly routines completed',
+			title: 'Plantas procesadas',
 			icon: (
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -61,10 +61,10 @@ export default function DashboardPage({ data = [] }: { data?: any[] }) {
 				</svg>
 			),
 			value: 5,
-			percentage: '+19% from last month'
+			percentage: '+19% desde el mes pasado'
 		},
 		{
-			title: 'Average calories eaten per day',
+			title: 'Residuos procesados',
 			icon: (
 				<svg
 					xmlns='http://www.w3.org/2000/svg'
@@ -80,7 +80,7 @@ export default function DashboardPage({ data = [] }: { data?: any[] }) {
 				</svg>
 			),
 			value: 2000,
-			percentage: '+10% from last month'
+			percentage: '+10% desde el mes pasado'
 		}
 		// Add more card data objects as needed
 	]

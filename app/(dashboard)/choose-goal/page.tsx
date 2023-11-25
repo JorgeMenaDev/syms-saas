@@ -11,6 +11,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 
+function kgToPounds(kilograms: number) {
+	// Conversion factor: 1 kilogram = 2.20462 pounds
+	const pounds = kilograms * 2.20462
+	return pounds
+}
+
 // Define Zod schema for form validation
 const WeightFormSchema = z.object({
 	weight: z.string({
@@ -18,6 +24,9 @@ const WeightFormSchema = z.object({
 	}),
 	selectedGoal: z.string({
 		required_error: 'Please select a weight-related goal.'
+	}),
+	unit: z.string({
+		required_error: 'Please select a unit.'
 	})
 })
 
@@ -48,6 +57,7 @@ const weightGoals: WeightGoal[] = [
 interface WeightFormData {
 	weight: string
 	selectedGoal: string
+	unit: string
 }
 
 export default function WeightForm() {
@@ -60,13 +70,13 @@ export default function WeightForm() {
 	function onSubmit(data: WeightFormData) {
 		// Add your logic for handling the form data submission
 
-		const { weight, selectedGoal } = data
+		const { weight, selectedGoal, unit } = data
 		console.log({ weight, selectedGoal, number: weightGoals.find(({ goal }) => goal === selectedGoal)?.number })
 
-		const weightNumber = Number(weight)
+		const weightNumber = unit === 'kg' ? kgToPounds(Number(weight)) : Number(weight)
 		const goal = weightGoals.find(({ goal }) => goal === selectedGoal)
 
-		if (goal !== null && goal !== undefined) {
+		if (goal) {
 			const calories = weightNumber * goal.number
 			console.log('Calories:', calories)
 			toast.message('Your plan has been created! Here are your next steps:', {
@@ -93,25 +103,51 @@ export default function WeightForm() {
 
 					<Form {...form}>
 						<form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-6'>
-							<FormField
-								control={form.control}
-								name='weight'
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Enter Your Weight</FormLabel>
-										<FormControl>
-											<Input
-												{...field}
-												type='number'
-												placeholder='Enter your weight in pounds'
-												className='w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300'
-											/>
-										</FormControl>
-										<FormDescription>Please enter your current weight in pounds.</FormDescription>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
+							<div className='grid grid-cols-2 gap-4'>
+								<FormField
+									control={form.control}
+									name='weight'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Enter Your Weight</FormLabel>
+											<FormControl>
+												<Input
+													{...field}
+													type='number'
+													placeholder='Enter your weight in pounds'
+													className='w-full px-3 py-2 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:shadow-outline-blue focus:border-blue-300'
+												/>
+											</FormControl>
+											<FormDescription>Please enter your current weight in pounds.</FormDescription>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+
+								<FormField
+									control={form.control}
+									name='unit'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Choose Your Weight Unit</FormLabel>
+											<Select onValueChange={field.onChange} defaultValue='pounds'>
+												<FormControl>
+													<SelectTrigger>
+														<SelectValue placeholder='Select a unit' />
+													</SelectTrigger>
+												</FormControl>
+												<SelectContent>
+													<SelectItem value='kg'>kg</SelectItem>
+													<SelectItem value='pounds'>pounds</SelectItem>
+												</SelectContent>
+												<FormDescription>Select a unit.</FormDescription>
+											</Select>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+							</div>
+
 							<FormField
 								control={form.control}
 								name='selectedGoal'

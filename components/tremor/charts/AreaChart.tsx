@@ -3,15 +3,15 @@
 import { AreaChart, Card, Title } from '@tremor/react'
 
 const weightData = [
-	{ date: 'Jan 23', Weight: 130 },
-	{ date: 'Feb 23', Weight: 162 },
-	{ date: 'Mar 23', Weight: 165 },
-	{ date: 'Apr 23', Weight: 158 },
-	{ date: 'May 23', Weight: 170 },
-	{ date: 'Jun 23', Weight: 172 },
-	{ date: 'Jul 23', Weight: 175 },
-	{ date: 'Aug 23', Weight: 178 },
-	{ date: 'Sep 23', Weight: 250 }
+	{ date: 'Jan 23', residuos: 130 },
+	{ date: 'Feb 23', residuos: 162 },
+	{ date: 'Mar 23', residuos: 165 },
+	{ date: 'Apr 23', residuos: 158 },
+	{ date: 'May 23', residuos: 170 },
+	{ date: 'Jun 23', residuos: 172 },
+	{ date: 'Jul 23', residuos: 175 },
+	{ date: 'Aug 23', residuos: 178 },
+	{ date: 'Sep 23', residuos: 250 }
 ]
 
 const customTooltip = ({ payload, active }) => {
@@ -35,12 +35,12 @@ export const AreaChartCustomTooltip = ({ className = 'mt-5' }: { className?: str
 	return (
 		<div className={className}>
 			<Card>
-				<Title>Weight Gain Over Weeks</Title>
+				<Title>Residuos procesados</Title>
 				<AreaChart
 					className='h-72 mt-4'
 					data={weightData}
 					index='date'
-					categories={['Weight']}
+					categories={['residuos']}
 					colors={['blue']}
 					yAxisWidth={30}
 					customTooltip={customTooltip}

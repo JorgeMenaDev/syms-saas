@@ -13,9 +13,10 @@ import {
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
+import { type User } from '@supabase/supabase-js'
 
 const products = [
-	{ name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
+	{ name: 'Goal', description: 'Start by choosing a goal', href: '/choose-goal', icon: ChartPieIcon },
 	{ name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
 	{ name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
 	{ name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
@@ -26,11 +27,11 @@ const callsToAction = [
 	{ name: 'Contact sales', href: '#', icon: PhoneIcon }
 ]
 
-function classNames(...classes) {
+function classNames(...classes: any[]) {
 	return classes.filter(Boolean).join(' ')
 }
 
-export function SiteHeader() {
+export function SiteHeader({ user }: { user: User }) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	return (
@@ -81,10 +82,10 @@ export function SiteHeader() {
 												<item.icon className='h-6 w-6 text-gray-600 group-hover:text-indigo-600' aria-hidden='true' />
 											</div>
 											<div className='flex-auto'>
-												<a href={item.href} className='block font-semibold text-gray-900'>
+												<Link href={item.href} className='block font-semibold text-gray-900'>
 													{item.name}
 													<span className='absolute inset-0' />
-												</a>
+												</Link>
 												<p className='mt-1 text-gray-600'>{item.description}</p>
 											</div>
 										</div>
@@ -116,11 +117,7 @@ export function SiteHeader() {
 						Company
 					</a>
 				</Popover.Group>
-				<div className='hidden lg:flex lg:flex-1 lg:justify-end'>
-					<Link href='/login' className='text-sm font-semibold leading-6 text-gray-900'>
-						Log in <span aria-hidden='true'>&rarr;</span>
-					</Link>
-				</div>
+				<div className='hidden lg:flex lg:flex-1 lg:justify-end'>{user.email}</div>
 			</nav>
 			<Dialog as='div' className='lg:hidden' open={mobileMenuOpen} onClose={setMobileMenuOpen}>
 				<div className='fixed inset-0 z-10' />
@@ -192,14 +189,8 @@ export function SiteHeader() {
 									Company
 								</a>
 							</div>
-							<div className='py-6'>
-								<Link
-									href='/login'
-									className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'
-								>
-									Log in
-								</Link>
-							</div>
+
+							<div className='py-6'>{user.email}</div>
 						</div>
 					</div>
 				</Dialog.Panel>

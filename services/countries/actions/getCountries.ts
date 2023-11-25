@@ -1,17 +1,12 @@
-// 'use server'
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 
-// import { createClient } from '@/utils/supabase/server'
-// import { cookies } from 'next/headers'
+export const fetchGoals = async () => {
+	const supabase = createServerComponentClient({ cookies })
 
-// const cookieStore = cookies()
-// const supabase = createClient(cookieStore)
+	const { data } = await supabase.from('goals').select()
 
-// export async function getCountries() {
-// 	try {
-// 		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-// 		const { data, error } = await supabase.from('countries').select()
-// 		return data
-// 	} catch (error) {
-// 		console.log(error)
-// 	}
-// }
+	return {
+		data
+	}
+}

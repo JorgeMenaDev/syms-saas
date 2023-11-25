@@ -4,8 +4,8 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 
 export const metadata = {
-	title: 'Loki Dashboard - Login',
-	description: 'Dashboard para Loki rent a car'
+	title: 'Iniciar sesión | Syms Residuos',
+	description: 'Syms Residuos'
 }
 
 export default async function LoginLayout({ children }: { children: React.ReactNode }) {
@@ -13,8 +13,6 @@ export default async function LoginLayout({ children }: { children: React.ReactN
 	const {
 		data: { session }
 	} = await supabase.auth.getSession()
-
-	console.log({ session })
 
 	if (session) {
 		redirect('/dashboard')

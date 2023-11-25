@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { signIn } from '@/services/auth/actions/client/signIn'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { toast } from 'sonner'
@@ -11,7 +11,6 @@ export function LoginForm() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const router = useRouter()
-	const supabase = createClientComponentClient()
 
 	const handleSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
@@ -20,10 +19,8 @@ export function LoginForm() {
 
 		setLoading(true)
 
-		const { error } = await supabase.auth.signInWithPassword({
-			email,
-			password
-		})
+		const toastId = toast.loading('Iniciando sesión...')
+		const { error } = await signIn({ email, password })
 
 		if (error) {
 			toast(error.message)
@@ -33,6 +30,7 @@ export function LoginForm() {
 
 		router.push('/dashboard')
 		router.refresh()
+		toast.dismiss(toastId)
 	}
 
 	useEffect(() => {
@@ -48,7 +46,7 @@ export function LoginForm() {
 				onSubmit={handleSignIn}
 			>
 				<label className='text-md' htmlFor='email'>
-					Email
+					Correo
 				</label>
 				<input
 					className='rounded-md px-4 py-2 bg-inherit border mb-6'
@@ -60,7 +58,7 @@ export function LoginForm() {
 					placeholder='you@example.com'
 				/>
 				<label className='text-md' htmlFor='password'>
-					Password
+					Contraseña
 				</label>
 				<input
 					className='rounded-md px-4 py-2 bg-inherit border mb-6'
@@ -73,7 +71,9 @@ export function LoginForm() {
 					placeholder='••••••••'
 				/>
 
-				<Button type='submit'>{loading ? 'loading...' : 'Sign in'}</Button>
+				<Button disabled={loading} type='submit'>
+					{loading ? 'Iniciando sesión...' : 'Iniciar sesión'}
+				</Button>
 			</form>
 		</div>
 	)
