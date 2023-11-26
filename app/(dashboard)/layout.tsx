@@ -1,7 +1,6 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
-import { Sidebar } from './_components/HeaderWithSideBar'
 import { Navbar } from './_components/Navbar'
 import { DesktopSidebar } from './_components/DesktopSidebar'
 

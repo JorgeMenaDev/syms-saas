@@ -1,20 +1,8 @@
 'use client'
 
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/k2wyRrp4lOI
- */
 import { Button } from '@/components/ui/button'
 
-import {
-	Select,
-	SelectContent,
-	SelectGroup,
-	SelectItem,
-	SelectLabel,
-	SelectTrigger,
-	SelectValue
-} from '@/components/ui/select'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { useState } from 'react'
 import { UpdateDataset } from './_components/UpdateDataset'
 
