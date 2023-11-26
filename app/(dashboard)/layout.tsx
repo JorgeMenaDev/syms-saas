@@ -27,7 +27,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
 			<div className='flex flex-col'>
 				<Navbar user={session.user} />
-				<section className='flex-1 flex items-center justify-center p-2 lg:p-4'>
+				<section className='flex-1 flex items-center justify-center p-2 lg:p-8'>
 					<div className='w-full h-full'>{children}</div>
 				</section>
 			</div>
