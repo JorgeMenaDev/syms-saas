@@ -1,25 +1,23 @@
 import Link from 'next/link'
 import { SearchBox } from './SearchBox'
 import { type User } from '@supabase/supabase-js'
+import { LogoutButton } from './logout-button'
 
-export function Navbar({ user, children }: { user: User; children: React.ReactNode }) {
+export function Navbar({ user }: { user: User }) {
 	return (
-		<div className='flex flex-col'>
+		<>
 			<header className='flex h-14 lg:h-[60px] items-center gap-4 border-b bg-zinc-100/40 px-6 dark:bg-zinc-800/40'>
+				{/* TODO: this is the burgerMenu - need to have it working for mobile */}
 				<Link className='lg:hidden' href='#'>
 					<IconMenu className='h-6 w-6' />
 				</Link>
 				<SearchBox />
 				<div className='ml-auto flex items-center gap-4'>
-					{user.email}
-
-					<span className='sr-only'>Toggle user menu</span>
+					<div className='hidden lg:block'>{user.email}</div>
+					<LogoutButton />
 				</div>
 			</header>
-			<div className='flex-1 flex items-center justify-center p-2 lg:p-4'>
-				<div className='w-full h-full'>{children}</div>
-			</div>
-		</div>
+		</>
 	)
 }
 

@@ -1,7 +1,9 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
-import { HeaderWithSideBar } from './_components/HeaderWithSideBar'
+import { Sidebar } from './_components/HeaderWithSideBar'
+import { Navbar } from './_components/Navbar'
+import { DesktopSidebar } from './_components/DesktopSidebar'
 
 export const metadata = {
 	title: 'Dashboard | Syms Residuos',
@@ -20,5 +22,16 @@ export default async function DashboardLayout({ children }: { children: React.Re
 		redirect('/login')
 	}
 
-	return <HeaderWithSideBar user={session?.user}>{children}</HeaderWithSideBar>
+	return (
+		<div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
+			<DesktopSidebar />
+
+			<div className='flex flex-col'>
+				<Navbar user={session.user} />
+				<section className='flex-1 flex items-center justify-center p-2 lg:p-4'>
+					<div className='w-full h-full'>{children}</div>
+				</section>
+			</div>
+		</div>
+	)
 }
