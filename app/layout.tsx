@@ -2,6 +2,7 @@ import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import { Toaster } from 'sonner'
+import Providers from '@/providers'
 
 // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 const defaultUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'
@@ -21,8 +22,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	return (
 		<html lang='en'>
 			<body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-				<Toaster />
-				<main className=''>{children}</main>
+				<main className=''>
+					<Toaster />
+					<Providers>{children}</Providers>
+				</main>
 			</body>
 		</html>
 	)

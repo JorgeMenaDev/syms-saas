@@ -1,11 +1,5 @@
 'use client'
 
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/TOndowgGurL
- */
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import { CardContent, Card } from '@/components/ui/card'
 import React from 'react'
 import { CommandMenu } from '@/components/CustomCommand'
@@ -19,20 +13,32 @@ export function SearchBox() {
 				onClick={() => {
 					setOpen(true)
 				}}
-				className='w-full cursor-pointer max-w-md mx-auto bg-white m-1 px-5 py-2 max-w-[200px] lg:max-w-[300px]'
+				className='dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50 w-full cursor-pointer max-w-md mx-auto bg-white m-1 px-5 py-2 max-w-[200px] lg:max-w-[300px]'
 			>
-				<CardContent className='bg-white p-0 border-none'>
-					<div className='flex items-center justify-between bg-white rounded-md'>
+				<CardContent
+					className='bg-white p-0 border-none
+					dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50
+				'
+				>
+					<div className='flex items-center justify-between bg-white rounded-md dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50'>
 						<div className='flex items-center space-x-2 bg-white'>
-							<div className='bg-white text-gray-700 flex'>
-								<IconSearch className='w-5 h-5 text-gray-700' />
+							<div className='bg-white text-gray-700 flex dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50'>
+								<IconSearch
+									className='w-5 h-5 text-gray-700
+								dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50
+								'
+								/>
 								<span className='sr-only'>Buscar</span>
 								<span className='ml-2'>Buscar</span>
 							</div>
 						</div>
-						<div className='flex items-center space-x-2 bg-white'>
-							<IconCommand className='w-5 h-5 text-gray-700' />
-							<span className='text-gray-700'>+ K</span>
+						<div className='flex items-center space-x-2 bg-white dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50'>
+							<IconCommand
+								className='w-5 h-5 text-gray-700
+								dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50
+							'
+							/>
+							<span className='text-gray-700 dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-50'>+ K</span>
 						</div>
 					</div>
 				</CardContent>
@@ -42,7 +48,7 @@ export function SearchBox() {
 	)
 }
 
-function IconCommand(props) {
+function IconCommand(props: any) {
 	return (
 		<svg
 			{...props}
@@ -61,7 +67,7 @@ function IconCommand(props) {
 	)
 }
 
-function IconSearch(props) {
+function IconSearch(props: any) {
 	return (
 		<svg
 			{...props}
