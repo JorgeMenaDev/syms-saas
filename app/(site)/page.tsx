@@ -1,7 +1,7 @@
 import { SiteHeaderWithNoAuth } from '@/components/SiteHeaderWithNoAuth'
 import { HomePageHero } from './_components/Hero'
 
-export default async function Page() {
+export default function MainPageHome() {
 	return (
 		<>
 			<SiteHeaderWithNoAuth />

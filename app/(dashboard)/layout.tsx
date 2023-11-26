@@ -1,8 +1,7 @@
-// import { SiteHeader } from '@/components/SiteHeader'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
-import { TestHeaderWithSideBar } from '@/components/TestHeaderWithSideBar'
+import { HeaderWithSideBar } from './_components/HeaderWithSideBar'
 
 export const metadata = {
 	title: 'Dashboard | Syms Residuos',
@@ -11,7 +10,7 @@ export const metadata = {
 
 export const dynamic = 'force-dynamic'
 
-export default async function ProductsLayout({ children }: { children: React.ReactNode }) {
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
 	const supabase = createServerComponentClient({ cookies })
 	const {
 		data: { session }
@@ -21,9 +20,5 @@ export default async function ProductsLayout({ children }: { children: React.Rea
 		redirect('/login')
 	}
 
-	return (
-		<>
-			<TestHeaderWithSideBar user={session?.user}>{children}</TestHeaderWithSideBar>
-		</>
-	)
+	return <HeaderWithSideBar user={session?.user}>{children}</HeaderWithSideBar>
 }

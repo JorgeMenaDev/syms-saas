@@ -8,7 +8,7 @@ export async function signIn({ email, password }: { email: string; password: str
 		password
 	})
 
-	console.error(error)
+	if (error) console.error(error)
 
 	return { error }
 }

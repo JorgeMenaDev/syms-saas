@@ -1,3 +1,4 @@
+import React from 'react'
 import { AreaChartCustomTooltip } from '@/components/tremor/charts/AreaChart'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
@@ -86,7 +87,7 @@ export default function DashboardPage() {
 	]
 
 	return (
-		<div className='p-20'>
+		<React.Fragment>
 			{/* Cards */}
 			<div className='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
 				{cardsData.map((card, index) => (
@@ -104,6 +105,6 @@ export default function DashboardPage() {
 			</div>
 			{/* Graph */}
 			<AreaChartCustomTooltip />
-		</div>
+		</React.Fragment>
 	)
 }

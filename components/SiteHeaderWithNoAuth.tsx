@@ -1,34 +1,9 @@
 'use client'
 
-import { Fragment, useState } from 'react'
-import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react'
-import {
-	ArrowPathIcon,
-	Bars3Icon,
-	ChartPieIcon,
-	CursorArrowRaysIcon,
-	FingerPrintIcon,
-	SquaresPlusIcon,
-	XMarkIcon
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react'
+import { Dialog } from '@headlessui/react'
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
-
-const products = [
-	{ name: 'Goal', description: 'Start by choosing a goal', href: '/choose-goal', icon: ChartPieIcon },
-	{ name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-	{ name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#', icon: FingerPrintIcon },
-	{ name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-	{ name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon }
-]
-const callsToAction = [
-	{ name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-	{ name: 'Contact sales', href: '#', icon: PhoneIcon }
-]
-
-function classNames(...classes) {
-	return classes.filter(Boolean).join(' ')
-}
 
 export function SiteHeaderWithNoAuth() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -38,7 +13,6 @@ export function SiteHeaderWithNoAuth() {
 			<nav className='mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8' aria-label='Global'>
 				<div className='flex lg:flex-1'>
 					<Link href='/' className='-m-1.5 p-1.5'>
-						<span className='sr-only'>Your Company</span>
 						<span className='text-2xl font-bold'>🚀 Syms</span>
 					</Link>
 				</div>
@@ -50,7 +24,6 @@ export function SiteHeaderWithNoAuth() {
 							setMobileMenuOpen(true)
 						}}
 					>
-						<span className='sr-only'>Open main menu</span>
 						<Bars3Icon className='h-6 w-6' aria-hidden='true' />
 					</button>
 				</div>
@@ -66,7 +39,6 @@ export function SiteHeaderWithNoAuth() {
 				<Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10'>
 					<div className='flex items-center justify-between'>
 						<a href='#' className='-m-1.5 p-1.5'>
-							<span className='sr-only'>Your Company</span>
 							<img
 								className='h-8 w-auto'
 								src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
