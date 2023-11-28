@@ -7,8 +7,8 @@
 
 ## Local environment variables
 
-- Revisa .local.example.env para ver las variables de entorno que necesitas para correr el proyecto localmente
-- Crea un archivo .local.env con las variables de entorno que necesitas para correr el proyecto localmente
+- Revisa .env.example para ver las variables de entorno que necesitas para correr el proyecto localmente
+- Crea un archivo .env.local con las variables de entorno que necesitas para correr el proyecto localmente
   - Puedes copiar el contenido de .local.example.env y reemplazar los valores de las variables de entorno
   - Para encontrar las variables relacionadas con supabase, https://supabase.com/dashboard/project/hsixhtwdsgxyrknvciph/settings/api
 
