@@ -63,7 +63,7 @@ export const menu = [
 				href: '/configuracion/mi-perfil'
 			},
 			{
-				text: 'Empressa',
+				text: 'Empresa',
 				href: '/configuracion/empresa'
 			},
 			{
