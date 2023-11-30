@@ -4,8 +4,9 @@ import { type User } from '@supabase/supabase-js'
 import { LogoutButton } from './logout-button'
 import { useState } from 'react'
 import Link from 'next/link'
-import { menu } from './DesktopSidebar'
+
 import { SubMenu } from './SubMenu'
+import { menu } from '@/constants/sidebar-menus'
 
 export function Navbar({ user }: { user: User }) {
 	const [sidebarOpen, setSidebarOpen] = useState(false)
