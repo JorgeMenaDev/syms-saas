@@ -23,7 +23,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 	}
 
 	return (
-		<div className='grid min-h-screen w-full lg:grid-cols-[280px_1fr]'>
+		<div className='grid min-h-screen w-full lg:grid-cols-[200px_1fr]'>
 			<DesktopSidebar />
 
 			<div className='flex flex-col'>
