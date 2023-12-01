@@ -23,10 +23,6 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 	initialValues,
 	onSubmit
 }) => {
-	console.log('* ', {
-		initialValues
-	})
-
 	const form = useForm<any>({
 		resolver: zodResolver(tableSchema),
 		defaultValues: initialValues // Set default values for the form fields

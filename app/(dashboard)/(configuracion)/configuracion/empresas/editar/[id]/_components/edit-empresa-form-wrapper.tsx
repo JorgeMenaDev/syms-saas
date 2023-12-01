@@ -140,8 +140,6 @@ export function EditEmpresaFormWrapper({
 }: {
 	empresa: Record<string, any> // Initial values for pre-filling the form
 }) {
-	console.log('* llega empresa al cliente ', { empresa })
-
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		toast(
 			// show values
