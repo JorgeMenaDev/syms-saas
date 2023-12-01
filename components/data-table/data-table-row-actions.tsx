@@ -2,21 +2,26 @@
 
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import { type Row } from '@tanstack/react-table'
-
 import { Button } from '@/components/ui/button'
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuShortcut,
-	DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { useRouter } from 'next/navigation'
 
-interface DataTableRowActionsProps<TData> {
-	row: Row<TData>
+// Define an interface for the action object
+export interface DataTableRowAction {
+	label: string
+	onSelect?: () => void
+	redirectTo?: (id: string) => any
 }
 
-export function DataTableRowActions<TData>({ row }: DataTableRowActionsProps<TData>) {
+// Define props for the DataTableRowActions component
+interface DataTableRowActionsProps<TData> {
+	row: Row<TData>
+	actions: DataTableRowAction[]
+}
+
+// DataTableRowActions component
+export function DataTableRowActions<TData>({ row, actions }: DataTableRowActionsProps<TData>) {
+	const router = useRouter()
 	return (
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
@@ -26,11 +31,25 @@ export function DataTableRowActions<TData>({ row }: DataTableRowActionsProps<TDa
 				</Button>
 			</DropdownMenuTrigger>
 			<DropdownMenuContent align='end' className='w-[160px]'>
-				<DropdownMenuItem>Edit</DropdownMenuItem>
-				<DropdownMenuItem>
-					Delete
-					<DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-				</DropdownMenuItem>
+				{/* Render actions based on the provided array */}
+				{actions.map((action, index) => (
+					<div key={index}>
+						{action.label === 'Editar' ? (
+							<DropdownMenuItem
+								key={index}
+								onSelect={async () => {
+									router.push((action.redirectTo as any)(row.getValue('id')))
+								}}
+							>
+								{action.label}
+							</DropdownMenuItem>
+						) : (
+							<DropdownMenuItem key={index} onSelect={action.onSelect}>
+								{action.label}
+							</DropdownMenuItem>
+						)}
+					</div>
+				))}
 			</DropdownMenuContent>
 		</DropdownMenu>
 	)

@@ -1,8 +1,8 @@
+import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { DataTable } from '@/components/data-table/DataTable'
 import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
 import { fetchEmpresas } from '@/services/data/actions/server/empresas/fetchEmpresas'
-import Link from 'next/link'
 
 export default async function ConfiguracionEmpresaPage() {
 	const { empresas } = await fetchEmpresas()
@@ -37,20 +37,9 @@ export default async function ConfiguracionEmpresaPage() {
 					<div className='relative py-14 pr-11'>
 						<Link
 							href='/configuracion/empresas/nueva'
-							className='
-						absolute top-0 right-12
-						rounded-none rounded-bl-md
-						rounded-tr-md
-						px-4 py-2
-						text-sm
-						font-medium
-						hover:bg-primary-hover
-						focus:outline-none
-						focus-visible:ring-2
-						focus-visible:ring-offset-2
-						focus-visible:ring-blue-500
-						border border-gray-300
-						'
+							className='absolute top-0 right-12 rounded-none rounded-bl-md rounded-tr-md px-4 py-2 text-sm font-medium
+							hover:bg-primary-hover focus:outline-none
+							focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 border border-gray-300'
 						>
 							Agregar empresa
 						</Link>

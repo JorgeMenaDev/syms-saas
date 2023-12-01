@@ -139,6 +139,22 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 	},
 	{
 		id: 'actions',
-		cell: ({ row }) => <DataTableRowActions row={row} />
+		cell: ({ row }) => (
+			<DataTableRowActions
+				actions={[
+					{
+						label: 'Editar',
+						redirectTo: id => `/configuracion/empresas/editar/${id}`
+					},
+					{
+						label: 'Eliminar',
+						onSelect: () => {
+							console.log('Eliminar')
+						}
+					}
+				]}
+				row={row}
+			/>
+		)
 	}
 ]

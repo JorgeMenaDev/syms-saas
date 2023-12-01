@@ -86,21 +86,52 @@ const regionesOptions = [
 ]
 
 const configParameters: ConfigParameter[] = [
-	{ name: 'nombre', type: 'input', placeholder: 'Nombre de la empresa', description: 'Nombre de la empresa' },
+	{
+		name: 'nombre',
+		label: 'Nombre',
+		type: 'input',
+		placeholder: 'Nombre de la empresa',
+		description: 'Nombre de la empresa'
+	},
 	{
 		name: 'representanteLegal',
+		label: 'Representante Legal',
 		type: 'input',
 		placeholder: 'Representante legal',
 		description: 'Representante legal de la empresa'
 	},
-	{ name: 'rut', type: 'input', placeholder: 'Rut', description: 'Rut de la empresa' },
-	{ name: 'telefono', type: 'input', placeholder: 'Telefono', description: 'Telefono de la empresa' },
-	{ name: 'email', type: 'input', placeholder: 'Email', description: 'Email de la empresa' },
-	{ name: 'direccion', type: 'input', placeholder: 'Direccion', description: 'Direccion de la empresa' },
-	{ name: 'ciudad', type: 'select', options: ciudadesOptions, description: 'Ciudad de la empresa' },
-	{ name: 'estado', type: 'select', options: estadosOptions, description: 'Estado de la empresa' },
-	{ name: 'industria', type: 'select', options: industriasOptions, description: 'Industria de la empresa' },
-	{ name: 'region', type: 'select', options: regionesOptions, description: 'Region de la empresa' }
+	{ name: 'rut', label: 'Rut', type: 'input', placeholder: 'Rut', description: 'Rut de la empresa' },
+	{
+		name: 'telefono',
+		label: 'Telefono',
+		type: 'input',
+		placeholder: 'Telefono',
+		description: 'Telefono de la empresa'
+	},
+	{ name: 'email', label: 'Email', type: 'input', placeholder: 'Email', description: 'Email de la empresa' },
+	{
+		name: 'direccion',
+		label: 'Direccion',
+		type: 'input',
+		placeholder: 'Direccion',
+		description: 'Direccion de la empresa'
+	},
+	{ name: 'ciudad', label: 'Ciudad', type: 'select', options: ciudadesOptions, description: 'Ciudad de la empresa' },
+	{
+		name: 'estado',
+		label: 'Estado',
+		type: 'select',
+		options: estadosOptions,
+		description: 'Estado de la empresa'
+	},
+	{
+		name: 'industria',
+		label: 'Industria',
+		type: 'select',
+		options: industriasOptions,
+		description: 'Industria de la empresa'
+	},
+	{ name: 'region', label: 'Region', type: 'select', options: regionesOptions, description: 'Region de la empresa' }
 ]
 
 export function NewEmpresaFormWrapper() {

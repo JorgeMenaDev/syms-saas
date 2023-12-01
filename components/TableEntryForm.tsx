@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 export interface ConfigParameter {
 	name: string
+	label: string
 	type: 'input' | 'select' | 'textarea' // Specify the type of the field
 	inputType?: 'text' | 'number' | 'email' | 'password' // Specify the input type for input type
 	options?: Array<{ value: string; label: string }> | undefined // Options for select type
@@ -39,7 +40,7 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({ tableSche
 						name={config.name}
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{config.name}</FormLabel>
+								<FormLabel>{config.label}</FormLabel>
 
 								{/* inputs */}
 								{config.type === 'input' && (
