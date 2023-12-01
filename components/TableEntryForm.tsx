@@ -8,17 +8,23 @@ import { Button } from '@/components/ui/button'
 import { Form, FormField, FormControl, FormDescription, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { toast } from 'sonner'
 
-// Define prop types for the component
-interface AddValueToTableFormProps {
+export interface ConfigParameter {
+	name: string
+	type: 'input' | 'select' | 'textarea' // Specify the type of the field
+	inputType?: 'text' | 'number' | 'email' | 'password' // Specify the input type for input type
+	options?: Array<{ value: string; label: string }> | undefined // Options for select type
+	placeholder?: string
+	description?: string
+}
+
+interface DynamicTableEntryFormProps {
 	tableSchema: z.ZodObject<any, any, any>
-	selectOptions: Array<{ name: string; options: Array<{ value: string; label: string }> }>
+	configParameters: ConfigParameter[]
 	onSubmit: (values: any) => void
 }
 
-export const TableEntryForm: React.FC<AddValueToTableFormProps> = ({ tableSchema, selectOptions, onSubmit }) => {
-	// Define a form
+export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({ tableSchema, configParameters, onSubmit }) => {
 	const form = useForm<any>({
 		resolver: zodResolver(tableSchema)
 	})
@@ -26,56 +32,48 @@ export const TableEntryForm: React.FC<AddValueToTableFormProps> = ({ tableSchema
 	return (
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-				{/* Render form fields based on the table schema */}
-				{Object.keys(tableSchema.shape).map((fieldName, index) => (
+				{configParameters.map((config, index) => (
 					<FormField
 						key={index}
 						control={form.control}
-						name={fieldName}
+						name={config.name}
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>{fieldName}</FormLabel>
-								<FormControl>
-									<Input placeholder={fieldName} {...field} />
-								</FormControl>
-								<FormDescription>{/* Add description if needed */}</FormDescription>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-				))}
+								<FormLabel>{config.name}</FormLabel>
 
-				{/* Render dynamic Select fields based on the provided selectOptions */}
-				{selectOptions.map((select, index) => (
-					<FormField
-						key={index}
-						control={form.control}
-						name={select.name}
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>{select.name}</FormLabel>
-								<Select onValueChange={field.onChange} defaultValue={field.value}>
+								{/* inputs */}
+								{config.type === 'input' && (
 									<FormControl>
-										<SelectTrigger>
-											<SelectValue placeholder={`Select ${select.name}`} />
-										</SelectTrigger>
+										<Input placeholder={config.placeholder} {...field} />
 									</FormControl>
-									<SelectContent>
-										{select.options.map((option, optionIndex) => (
-											<SelectItem key={optionIndex} value={option.value}>
-												{option.label}
-											</SelectItem>
-										))}
-									</SelectContent>
-								</Select>
-								<FormDescription>{/* Add description if needed */}</FormDescription>
+								)}
+
+								{/* selects */}
+								{config.type === 'select' && (
+									<Select onValueChange={field.onChange} defaultValue={field.value}>
+										<FormControl>
+											<SelectTrigger>
+												<SelectValue placeholder={`Select ${config.name}`} />
+											</SelectTrigger>
+										</FormControl>
+										<SelectContent>
+											{config.options?.map((option, optionIndex) => (
+												<SelectItem key={optionIndex} value={option.value}>
+													{option.label}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</Select>
+								)}
+
+								{/* Add support for other types like textarea if needed */}
+								<FormDescription>{config.description}</FormDescription>
 								<FormMessage />
 							</FormItem>
 						)}
 					/>
 				))}
 
-				{/* Submit button */}
 				<Button type='submit'>Add to Table</Button>
 			</form>
 		</Form>

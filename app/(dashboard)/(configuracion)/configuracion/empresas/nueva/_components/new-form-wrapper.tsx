@@ -1,7 +1,7 @@
 'use client'
 
-import { TableEntryForm } from '@/components/TableEntryForm'
-import { updateEmpresa } from '@/services/data/actions/server/empresas/editEmpresaById'
+import { type ConfigParameter, TableEntryForm } from '@/components/TableEntryForm'
+import { toast } from 'sonner'
 import { z } from 'zod'
 
 const formSchema = z.object({
@@ -85,16 +85,32 @@ const regionesOptions = [
 	{ value: '4', label: 'Araucania' }
 ]
 
-const selectOptions = [
-	{ name: 'ciudad', options: ciudadesOptions },
-	{ name: 'estado', options: estadosOptions },
-	{ name: 'industria', options: industriasOptions }
+const configParameters: ConfigParameter[] = [
+	{ name: 'nombre', type: 'input', placeholder: 'Nombre de la empresa', description: 'Nombre de la empresa' },
+	{
+		name: 'representanteLegal',
+		type: 'input',
+		placeholder: 'Representante legal',
+		description: 'Representante legal de la empresa'
+	},
+	{ name: 'rut', type: 'input', placeholder: 'Rut', description: 'Rut de la empresa' },
+	{ name: 'telefono', type: 'input', placeholder: 'Telefono', description: 'Telefono de la empresa' },
+	{ name: 'email', type: 'input', placeholder: 'Email', description: 'Email de la empresa' },
+	{ name: 'direccion', type: 'input', placeholder: 'Direccion', description: 'Direccion de la empresa' },
+	{ name: 'ciudad', type: 'select', options: ciudadesOptions, description: 'Ciudad de la empresa' },
+	{ name: 'estado', type: 'select', options: estadosOptions, description: 'Estado de la empresa' },
+	{ name: 'industria', type: 'select', options: industriasOptions, description: 'Industria de la empresa' },
+	{ name: 'region', type: 'select', options: regionesOptions, description: 'Region de la empresa' }
 ]
 
 export function NewEmpresaFormWrapper() {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		await updateEmpresa('1', values)
+		toast(
+			// show values
+			JSON.stringify(values, null, 2)
+		)
+		// await updateEmpresa('1', values)
 	}
 
-	return <TableEntryForm tableSchema={formSchema} selectOptions={selectOptions} onSubmit={onSubmit} />
+	return <TableEntryForm tableSchema={formSchema} configParameters={configParameters} onSubmit={onSubmit} />
 }
