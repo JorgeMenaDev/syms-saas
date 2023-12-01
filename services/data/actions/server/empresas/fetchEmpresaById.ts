@@ -8,6 +8,6 @@ export const fetchEmpresaById = async (id: string) => {
 	const { data } = await supabase.from('empresas').select().eq('id', id)
 
 	return {
-		empresa: data
+		empresa: data?.[0] ?? null
 	}
 }
