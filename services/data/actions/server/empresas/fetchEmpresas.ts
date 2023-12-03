@@ -1,11 +1,44 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
+import { type Empresa } from '@/types/empresa'
 
-// const { data } = await supabase.from('tweets').select('*, author: profiles(*), likes(user_id)')
-export const fetchEmpresas = async () => {
+export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> => {
 	const supabase = createServerComponentClient<Database>({ cookies })
 
-	const { data } = await supabase.from('empresas').select()
+	const { data: empresaDetails } = await supabase
+		.from('empresas')
+		.select(
+			'*, industria: industria_id(nombre), region: region_id(nombre), ciudad: ciudad_id(nombre), estado: estado_id(nombre)'
+		)
+
+	console.log({ empresaDetails })
+
+	if (!empresaDetails || empresaDetails.length === 0) {
+		return { empresas: null }
+	}
+
+	const data = empresaDetails.map(empresa => {
+		return {
+			id: empresa.id,
+			rut: empresa.rut,
+			nombre: empresa.nombre,
+			// @ts-expect-error supabase wasn't able to infer the type of this property
+			industria: empresa.industria.nombre,
+			ciiu: empresa.ciiu,
+			representanteLegal: empresa.representante_legal,
+			email: empresa.email,
+			telefono: empresa.telefono,
+			ubicacion: empresa.ubicacion,
+			// @ts-expect-error supabase wasn't able to infer the type of this property
+			region: empresa.region.nombre,
+			// @ts-expect-error supabase wasn't able to infer the type of this property
+			ciudad: empresa.ciudad.nombre,
+			// @ts-expect-error supabase wasn't able to infer the type of this property
+			estado: empresa.estado.nombre
+		}
+	})
+
+	console.log(data)
 
 	return {
 		empresas: data
