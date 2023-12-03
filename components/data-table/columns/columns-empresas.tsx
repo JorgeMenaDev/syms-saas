@@ -31,12 +31,23 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 	// 	enableSorting: false,
 	// 	enableHiding: false
 	// },
+	// {
+	// 	accessorKey: 'id',
+	// 	header: ({ column }) => <DataTableColumnHeader column={column} title='ID' />,
+	// 	cell: ({ row }) => <div className='w-[80px]'>{row.getValue('id')}</div>,
+	// 	enableSorting: false,
+	// 	enableHiding: false
+	// },
 	{
-		accessorKey: 'id',
-		header: ({ column }) => <DataTableColumnHeader column={column} title='ID' />,
-		cell: ({ row }) => <div className='w-[80px]'>{row.getValue('id')}</div>,
-		enableSorting: false,
-		enableHiding: false
+		accessorKey: 'nombre',
+		header: ({ column }) => <DataTableColumnHeader column={column} title='Nombre' />,
+		cell: ({ row }) => {
+			return (
+				<div className='flex items-center'>
+					<span>{row.getValue('nombre')}</span>
+				</div>
+			)
+		}
 	},
 	{
 		accessorKey: 'rut',
@@ -50,12 +61,12 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 		}
 	},
 	{
-		accessorKey: 'idIndustria',
+		accessorKey: 'industria',
 		header: ({ column }) => <DataTableColumnHeader column={column} title='Industria' />,
 		cell: ({ row }) => {
 			return (
 				<div className='flex items-center'>
-					<span>{row.getValue('idIndustria')}</span>
+					<span>{row.getValue('industria')}</span>
 				</div>
 			)
 		}
@@ -105,34 +116,45 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 		}
 	},
 	{
-		accessorKey: 'direccion',
+		accessorKey: 'ubicacion',
 		header: ({ column }) => <DataTableColumnHeader column={column} title='Dirección' />,
 		cell: ({ row }) => {
 			return (
 				<div className='flex items-center'>
-					<span>{row.getValue('direccion')}</span>
+					<span>{row.getValue('ubicacion')}</span>
 				</div>
 			)
 		}
 	},
 	{
-		accessorKey: 'idRegion',
+		accessorKey: 'region',
 		header: ({ column }) => <DataTableColumnHeader column={column} title='Región' />,
 		cell: ({ row }) => {
 			return (
 				<div className='flex items-center'>
-					<span>{row.getValue('idRegion')}</span>
+					<span>{row.getValue('region')}</span>
 				</div>
 			)
 		}
 	},
 	{
-		accessorKey: 'idEstado',
+		accessorKey: 'ciudad',
+		header: ({ column }) => <DataTableColumnHeader column={column} title='Comuna' />,
+		cell: ({ row }) => {
+			return (
+				<div className='flex items-center'>
+					<span>{row.getValue('ciudad')}</span>
+				</div>
+			)
+		}
+	},
+	{
+		accessorKey: 'estado',
 		header: ({ column }) => <DataTableColumnHeader column={column} title='Estado' />,
 		cell: ({ row }) => {
 			return (
 				<div className='flex items-center'>
-					<span>{row.getValue('idEstado')}</span>
+					<span>{row.getValue('estado')}</span>
 				</div>
 			)
 		}
