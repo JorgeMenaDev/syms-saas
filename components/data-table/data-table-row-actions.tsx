@@ -38,7 +38,8 @@ export function DataTableRowActions<TData>({ row, actions }: DataTableRowActions
 							<DropdownMenuItem
 								key={index}
 								onSelect={async () => {
-									router.push((action.redirectTo as any)(row.getValue('id')))
+									// @ts-expect-error - TODO: check this later
+									router.push((action.redirectTo as any)(row.original.id))
 								}}
 							>
 								{action.label}

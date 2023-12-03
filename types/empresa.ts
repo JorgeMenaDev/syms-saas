@@ -7,7 +7,7 @@ export interface Empresa {
 	representanteLegal: string
 	email: string
 	telefono: string
-	ubicacion: string
+	direccion: string
 	region: string
 	ciudad: string
 	estado: string

@@ -7,8 +7,6 @@ import { fetchEmpresas } from '@/services/data/actions/server/empresas/fetchEmpr
 export default async function ConfiguracionEmpresaPage() {
 	const { empresas } = await fetchEmpresas()
 
-	console.log(empresas)
-
 	return (
 		<section>
 			<Breadcrumbs

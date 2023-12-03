@@ -1,28 +1,21 @@
 import { fetchEmpresaById } from '@/services/data/actions/server/empresas/fetchEmpresaById'
 import { EditEmpresaFormWrapper } from './_components/edit-empresa-form-wrapper'
 import Breadcrumbs from '@/components/Breadcrumbs'
-
-function mapApiToForm(empresaFromSupabase: any) {
-	return {
-		direccion: empresaFromSupabase.direccion,
-		email: empresaFromSupabase.email,
-		ciudad: empresaFromSupabase.idCiudad?.toString(), // Assuming you want to convert to string
-		estado: empresaFromSupabase.idEstado?.toString(),
-		industria: empresaFromSupabase.idIndustria?.toString(),
-		region: empresaFromSupabase.idRegion?.toString(),
-		nombre: empresaFromSupabase.nombre,
-		representanteLegal: empresaFromSupabase.representanteLegal,
-		rut: empresaFromSupabase.rut,
-		telefono: empresaFromSupabase.telefono
-	}
-}
+import { fetchCiudades } from '@/services/data/actions/server/ciudades/fetchCiudades'
+import { fetchRegiones } from '@/services/data/actions/server/regiones/fetchRegiones'
+import { fetchIndustrias } from '@/services/data/actions/server/industrias/fetchIndustrias'
+import { fetchEstadoDeEmpresas } from '@/services/data/actions/server/estado-de-empresas/fetchEstadosDeEmpresas'
 
 export default async function editarEmpresaPage({ params }: { params: { id: string } }) {
-	const { empresa } = await fetchEmpresaById(params?.id)
+	const [{ empresa }, { ciudades }, { regiones }, { industrias }, { estados }] = await Promise.all([
+		fetchEmpresaById(params?.id),
+		fetchCiudades(),
+		fetchRegiones(),
+		fetchIndustrias(),
+		fetchEstadoDeEmpresas()
+	])
 
-	console.log({ empresa })
-
-	const initialValues = mapApiToForm(empresa)
+	console.log({ estados })
 
 	return (
 		<section className='p-3'>
@@ -51,7 +44,13 @@ export default async function editarEmpresaPage({ params }: { params: { id: stri
 				</div>
 			</div>
 
-			<EditEmpresaFormWrapper empresa={initialValues} />
+			<EditEmpresaFormWrapper
+				empresa={empresa}
+				estadosOptions={estados}
+				ciudadesOptions={ciudades}
+				regionesOptions={regiones}
+				industriasOptions={industrias}
+			/>
 		</section>
 	)
 }

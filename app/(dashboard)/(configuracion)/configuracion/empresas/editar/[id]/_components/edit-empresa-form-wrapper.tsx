@@ -2,6 +2,7 @@
 
 import { EditTableEntryForm } from '@/components/EditTableEntryForm'
 import { type ConfigParameter } from '@/components/TableEntryForm'
+import { type Empresa } from '@/types/empresa'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -62,30 +63,6 @@ const formSchema = z.object({
 		})
 })
 
-const ciudadesOptions = [
-	{ value: '1', label: 'Santiago' },
-	{ value: '2', label: 'Valparaiso' },
-	{ value: '3', label: 'Concepcion' }
-]
-
-const estadosOptions = [
-	{ value: '1', label: 'Activo' },
-	{ value: '2', label: 'Inactivo' }
-]
-
-const industriasOptions = [
-	{ value: '1', label: 'Mineria' },
-	{ value: '2', label: 'Pesca' },
-	{ value: '3', label: 'Agricultura' }
-]
-
-const regionesOptions = [
-	{ value: '1', label: 'Metropolitana' },
-	{ value: '2', label: 'Valparaiso' },
-	{ value: '3', label: 'Bio Bio' },
-	{ value: '4', label: 'Araucania' }
-]
-
 const configParameters: ConfigParameter[] = [
 	{
 		name: 'nombre',
@@ -117,28 +94,36 @@ const configParameters: ConfigParameter[] = [
 		placeholder: 'Direccion',
 		description: 'Direccion de la empresa'
 	},
-	{ name: 'ciudad', label: 'Ciudad', type: 'select', options: ciudadesOptions, description: 'Ciudad de la empresa' },
+	{ name: 'ciudad', label: 'Ciudad', type: 'select', options: [], description: 'Ciudad de la empresa' },
 	{
 		name: 'estado',
 		label: 'Estado',
 		type: 'select',
-		options: estadosOptions,
+		options: [],
 		description: 'Estado de la empresa'
 	},
 	{
 		name: 'industria',
 		label: 'Industria',
 		type: 'select',
-		options: industriasOptions,
+		options: [],
 		description: 'Industria de la empresa'
 	},
-	{ name: 'region', label: 'Region', type: 'select', options: regionesOptions, description: 'Region de la empresa' }
+	{ name: 'region', label: 'Region', type: 'select', options: [], description: 'Region de la empresa' }
 ]
 
 export function EditEmpresaFormWrapper({
-	empresa
+	empresa,
+	ciudadesOptions,
+	regionesOptions,
+	industriasOptions,
+	estadosOptions
 }: {
-	empresa: Record<string, any> // Initial values for pre-filling the form
+	empresa: Empresa // Initial values for pre-filling the form
+	ciudadesOptions: Array<{ value: string; label: string }>
+	regionesOptions: Array<{ value: string; label: string }>
+	industriasOptions: Array<{ value: string; label: string }>
+	estadosOptions: Array<{ value: string; label: string }>
 }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		toast(
@@ -147,6 +132,13 @@ export function EditEmpresaFormWrapper({
 		)
 		// await updateEmpresa('1', values)
 	}
+
+	configParameters[6].options = ciudadesOptions
+	configParameters[7].options = estadosOptions
+	configParameters[8].options = industriasOptions
+	configParameters[9].options = regionesOptions
+
+	console.log({ empresa })
 
 	return (
 		<EditTableEntryForm

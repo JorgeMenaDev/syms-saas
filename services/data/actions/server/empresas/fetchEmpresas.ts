@@ -28,7 +28,8 @@ export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> =
 			representanteLegal: empresa.representante_legal,
 			email: empresa.email,
 			telefono: empresa.telefono,
-			ubicacion: empresa.ubicacion,
+			// @ts-expect-error supabase wasn't able to infer the type of this property
+			direccion: empresa.ubicacion,
 			// @ts-expect-error supabase wasn't able to infer the type of this property
 			region: empresa.region.nombre,
 			// @ts-expect-error supabase wasn't able to infer the type of this property

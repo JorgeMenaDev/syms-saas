@@ -31,13 +31,6 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 	// 	enableSorting: false,
 	// 	enableHiding: false
 	// },
-	// {
-	// 	accessorKey: 'id',
-	// 	header: ({ column }) => <DataTableColumnHeader column={column} title='ID' />,
-	// 	cell: ({ row }) => <div className='w-[80px]'>{row.getValue('id')}</div>,
-	// 	enableSorting: false,
-	// 	enableHiding: false
-	// },
 	{
 		accessorKey: 'nombre',
 		header: ({ column }) => <DataTableColumnHeader column={column} title='Nombre' />,
@@ -116,12 +109,12 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 		}
 	},
 	{
-		accessorKey: 'ubicacion',
+		accessorKey: 'direccion',
 		header: ({ column }) => <DataTableColumnHeader column={column} title='Dirección' />,
 		cell: ({ row }) => {
 			return (
 				<div className='flex items-center'>
-					<span>{row.getValue('ubicacion')}</span>
+					<span>{row.getValue('direccion')}</span>
 				</div>
 			)
 		}

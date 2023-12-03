@@ -70,7 +70,7 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 					/>
 				))}
 
-				<Button type='submit'>Update Row</Button>
+				<Button type='submit'>Actualizar</Button>
 			</form>
 		</Form>
 	)
