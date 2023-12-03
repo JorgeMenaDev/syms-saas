@@ -4,7 +4,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "eslint --ext .js,.jsx,.ts,.tsx ."
+		"lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+		"gen:types": "pnpm dlx supabase gen types typescript --project-id hsixhtwdsgxyrknvciph > lib/database.types.ts"
 	},
 	"dependencies": {
 		"@faker-js/faker": "^8.3.1",
