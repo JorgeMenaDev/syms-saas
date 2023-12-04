@@ -3,8 +3,7 @@ import { EditEmpresaFormWrapper } from './_components/edit-empresa-form-wrapper'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { fetchCiudades } from '@/services/data/actions/server/ciudades/fetchCiudades'
 import { fetchRegiones } from '@/services/data/actions/server/regiones/fetchRegiones'
-import { fetchIndustrias } from '@/services/data/actions/server/industrias/fetchIndustrias'
-import { fetchEstadoDeEmpresas } from '@/services/data/actions/server/estado-de-empresas/fetchEstadosDeEmpresas'
+
 import { fetchCiius } from '@/services/data/actions/server/ciuus/fetchCiius'
 
 export default async function editarEmpresaPage({ params }: { params: { id: string } }) {
@@ -16,6 +15,8 @@ export default async function editarEmpresaPage({ params }: { params: { id: stri
 		fetchEstadoDeEmpresas(),
 		fetchCiius()
 	])
+
+	console.log('empresa', { empresa })
 
 	return (
 		<section className='p-3'>

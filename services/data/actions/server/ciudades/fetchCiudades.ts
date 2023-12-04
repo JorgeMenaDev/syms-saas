@@ -1,38 +1,24 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-export const fetchCiudades = async (): Promise<{ ciudades: any | null }> => {
+export const fetchCiudades = async () => {
 	const supabase = createServerComponentClient<Database>({ cookies })
 
-	const { data } = await supabase.from('ciudades').select()
+	const { data: ciudades } = await supabase.from('ciudades').select()
 
-	if (!data || data.length === 0) {
-		return {
-			ciudades: null
-		}
-	}
+	if (!ciudades || ciudades.length === 0) return null
 
-	const ciudades = data.map(city => ({ value: city.id.toString(), label: city.nombre }))
-
-	console.log({ ciudades })
-
-	return { ciudades }
+	return ciudades
 }
 
-export const fetchCiudadesByRegionId = async (regionId: string): Promise<{ ciudades: any | null }> => {
-	const supabase = createServerComponentClient<Database>({ cookies })
+/**
+ * 	Function de utilidad, para obtener las ciudades en formato para select/dropdowns
+ */
+export const fetchCiudadesForSelect = async () => {
+	const ciudades = await fetchCiudades()
+	if (!ciudades) return null
 
-	const { data } = await supabase.from('ciudades').select().eq('region_id', regionId)
+	const ciudadesForSelect = ciudades.map(city => ({ value: city.id.toString(), label: city.nombre }))
 
-	if (!data || data.length === 0) {
-		return {
-			ciudades: null
-		}
-	}
-
-	const ciudades = data.map(city => ({ value: city.id.toString(), label: city.nombre }))
-
-	console.log({ ciudades })
-
-	return { ciudades }
+	return ciudadesForSelect
 }

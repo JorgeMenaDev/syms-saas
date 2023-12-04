@@ -7,12 +7,10 @@ export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> =
 
 	const { data: empresaDetails } = await supabase.from('empresas').select(
 		`*,
-			industria: industria_id(nombre),
 			region: region_id(nombre),
 			ciudad: ciudad_id(nombre),
-			estado: estado_id(nombre),
 			ciiu: ciiu_id(codigo)
-			`
+		`
 	)
 
 	console.log({ empresaDetails })
@@ -21,32 +19,27 @@ export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> =
 		return { empresas: null }
 	}
 
-	const data = empresaDetails.map(empresa => {
+	const empresas = empresaDetails.map(empresa => {
 		return {
 			id: empresa.id,
 			rut: empresa.rut,
 			nombre: empresa.nombre,
-			// @ts-expect-error supabase wasn't able to infer the type of this property
-			industria: empresa.industria.nombre,
+			industria: empresa.industria,
 			// @ts-expect-error supabase wasn't able to infer the type of this property
 			ciiu: empresa.ciiu.codigo,
 			representanteLegal: empresa.representante_legal,
 			email: empresa.email,
 			telefono: empresa.telefono,
-			// @ts-expect-error supabase wasn't able to infer the type of this property
 			direccion: empresa.ubicacion,
 			// @ts-expect-error supabase wasn't able to infer the type of this property
 			region: empresa.region.nombre,
 			// @ts-expect-error supabase wasn't able to infer the type of this property
 			ciudad: empresa.ciudad.nombre,
-			// @ts-expect-error supabase wasn't able to infer the type of this property
-			estado: empresa.estado.nombre
+			estado: empresa.estado
 		}
 	})
 
-	console.log(data)
+	console.log({ empresas })
 
-	return {
-		empresas: data
-	}
+	return { empresas }
 }

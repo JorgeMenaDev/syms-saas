@@ -22,17 +22,32 @@ export interface ConfigParameter {
 interface DynamicTableEntryFormProps {
 	tableSchema: z.ZodObject<any, any, any>
 	configParameters: ConfigParameter[]
-	onSubmit: (values: any) => void
+	onSubmit: (values: any) => Promise<boolean | undefined>
+	initialValues?: any
 }
 
-export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({ tableSchema, configParameters, onSubmit }) => {
+export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
+	initialValues,
+	tableSchema,
+	configParameters,
+	onSubmit
+}) => {
 	const form = useForm<any>({
-		resolver: zodResolver(tableSchema)
+		resolver: zodResolver(tableSchema),
+		defaultValues: initialValues
 	})
+
+	function handleSubmit(values: any) {
+		onSubmit(values)
+			.then(ok => {
+				if (ok) form.reset()
+			})
+			.catch(() => {}) // <-- this is to keep ts happy - we did all the error handling already.
+	}
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+			<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
 				{configParameters.map((config, index) => (
 					<FormField
 						key={index}
@@ -51,7 +66,7 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({ tableSche
 
 								{/* selects */}
 								{config.type === 'select' && (
-									<Select onValueChange={field.onChange} defaultValue={field.value}>
+									<Select onValueChange={field.onChange} value={field.value}>
 										<FormControl>
 											<SelectTrigger>
 												<SelectValue placeholder={`Selecciona ${config.name}`} />
@@ -75,7 +90,7 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({ tableSche
 					/>
 				))}
 
-				<Button type='submit'>Add to Table</Button>
+				<Button type='submit'>Crear</Button>
 			</form>
 		</Form>
 	)

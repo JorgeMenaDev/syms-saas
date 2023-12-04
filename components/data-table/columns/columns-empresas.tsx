@@ -145,9 +145,11 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 		accessorKey: 'estado',
 		header: ({ column }) => <DataTableColumnHeader column={column} title='Estado' />,
 		cell: ({ row }) => {
+			const value = row.getValue('estado')
+			// value is a boolean so if it's true I want to display 'Activo' and if it's false I want to display 'Inactivo'
 			return (
 				<div className='flex items-center'>
-					<span>{row.getValue('estado')}</span>
+					<span>{value ? 'Activo' : 'Inactivo'}</span>
 				</div>
 			)
 		}

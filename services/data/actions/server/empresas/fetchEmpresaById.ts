@@ -3,19 +3,19 @@ import { cookies } from 'next/headers'
 
 export const fetchEmpresaById = async (id: string): Promise<{ empresa: any | null }> => {
 	const supabase = createServerComponentClient<Database>({ cookies })
-
+	console.log({ id })
 	const { data } = await supabase
 		.from('empresas')
 		.select(
-			`
-			*,
-			industria: industria_id(nombre),
+			`*,
 			region: region_id(nombre),
 			ciudad: ciudad_id(nombre),
-			estado: estado_id(nombre)
+			ciiu: ciiu_id(codigo)
 		`
 		)
 		.eq('id', id)
+
+	console.log({ data })
 
 	if (!data || data.length === 0 || data?.[0] === null) {
 		return {
@@ -31,21 +31,15 @@ export const fetchEmpresaById = async (id: string): Promise<{ empresa: any | nul
 		id: empresaDetails.id,
 		rut: empresaDetails.rut,
 		nombre: empresaDetails.nombre,
-		// @ts-expect-error supabase wasn't able to infer the type of this property
-		industria: empresaDetails.industria_id,
-		// @ts-expect-error supabase wasn't able to infer the type of this property
+		industria: empresaDetails.industria,
 		ciiu: empresaDetails.ciiu_id.toString(),
 		representanteLegal: empresaDetails.representante_legal,
 		email: empresaDetails.email,
 		telefono: empresaDetails.telefono,
-		// @ts-expect-error supabase wasn't able to infer the type of this property
 		direccion: empresaDetails.ubicacion,
-		// @ts-expect-error supabase wasn't able to infer the type of this property
 		region: empresaDetails.region_id.toString(),
-		// @ts-expect-error supabase wasn't able to infer the type of this property
 		ciudad: empresaDetails.ciudad_id.toString(),
-		// @ts-expect-error supabase wasn't able to infer the type of this property
-		estado: empresaDetails.estado_id
+		estado: empresaDetails.estado
 	}
 
 	console.log({ empresa })

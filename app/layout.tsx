@@ -23,7 +23,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 		<html lang='en'>
 			<body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
 				<main className=''>
-					<Toaster />
+					<Toaster richColors />
 					<Providers>{children}</Providers>
 				</main>
 			</body>

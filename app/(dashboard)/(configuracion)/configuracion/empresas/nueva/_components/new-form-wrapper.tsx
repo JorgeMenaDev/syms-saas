@@ -1,6 +1,7 @@
 'use client'
 
 import { type ConfigParameter, TableEntryForm } from '@/components/TableEntryForm'
+import { createEmpresa } from '@/services/data/actions/server/empresas/ createNewEmpresa'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
@@ -67,22 +68,26 @@ const formSchema = z.object({
 export function NewEmpresaFormWrapper({
 	ciudadesOptions,
 	regionesOptions,
-	industriasOptions,
-	estadosOptions,
 	ciiusOptions
 }: {
 	ciudadesOptions: Array<{ value: string; label: string }>
 	regionesOptions: Array<{ value: string; label: string }>
-	industriasOptions: Array<{ value: string; label: string }>
-	estadosOptions: Array<{ value: string; label: string }>
 	ciiusOptions: Array<{ value: string; label: string }>
 }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		toast(
-			// show values
-			JSON.stringify(values, null, 2)
-		)
-		// await updateEmpresa('1', values)
+		try {
+			const { error } = await createEmpresa(values)
+
+			if (error) {
+				toast.error(`Hubo un error al crear la empresa: ${error}`)
+			} else {
+				toast.success('Empresa creada correctamente.')
+				return true
+			}
+		} catch (error) {
+			console.error({ error })
+			toast.error('Hubo un error al crear la empresa, si el error persiste contacte a soporte.')
+		}
 	}
 
 	const configParameters: ConfigParameter[] = [
@@ -96,8 +101,8 @@ export function NewEmpresaFormWrapper({
 		{
 			name: 'industria',
 			label: 'Industria',
-			type: 'select',
-			options: industriasOptions,
+			type: 'input',
+			placeholder: 'Industria',
 			description: 'Industria de la empresa'
 		},
 		{
@@ -136,14 +141,29 @@ export function NewEmpresaFormWrapper({
 			name: 'estado',
 			label: 'Estado',
 			type: 'select',
-			options: estadosOptions,
+			options: [
+				{
+					value: 'activo',
+					label: 'Activo'
+				},
+				{
+					value: 'inactivo',
+					label: 'Inactivo'
+				}
+			],
 			description: 'Estado de la empresa'
 		}
 	]
 
-	console.log({
-		ciudadesOptions
-	})
+	// initial values are all empty strings
+	const initialValues = Object.fromEntries(configParameters.map(config => [config.name, '']))
 
-	return <TableEntryForm tableSchema={formSchema} configParameters={configParameters} onSubmit={onSubmit} />
+	return (
+		<TableEntryForm
+			initialValues={initialValues}
+			tableSchema={formSchema}
+			configParameters={configParameters}
+			onSubmit={onSubmit}
+		/>
+	)
 }

@@ -10,5 +10,5 @@ export interface Empresa {
 	direccion: string
 	region: string
 	ciudad: string
-	estado: string
+	estado: boolean
 }

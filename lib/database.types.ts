@@ -9,29 +9,57 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      ciudades: {
+      ciius: {
         Row: {
+          codigo: number
           created_at: string
           id: string
           nombre: string
-          region_id: string
         }
         Insert: {
+          codigo: number
           created_at?: string
           id?: string
           nombre: string
-          region_id: string
         }
         Update: {
+          codigo?: number
           created_at?: string
           id?: string
           nombre?: string
-          region_id?: string
+        }
+        Relationships: []
+      }
+      ciudades: {
+        Row: {
+          id: number
+          id_pais: number
+          id_region: number
+          nombre: string
+        }
+        Insert: {
+          id?: number
+          id_pais: number
+          id_region: number
+          nombre: string
+        }
+        Update: {
+          id?: number
+          id_pais?: number
+          id_region?: number
+          nombre?: string
         }
         Relationships: [
           {
-            foreignKeyName: "ciudades_region_id_fkey"
-            columns: ["region_id"]
+            foreignKeyName: "ciudades_id_pais_fkey"
+            columns: ["id_pais"]
+            isOneToOne: false
+            referencedRelation: "paises"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ciudades_id_region_fkey"
+            columns: ["id_region"]
             isOneToOne: false
             referencedRelation: "regiones"
             referencedColumns: ["id"]
@@ -40,75 +68,71 @@ export interface Database {
       }
       empresas: {
         Row: {
-          ciiu: number
+          ciiu_id: string
+          ciudad_id: number
           created_at: string
-          direccion: string
           email: string
+          establecimientos: string[] | null
+          estado: boolean
           id: string
-          id_ciudad: string | null
-          id_estado_empresa: string | null
-          id_industria: string
-          id_region: string | null
+          industria: string
           nombre: string
+          region_id: number
           representante_legal: string
           rut: string
           telefono: string
+          ubicacion: string
         }
         Insert: {
-          ciiu: number
+          ciiu_id: string
+          ciudad_id: number
           created_at?: string
-          direccion: string
           email: string
+          establecimientos?: string[] | null
+          estado: boolean
           id?: string
-          id_ciudad?: string | null
-          id_estado_empresa?: string | null
-          id_industria: string
-          id_region?: string | null
+          industria: string
           nombre: string
+          region_id: number
           representante_legal: string
           rut: string
           telefono: string
+          ubicacion: string
         }
         Update: {
-          ciiu?: number
+          ciiu_id?: string
+          ciudad_id?: number
           created_at?: string
-          direccion?: string
           email?: string
+          establecimientos?: string[] | null
+          estado?: boolean
           id?: string
-          id_ciudad?: string | null
-          id_estado_empresa?: string | null
-          id_industria?: string
-          id_region?: string | null
+          industria?: string
           nombre?: string
+          region_id?: number
           representante_legal?: string
           rut?: string
           telefono?: string
+          ubicacion?: string
         }
         Relationships: [
           {
-            foreignKeyName: "empresas_id_ciudad_fkey"
-            columns: ["id_ciudad"]
+            foreignKeyName: "empresas_ciiu_id_fkey"
+            columns: ["ciiu_id"]
+            isOneToOne: false
+            referencedRelation: "ciius"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "empresas_ciudad_id_fkey"
+            columns: ["ciudad_id"]
             isOneToOne: false
             referencedRelation: "ciudades"
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "empresas_id_estado_empresa_fkey"
-            columns: ["id_estado_empresa"]
-            isOneToOne: false
-            referencedRelation: "estadoEmpresas"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "empresas_id_industria_fkey"
-            columns: ["id_industria"]
-            isOneToOne: false
-            referencedRelation: "industrias"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "empresas_id_region_fkey"
-            columns: ["id_region"]
+            foreignKeyName: "empresas_region_id_fkey"
+            columns: ["region_id"]
             isOneToOne: false
             referencedRelation: "regiones"
             referencedColumns: ["id"]
@@ -117,51 +141,76 @@ export interface Database {
       }
       establecimientos: {
         Row: {
+          ciudad_id: number
+          correo: string
           created_at: string
-          direccion: string | null
-          email: string | null
-          id: number
-          idCiudad: number | null
-          idComuna: number | null
-          idEncargado: number | null
-          idRegion: number | null
-          idTipoEstablecimiento: number | null
+          direccion: string
+          encargado: string
+          id: string
+          id_vu: number
           nombre: string
-          nopel: boolean | null
-          respel: boolean | null
-          telefono: string | null
+          nopel: boolean
+          region_id: number
+          respel: boolean
+          telefono: string
+          tipo_establecimiento_id: string
+          usuarios: string[] | null
         }
         Insert: {
+          ciudad_id: number
+          correo: string
           created_at?: string
-          direccion?: string | null
-          email?: string | null
-          id?: number
-          idCiudad?: number | null
-          idComuna?: number | null
-          idEncargado?: number | null
-          idRegion?: number | null
-          idTipoEstablecimiento?: number | null
+          direccion: string
+          encargado: string
+          id?: string
+          id_vu: number
           nombre: string
-          nopel?: boolean | null
-          respel?: boolean | null
-          telefono?: string | null
+          nopel: boolean
+          region_id: number
+          respel: boolean
+          telefono: string
+          tipo_establecimiento_id: string
+          usuarios?: string[] | null
         }
         Update: {
+          ciudad_id?: number
+          correo?: string
           created_at?: string
-          direccion?: string | null
-          email?: string | null
-          id?: number
-          idCiudad?: number | null
-          idComuna?: number | null
-          idEncargado?: number | null
-          idRegion?: number | null
-          idTipoEstablecimiento?: number | null
+          direccion?: string
+          encargado?: string
+          id?: string
+          id_vu?: number
           nombre?: string
-          nopel?: boolean | null
-          respel?: boolean | null
-          telefono?: string | null
+          nopel?: boolean
+          region_id?: number
+          respel?: boolean
+          telefono?: string
+          tipo_establecimiento_id?: string
+          usuarios?: string[] | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "establecimientos_ciudad_id_fkey"
+            columns: ["ciudad_id"]
+            isOneToOne: false
+            referencedRelation: "ciudades"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "establecimientos_region_id_fkey"
+            columns: ["region_id"]
+            isOneToOne: false
+            referencedRelation: "regiones"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "establecimientos_tipo_establecimiento_id_fkey"
+            columns: ["tipo_establecimiento_id"]
+            isOneToOne: false
+            referencedRelation: "tipoEstablecimientos"
+            referencedColumns: ["id"]
+          }
+        ]
       }
       estadoEmpresas: {
         Row: {
@@ -217,7 +266,48 @@ export interface Database {
         }
         Relationships: []
       }
+      paises: {
+        Row: {
+          id: number
+          nombre: string | null
+        }
+        Insert: {
+          id?: number
+          nombre?: string | null
+        }
+        Update: {
+          id?: number
+          nombre?: string | null
+        }
+        Relationships: []
+      }
       regiones: {
+        Row: {
+          id: number
+          id_pais: number
+          nombre: string
+        }
+        Insert: {
+          id?: number
+          id_pais: number
+          nombre: string
+        }
+        Update: {
+          id?: number
+          id_pais?: number
+          nombre?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "regiones_id_pais_fkey"
+            columns: ["id_pais"]
+            isOneToOne: false
+            referencedRelation: "paises"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      tipoEstablecimientos: {
         Row: {
           created_at: string
           id: string
@@ -232,24 +322,6 @@ export interface Database {
           created_at?: string
           id?: string
           nombre?: string
-        }
-        Relationships: []
-      }
-      tipoEstablecimientos: {
-        Row: {
-          created_at: string
-          id: number
-          nombre: string | null
-        }
-        Insert: {
-          created_at?: string
-          id?: number
-          nombre?: string | null
-        }
-        Update: {
-          created_at?: string
-          id?: number
-          nombre?: string | null
         }
         Relationships: []
       }

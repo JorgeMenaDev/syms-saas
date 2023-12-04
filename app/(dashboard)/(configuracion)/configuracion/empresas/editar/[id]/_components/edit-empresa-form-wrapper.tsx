@@ -89,8 +89,6 @@ export function EditEmpresaFormWrapper({
 		// await updateEmpresa('1', values)
 	}
 
-	console.log({ ciiusOptions })
-
 	const configParameters: ConfigParameter[] = [
 		{
 			name: 'nombre',

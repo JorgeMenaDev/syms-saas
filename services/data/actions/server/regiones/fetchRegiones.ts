@@ -1,20 +1,26 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-export const fetchRegiones = async (): Promise<{ regiones: any | null }> => {
+export const fetchRegiones = async (): Promise<any[] | null> => {
 	const supabase = createServerComponentClient<Database>({ cookies })
 
-	const { data } = await supabase.from('regiones').select()
+	const { data: regiones } = await supabase.from('regiones').select()
 
-	if (!data || data.length === 0) {
-		return {
-			regiones: null
-		}
+	if (!regiones || regiones.length === 0) {
+		return null
 	}
 
-	const regiones = data.map(region => ({ value: region.id.toString(), label: region.nombre }))
+	return regiones
+}
 
-	console.log({ regiones })
+/**
+ * 	Function de utilidad, para obtener las regiones en formato para select/dropdowns
+ */
+export const fetchRegionesForSelect = async () => {
+	const regiones = await fetchRegiones()
+	if (!regiones) return null
 
-	return { regiones }
+	const regionesForSelect = regiones.map(region => ({ value: region.id.toString(), label: region.nombre }))
+
+	return regionesForSelect
 }
