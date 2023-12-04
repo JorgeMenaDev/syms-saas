@@ -32,12 +32,12 @@ const configParameters: ConfigParameter[] = [
 		label: 'Empresas',
 		type: 'input',
 		placeholder: 'Empresas',
-		description: 'Empresas del usuario'
+		description: 'Lista de empresas del usuario'
 	},
 	{
 		name: 'imagen',
 		label: 'Imagen',
-		type: 'input',
+		type: 'textarea',
 		placeholder: 'Imagen',
 		description: 'Imagen del usuario'
 	}

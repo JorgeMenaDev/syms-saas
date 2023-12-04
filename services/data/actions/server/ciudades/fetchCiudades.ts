@@ -12,7 +12,7 @@ export const fetchCiudades = async (): Promise<{ ciudades: any | null }> => {
 		}
 	}
 
-	const ciudades = data.map(city => ({ value: city.id, label: city.nombre }))
+	const ciudades = data.map(city => ({ value: city.id.toString(), label: city.nombre }))
 
 	console.log({ ciudades })
 
@@ -30,7 +30,7 @@ export const fetchCiudadesByRegionId = async (regionId: string): Promise<{ ciuda
 		}
 	}
 
-	const ciudades = data.map(city => ({ value: city.id, label: city.nombre }))
+	const ciudades = data.map(city => ({ value: city.id.toString(), label: city.nombre }))
 
 	console.log({ ciudades })
 

@@ -22,7 +22,8 @@ export default async function PerfilPage() {
 				<div>
 					<h2 className='text-2xl font-bold tracking-tight'>Perfil de usuario</h2>
 					<p className='text-muted-foreground'>
-						En esta sección podrás ver y editar tu perfil de usuario. En este momento el perfil es de solo lectura.
+						En esta sección podrás ver y editar tu perfil de usuario.{' '}
+						<span className='font-bold'>En este momento el perfil es de solo lectura.</span>
 					</p>
 				</div>
 			</div>

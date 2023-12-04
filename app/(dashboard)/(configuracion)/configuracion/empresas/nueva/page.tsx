@@ -1,7 +1,20 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { NewEmpresaFormWrapper } from './_components/new-form-wrapper'
+import { fetchCiudades } from '@/services/data/actions/server/ciudades/fetchCiudades'
+import { fetchRegiones } from '@/services/data/actions/server/regiones/fetchRegiones'
+import { fetchIndustrias } from '@/services/data/actions/server/industrias/fetchIndustrias'
+import { fetchEstadoDeEmpresas } from '@/services/data/actions/server/estado-de-empresas/fetchEstadosDeEmpresas'
+import { fetchCiius } from '@/services/data/actions/server/ciuus/fetchCiius'
 
 export default async function NuevaEmpresaPage() {
+	const [{ ciudades }, { regiones }, { industrias }, { estados }, { ciius }] = await Promise.all([
+		fetchCiudades(),
+		fetchRegiones(),
+		fetchIndustrias(),
+		fetchEstadoDeEmpresas(),
+		fetchCiius()
+	])
+
 	return (
 		<section className='p-3'>
 			<Breadcrumbs
@@ -26,7 +39,13 @@ export default async function NuevaEmpresaPage() {
 				</div>
 			</div>
 
-			<NewEmpresaFormWrapper />
+			<NewEmpresaFormWrapper
+				estadosOptions={estados}
+				ciudadesOptions={ciudades}
+				regionesOptions={regiones}
+				industriasOptions={industrias}
+				ciiusOptions={ciius}
+			/>
 		</section>
 	)
 }

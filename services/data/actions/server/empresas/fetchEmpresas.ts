@@ -5,11 +5,15 @@ import { type Empresa } from '@/types/empresa'
 export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> => {
 	const supabase = createServerComponentClient<Database>({ cookies })
 
-	const { data: empresaDetails } = await supabase
-		.from('empresas')
-		.select(
-			'*, industria: industria_id(nombre), region: region_id(nombre), ciudad: ciudad_id(nombre), estado: estado_id(nombre)'
-		)
+	const { data: empresaDetails } = await supabase.from('empresas').select(
+		`*,
+			industria: industria_id(nombre),
+			region: region_id(nombre),
+			ciudad: ciudad_id(nombre),
+			estado: estado_id(nombre),
+			ciiu: ciiu_id(codigo)
+			`
+	)
 
 	console.log({ empresaDetails })
 
@@ -24,7 +28,8 @@ export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> =
 			nombre: empresa.nombre,
 			// @ts-expect-error supabase wasn't able to infer the type of this property
 			industria: empresa.industria.nombre,
-			ciiu: empresa.ciiu,
+			// @ts-expect-error supabase wasn't able to infer the type of this property
+			ciiu: empresa.ciiu.codigo,
 			representanteLegal: empresa.representante_legal,
 			email: empresa.email,
 			telefono: empresa.telefono,

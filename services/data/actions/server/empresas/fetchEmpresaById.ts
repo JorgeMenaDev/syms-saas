@@ -33,19 +33,22 @@ export const fetchEmpresaById = async (id: string): Promise<{ empresa: any | nul
 		nombre: empresaDetails.nombre,
 		// @ts-expect-error supabase wasn't able to infer the type of this property
 		industria: empresaDetails.industria_id,
-		ciiu: empresaDetails.ciiu,
+		// @ts-expect-error supabase wasn't able to infer the type of this property
+		ciiu: empresaDetails.ciiu_id.toString(),
 		representanteLegal: empresaDetails.representante_legal,
 		email: empresaDetails.email,
 		telefono: empresaDetails.telefono,
 		// @ts-expect-error supabase wasn't able to infer the type of this property
 		direccion: empresaDetails.ubicacion,
 		// @ts-expect-error supabase wasn't able to infer the type of this property
-		region: empresaDetails.region_id,
+		region: empresaDetails.region_id.toString(),
 		// @ts-expect-error supabase wasn't able to infer the type of this property
-		ciudad: empresaDetails.ciudad_id,
+		ciudad: empresaDetails.ciudad_id.toString(),
 		// @ts-expect-error supabase wasn't able to infer the type of this property
 		estado: empresaDetails.estado_id
 	}
+
+	console.log({ empresa })
 
 	return { empresa }
 }

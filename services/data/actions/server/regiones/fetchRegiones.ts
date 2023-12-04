@@ -12,7 +12,7 @@ export const fetchRegiones = async (): Promise<{ regiones: any | null }> => {
 		}
 	}
 
-	const regiones = data.map(region => ({ value: region.id, label: region.nombre }))
+	const regiones = data.map(region => ({ value: region.id.toString(), label: region.nombre }))
 
 	console.log({ regiones })
 

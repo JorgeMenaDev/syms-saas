@@ -43,6 +43,17 @@ export const ReadOnlyTableEntryForm: React.FC<ReadOnlyTableEntryFormProps> = ({
 									</FormControl>
 								)}
 
+								{config.type === 'textarea' && (
+									<FormControl>
+										<textarea
+											placeholder={config.placeholder}
+											readOnly
+											value={initialValues[config.name]}
+											className='w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm'
+										/>
+									</FormControl>
+								)}
+
 								<FormDescription>{config.description}</FormDescription>
 								<FormMessage />
 							</FormItem>

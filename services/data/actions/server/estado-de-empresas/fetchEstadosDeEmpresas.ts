@@ -12,7 +12,7 @@ export const fetchEstadoDeEmpresas = async (): Promise<{ estados: any | null }> 
 		}
 	}
 
-	const estados = data.map(state => ({ value: state.id, label: state.nombre }))
+	const estados = data.map(state => ({ value: state.id.toString(), label: state.nombre }))
 
 	console.log({ estados })
 

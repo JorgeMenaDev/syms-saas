@@ -50,7 +50,7 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 									<Select onValueChange={field.onChange} defaultValue={field.value}>
 										<FormControl>
 											<SelectTrigger>
-												<SelectValue placeholder={`Select ${config.name}`} />
+												<SelectValue placeholder={`Selecciona ${config.name}`} />
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>

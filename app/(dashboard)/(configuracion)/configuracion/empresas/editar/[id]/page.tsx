@@ -5,17 +5,17 @@ import { fetchCiudades } from '@/services/data/actions/server/ciudades/fetchCiud
 import { fetchRegiones } from '@/services/data/actions/server/regiones/fetchRegiones'
 import { fetchIndustrias } from '@/services/data/actions/server/industrias/fetchIndustrias'
 import { fetchEstadoDeEmpresas } from '@/services/data/actions/server/estado-de-empresas/fetchEstadosDeEmpresas'
+import { fetchCiius } from '@/services/data/actions/server/ciuus/fetchCiius'
 
 export default async function editarEmpresaPage({ params }: { params: { id: string } }) {
-	const [{ empresa }, { ciudades }, { regiones }, { industrias }, { estados }] = await Promise.all([
+	const [{ empresa }, { ciudades }, { regiones }, { industrias }, { estados }, { ciius }] = await Promise.all([
 		fetchEmpresaById(params?.id),
 		fetchCiudades(),
 		fetchRegiones(),
 		fetchIndustrias(),
-		fetchEstadoDeEmpresas()
+		fetchEstadoDeEmpresas(),
+		fetchCiius()
 	])
-
-	console.log({ estados })
 
 	return (
 		<section className='p-3'>
@@ -50,6 +50,7 @@ export default async function editarEmpresaPage({ params }: { params: { id: stri
 				ciudadesOptions={ciudades}
 				regionesOptions={regiones}
 				industriasOptions={industrias}
+				ciiusOptions={ciius}
 			/>
 		</section>
 	)

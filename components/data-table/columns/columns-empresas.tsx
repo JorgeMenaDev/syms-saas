@@ -43,17 +43,6 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 		}
 	},
 	{
-		accessorKey: 'rut',
-		header: ({ column }) => <DataTableColumnHeader column={column} title='Rut' />,
-		cell: ({ row }) => {
-			return (
-				<div className='flex items-center'>
-					<span>{row.getValue('rut')}</span>
-				</div>
-			)
-		}
-	},
-	{
 		accessorKey: 'industria',
 		header: ({ column }) => <DataTableColumnHeader column={column} title='Industria' />,
 		cell: ({ row }) => {
@@ -71,6 +60,17 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 			return (
 				<div className='flex items-center'>
 					<span>{row.getValue('ciiu')}</span>
+				</div>
+			)
+		}
+	},
+	{
+		accessorKey: 'rut',
+		header: ({ column }) => <DataTableColumnHeader column={column} title='Rut' />,
+		cell: ({ row }) => {
+			return (
+				<div className='flex items-center'>
+					<span>{row.getValue('rut')}</span>
 				</div>
 			)
 		}

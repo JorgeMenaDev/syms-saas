@@ -14,6 +14,9 @@ const formSchema = z.object({
 		.min(3, {
 			message: 'La direccion debe tener al menos 3 caracteres.'
 		}),
+	ciiu: z.string({
+		required_error: 'El ciiu es requerido.'
+	}),
 	email: z
 		.string({
 			required_error: 'El email es requerido.'
@@ -63,67 +66,20 @@ const formSchema = z.object({
 		})
 })
 
-const configParameters: ConfigParameter[] = [
-	{
-		name: 'nombre',
-		label: 'Nombre',
-		type: 'input',
-		placeholder: 'Nombre de la empresa',
-		description: 'Nombre de la empresa'
-	},
-	{
-		name: 'representanteLegal',
-		label: 'Representante Legal',
-		type: 'input',
-		placeholder: 'Representante legal',
-		description: 'Representante legal de la empresa'
-	},
-	{ name: 'rut', label: 'Rut', type: 'input', placeholder: 'Rut', description: 'Rut de la empresa' },
-	{
-		name: 'telefono',
-		label: 'Telefono',
-		type: 'input',
-		placeholder: 'Telefono',
-		description: 'Telefono de la empresa'
-	},
-	{ name: 'email', label: 'Email', type: 'input', placeholder: 'Email', description: 'Email de la empresa' },
-	{
-		name: 'direccion',
-		label: 'Direccion',
-		type: 'input',
-		placeholder: 'Direccion',
-		description: 'Direccion de la empresa'
-	},
-	{ name: 'ciudad', label: 'Ciudad', type: 'select', options: [], description: 'Ciudad de la empresa' },
-	{
-		name: 'estado',
-		label: 'Estado',
-		type: 'select',
-		options: [],
-		description: 'Estado de la empresa'
-	},
-	{
-		name: 'industria',
-		label: 'Industria',
-		type: 'select',
-		options: [],
-		description: 'Industria de la empresa'
-	},
-	{ name: 'region', label: 'Region', type: 'select', options: [], description: 'Region de la empresa' }
-]
-
 export function EditEmpresaFormWrapper({
 	empresa,
 	ciudadesOptions,
 	regionesOptions,
 	industriasOptions,
-	estadosOptions
+	estadosOptions,
+	ciiusOptions
 }: {
 	empresa: Empresa // Initial values for pre-filling the form
 	ciudadesOptions: Array<{ value: string; label: string }>
 	regionesOptions: Array<{ value: string; label: string }>
 	industriasOptions: Array<{ value: string; label: string }>
 	estadosOptions: Array<{ value: string; label: string }>
+	ciiusOptions: Array<{ value: string; label: string }>
 }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		toast(
@@ -133,10 +89,63 @@ export function EditEmpresaFormWrapper({
 		// await updateEmpresa('1', values)
 	}
 
-	configParameters[6].options = ciudadesOptions
-	configParameters[7].options = estadosOptions
-	configParameters[8].options = industriasOptions
-	configParameters[9].options = regionesOptions
+	console.log({ ciiusOptions })
+
+	const configParameters: ConfigParameter[] = [
+		{
+			name: 'nombre',
+			label: 'Nombre',
+			type: 'input',
+			placeholder: 'Nombre de la empresa',
+			description: 'Nombre de la empresa'
+		},
+		{
+			name: 'industria',
+			label: 'Industria',
+			type: 'select',
+			options: industriasOptions,
+			description: 'Industria de la empresa'
+		},
+		{
+			name: 'ciiu',
+			label: 'Ciiu',
+			type: 'select',
+			options: ciiusOptions,
+			description: 'Ciiu de la empresa'
+		},
+		{ name: 'rut', label: 'Rut', type: 'input', placeholder: 'Rut', description: 'Rut de la empresa' },
+		{
+			name: 'representanteLegal',
+			label: 'Representante Legal',
+			type: 'input',
+			placeholder: 'Representante legal',
+			description: 'Representante legal de la empresa'
+		},
+		{ name: 'email', label: 'Email', type: 'input', placeholder: 'Email', description: 'Email de la empresa' },
+		{
+			name: 'telefono',
+			label: 'Telefono',
+			type: 'input',
+			placeholder: 'Telefono',
+			description: 'Telefono de la empresa'
+		},
+		{
+			name: 'direccion',
+			label: 'Direccion',
+			type: 'input',
+			placeholder: 'Direccion',
+			description: 'Direccion de la empresa'
+		},
+		{ name: 'region', label: 'Region', type: 'select', options: regionesOptions, description: 'Region de la empresa' },
+		{ name: 'ciudad', label: 'Ciudad', type: 'select', options: ciudadesOptions, description: 'Ciudad de la empresa' },
+		{
+			name: 'estado',
+			label: 'Estado',
+			type: 'select',
+			options: estadosOptions,
+			description: 'Estado de la empresa'
+		}
+	]
 
 	console.log({ empresa })
 

@@ -12,7 +12,7 @@ export const fetchIndustrias = async (): Promise<{ industrias: any | null }> => 
 		}
 	}
 
-	const industrias = data.map(industry => ({ value: industry.id, label: industry.nombre }))
+	const industrias = data.map(industry => ({ value: industry.id.toString(), label: industry.nombre }))
 
 	console.log({ industrias })
 
