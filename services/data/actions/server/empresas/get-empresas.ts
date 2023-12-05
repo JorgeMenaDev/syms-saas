@@ -1,11 +1,10 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import { type Empresa } from '@/types/empresa'
 
-export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> => {
+export const fetchEmpresas = async () => {
 	const supabase = createServerComponentClient<Database>({ cookies })
 
-	const { data: empresaDetails } = await supabase.from('empresas').select(
+	const { data, error } = await supabase.from('empresas').select(
 		`*,
 			region: region_id(nombre),
 			ciudad: ciudad_id(nombre),
@@ -13,13 +12,18 @@ export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> =
 		`
 	)
 
-	console.log({ empresaDetails })
-
-	if (!empresaDetails || empresaDetails.length === 0) {
-		return { empresas: null }
+	if (error) {
+		console.error(error)
+		return null
 	}
 
-	const empresas = empresaDetails.map(empresa => {
+	console.log({ data })
+
+	if (!data || data.length === 0) {
+		return null
+	}
+
+	const empresas = data.map(empresa => {
 		return {
 			id: empresa.id,
 			rut: empresa.rut,
@@ -41,5 +45,5 @@ export const fetchEmpresas = async (): Promise<{ empresas: Empresa[] | null }> =
 
 	console.log({ empresas })
 
-	return { empresas }
+	return empresas
 }
