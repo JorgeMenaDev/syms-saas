@@ -1,7 +1,7 @@
 'use client'
 
 import { type ConfigParameter, TableEntryForm } from '@/components/TableEntryForm'
-import { createEmpresa } from '@/services/data/actions/server/empresas/ createNewEmpresa'
+import { createEmpresa } from '@/services/data/actions/server/empresas/get-empresa'
 import { toast } from 'sonner'
 import { z } from 'zod'
 
