@@ -62,6 +62,9 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 					<span>{row.getValue('ciiu')}</span>
 				</div>
 			)
+		},
+		filterFn: (row, id, value) => {
+			return value.includes(row.getValue(id))
 		}
 	},
 	{
@@ -128,6 +131,9 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 					<span>{row.getValue('region')}</span>
 				</div>
 			)
+		},
+		filterFn: (row, id, value) => {
+			return value.includes(row.getValue(id))
 		}
 	},
 	{

@@ -3,6 +3,7 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { DataTable } from '@/components/data-table/DataTable'
 import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
 import { fetchEmpresas } from '@/services/data/actions/server/empresas/get-empresas'
+import { DataTableToolbar } from './_components/data-table-toolbar'
 
 export default async function ConfiguracionEmpresaPage() {
 	const { empresas } = await fetchEmpresas()
@@ -43,7 +44,7 @@ export default async function ConfiguracionEmpresaPage() {
 						>
 							Agregar empresa
 						</Link>
-						<DataTable data={empresas} columns={empresasColumns} />
+						<DataTable filters={DataTableToolbar} data={empresas} columns={empresasColumns} />
 					</div>
 				)}
 			</div>
