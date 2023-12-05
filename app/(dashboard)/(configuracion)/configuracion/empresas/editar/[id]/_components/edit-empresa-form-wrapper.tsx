@@ -70,15 +70,11 @@ export function EditEmpresaFormWrapper({
 	empresa,
 	ciudadesOptions,
 	regionesOptions,
-	industriasOptions,
-	estadosOptions,
 	ciiusOptions
 }: {
 	empresa: Empresa // Initial values for pre-filling the form
 	ciudadesOptions: Array<{ value: string; label: string }>
 	regionesOptions: Array<{ value: string; label: string }>
-	industriasOptions: Array<{ value: string; label: string }>
-	estadosOptions: Array<{ value: string; label: string }>
 	ciiusOptions: Array<{ value: string; label: string }>
 }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -100,8 +96,7 @@ export function EditEmpresaFormWrapper({
 		{
 			name: 'industria',
 			label: 'Industria',
-			type: 'select',
-			options: industriasOptions,
+			type: 'input',
 			description: 'Industria de la empresa'
 		},
 		{
@@ -140,7 +135,16 @@ export function EditEmpresaFormWrapper({
 			name: 'estado',
 			label: 'Estado',
 			type: 'select',
-			options: estadosOptions,
+			options: [
+				{
+					value: 'activo',
+					label: 'Activo'
+				},
+				{
+					value: 'inactivo',
+					label: 'Inactivo'
+				}
+			],
 			description: 'Estado de la empresa'
 		}
 	]
