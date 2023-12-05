@@ -47,6 +47,15 @@ export function DataTableToolbar<TData>({ table, data }: DataTableToolbarProps<T
 
 	const regionesOptionsFiltered = removeDuplicates(regionesOptions)
 
+	const ciudadesOptions = data.map((item: any) => {
+		return {
+			value: item.ciudad,
+			label: item.ciudad
+		}
+	})
+
+	const ciudadesOptionsFiltered = removeDuplicates(ciudadesOptions)
+
 	return (
 		<div className='flex items-center justify-between'>
 			<div className='flex flex-1 items-center space-x-2'>
@@ -66,6 +75,33 @@ export function DataTableToolbar<TData>({ table, data }: DataTableToolbarProps<T
 						column={table.getColumn('region')}
 						title='Regiones'
 						options={regionesOptionsFiltered}
+					/>
+				)}
+
+				{table.getColumn('ciudad') && (
+					<DataTableFacetedFilter
+						column={table.getColumn('ciudad')}
+						title='Comunas'
+						options={ciudadesOptionsFiltered}
+					/>
+				)}
+
+				{table.getColumn('estado') && (
+					<DataTableFacetedFilter
+						column={table.getColumn('estado')}
+						title='Estado'
+						options={[
+							{
+								// @ts-expect-error - fix this later
+								value: true,
+								label: 'Activo'
+							},
+							{
+								// @ts-expect-error - fix this later
+								value: false,
+								label: 'Inactivo'
+							}
+						]}
 					/>
 				)}
 

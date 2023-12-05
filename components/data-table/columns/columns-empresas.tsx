@@ -145,6 +145,9 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 					<span>{row.getValue('ciudad')}</span>
 				</div>
 			)
+		},
+		filterFn: (row, id, value) => {
+			return value.includes(row.getValue(id))
 		}
 	},
 	{
@@ -158,6 +161,9 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 					<span>{value ? 'Activo' : 'Inactivo'}</span>
 				</div>
 			)
+		},
+		filterFn: (row, id, value) => {
+			return value.includes(row.getValue(id))
 		}
 	},
 	{
