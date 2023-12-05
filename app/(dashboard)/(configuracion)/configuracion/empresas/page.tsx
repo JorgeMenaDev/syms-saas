@@ -4,6 +4,8 @@ import { DataTable } from '@/components/data-table/DataTable'
 import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
 import { fetchEmpresas } from '@/services/data/actions/server/empresas/get-empresas'
 import { DataTableToolbar } from './_components/data-table-toolbar'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export default async function ConfiguracionEmpresaPage() {
 	const { empresas } = await fetchEmpresas()
@@ -28,6 +30,9 @@ export default async function ConfiguracionEmpresaPage() {
 						<p className='text-muted-foreground'>
 							En esta sección podrás revisar las empresas que tienes registradas en el sistema.
 						</p>
+						<Link href='/configuracion/empresas/nueva' className={cn(buttonVariants({ variant: 'outline' }), 'mt-4')}>
+							Agregar empresa
+						</Link>
 					</div>
 				</div>
 				{empresas === null ? (
@@ -36,14 +41,6 @@ export default async function ConfiguracionEmpresaPage() {
 					</div>
 				) : (
 					<div className='relative py-14 pr-11'>
-						<Link
-							href='/configuracion/empresas/nueva'
-							className='absolute top-0 right-12 rounded-none rounded-bl-md rounded-tr-md px-4 py-2 text-sm font-medium
-							hover:bg-primary-hover focus:outline-none
-							focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500 border border-gray-300'
-						>
-							Agregar empresa
-						</Link>
 						<DataTable filters={DataTableToolbar} data={empresas} columns={empresasColumns} />
 					</div>
 				)}
