@@ -1,20 +1,23 @@
 import { fetchEmpresaById } from '@/services/data/actions/server/empresas/fetchEmpresaById'
 import { EditEmpresaFormWrapper } from './_components/edit-empresa-form-wrapper'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import { fetchCiudades } from '@/services/data/actions/server/ciudades/fetchCiudades'
-import { fetchRegiones } from '@/services/data/actions/server/regiones/fetchRegiones'
+import { fetchCiudadesForSelect } from '@/services/data/actions/server/ciudades/fetchCiudades'
+import { fetchRegionesForSelect } from '@/services/data/actions/server/regiones/fetchRegiones'
 
-import { fetchCiius } from '@/services/data/actions/server/ciuus/fetchCiius'
+import { fetchCiiusForSelect } from '@/services/data/actions/server/ciuus/fetchCiius'
 
 export default async function editarEmpresaPage({ params }: { params: { id: string } }) {
-	const [{ empresa }, { ciudades }, { regiones }, { industrias }, { estados }, { ciius }] = await Promise.all([
+	const [empresa, ciudades, regiones, ciius] = await Promise.all([
 		fetchEmpresaById(params?.id),
-		fetchCiudades(),
-		fetchRegiones(),
-		fetchIndustrias(),
-		fetchEstadoDeEmpresas(),
-		fetchCiius()
+		fetchCiudadesForSelect(),
+		fetchRegionesForSelect(),
+		fetchCiiusForSelect()
 	])
+
+	// This is very unlikely to happen, but to keep ts happy
+	if (empresa === null || ciudades === null || regiones === null || ciius === null) {
+		return <p>Empresa no encontrada</p>
+	}
 
 	console.log('empresa', { empresa })
 
@@ -47,10 +50,8 @@ export default async function editarEmpresaPage({ params }: { params: { id: stri
 
 			<EditEmpresaFormWrapper
 				empresa={empresa}
-				estadosOptions={estados}
 				ciudadesOptions={ciudades}
 				regionesOptions={regiones}
-				industriasOptions={industrias}
 				ciiusOptions={ciius}
 			/>
 		</section>
