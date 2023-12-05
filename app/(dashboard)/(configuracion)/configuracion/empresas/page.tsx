@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { DataTable } from '@/components/data-table/DataTable'
 import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
-import { fetchEmpresas } from '@/services/data/actions/server/empresas/fetchEmpresas'
+import { fetchEmpresas } from '@/services/data/actions/server/empresas/get-empresas'
 
 export default async function ConfiguracionEmpresaPage() {
 	const { empresas } = await fetchEmpresas()

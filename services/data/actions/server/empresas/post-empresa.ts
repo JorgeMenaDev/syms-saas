@@ -3,15 +3,15 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
+// this is the type to insert a new row <- from supabase
 type Empresa = Database['public']['Tables']['empresas']['Insert']
 
 export async function createEmpresa(values: any): Promise<{ error: string | null }> {
+	console.log({ values })
 	const supabase = createServerComponentClient<Database>({ cookies })
 
-	console.log({ values })
-
 	// transform values to match database schema
-	const valuesTransformed: Empresa = {
+	const empresa: Empresa = {
 		ciiu_id: values.ciiu,
 		ciudad_id: Number(values.ciudad),
 		email: values.email,
@@ -25,10 +25,10 @@ export async function createEmpresa(values: any): Promise<{ error: string | null
 		region_id: Number(values.region)
 	}
 
-	console.log({ valuesTransformed })
+	console.log({ empresa })
 
 	try {
-		const { error } = await supabase.from('empresas').insert(valuesTransformed)
+		const { error } = await supabase.from('empresas').insert(empresa)
 		if (error) {
 			console.log({ error })
 			if (error.message.includes('empresas_rut_key')) return { error: 'El RUT ya existe.' }

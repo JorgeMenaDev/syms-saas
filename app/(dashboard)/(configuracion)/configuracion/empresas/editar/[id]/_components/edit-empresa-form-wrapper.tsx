@@ -2,6 +2,7 @@
 
 import { EditTableEntryForm } from '@/components/EditTableEntryForm'
 import { type ConfigParameter } from '@/components/TableEntryForm'
+import { updateEmpresa } from '@/services/data/actions/server/empresas/put-empresa-by-id'
 import { type Empresa } from '@/types/empresa'
 import { toast } from 'sonner'
 import { z } from 'zod'
@@ -78,11 +79,19 @@ export function EditEmpresaFormWrapper({
 	ciiusOptions: Array<{ value: string; label: string }>
 }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
-		toast(
-			// show values
-			JSON.stringify(values, null, 2)
-		)
-		// await updateEmpresa('1', values)
+		try {
+			const { error } = await updateEmpresa(empresa.id, values)
+
+			if (error) {
+				toast.error(`Hubo un error al editar la empresa: ${error}`)
+			} else {
+				toast.success('Empresa editada correctamente.')
+				return true
+			}
+		} catch (error) {
+			console.error({ error })
+			toast.error('Hubo un error al editar la empresa, si el error persiste contacte a soporte.')
+		}
 	}
 
 	const configParameters: ConfigParameter[] = [
@@ -149,11 +158,15 @@ export function EditEmpresaFormWrapper({
 		}
 	]
 
-	console.log({ empresa })
+	// Format the empresa object from the db to match the form schema
+	const formattedEmpresa = {
+		...empresa,
+		estado: empresa.estado ? 'activo' : 'inactivo'
+	}
 
 	return (
 		<EditTableEntryForm
-			initialValues={empresa}
+			initialValues={formattedEmpresa}
 			configParameters={configParameters}
 			onSubmit={onSubmit}
 			tableSchema={formSchema}

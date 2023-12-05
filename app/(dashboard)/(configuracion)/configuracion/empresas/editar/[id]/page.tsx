@@ -1,4 +1,4 @@
-import { fetchEmpresaById } from '@/services/data/actions/server/empresas/fetchEmpresaById'
+import { fetchEmpresaById } from '@/services/data/actions/server/empresas/get-empresa-by-id'
 import { EditEmpresaFormWrapper } from './_components/edit-empresa-form-wrapper'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { fetchCiudadesForSelect } from '@/services/data/actions/server/ciudades/fetchCiudades'
