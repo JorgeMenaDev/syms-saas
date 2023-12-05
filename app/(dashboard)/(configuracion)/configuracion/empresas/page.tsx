@@ -3,12 +3,12 @@ import Breadcrumbs from '@/components/Breadcrumbs'
 import { DataTable } from '@/components/data-table/DataTable'
 import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
 import { fetchEmpresas } from '@/services/data/actions/server/empresas/get-empresas'
-import { DataTableToolbar } from './_components/data-table-toolbar'
+import { EmpresasFilters } from './_components/empresas-filters'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-export default async function ConfiguracionEmpresaPage() {
-	const { empresas } = await fetchEmpresas()
+export default async function EmpresasPage() {
+	const empresas = await fetchEmpresas()
 
 	return (
 		<section>
@@ -41,7 +41,7 @@ export default async function ConfiguracionEmpresaPage() {
 					</div>
 				) : (
 					<div className='relative py-14 pr-11'>
-						<DataTable filters={DataTableToolbar} data={empresas} columns={empresasColumns} />
+						<DataTable filters={EmpresasFilters} data={empresas} columns={empresasColumns} />
 					</div>
 				)}
 			</div>
