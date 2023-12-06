@@ -69,7 +69,7 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 									<Select onValueChange={field.onChange} value={field.value}>
 										<FormControl>
 											<SelectTrigger>
-												<SelectValue placeholder={`Selecciona ${config.name}`} />
+												<SelectValue placeholder={`Selecciona ${config.placeholder}`} />
 											</SelectTrigger>
 										</FormControl>
 										<SelectContent>

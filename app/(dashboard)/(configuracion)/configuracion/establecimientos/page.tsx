@@ -1,15 +1,14 @@
 import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import { DataTable } from '@/components/data-table/DataTable'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { fetchEstablecimientos } from '@/services/data/actions/server/establecimientos/get-establecimientos'
 import { establecimientosColumns } from '@/components/data-table/columns/columns-establecimientos'
 import { EstablecimientosFilters } from './_components/establecimientos-filters'
+import { Suspense } from 'react'
+import { DataTableSkeleton } from '@/components/data-table/data-table-skeleton'
+import EstablecimientosDataTableWrapper from './_components/establecimientos-dataTable-wrapper'
 
 export default async function EstablecimientosPage() {
-	const establecimientos = await fetchEstablecimientos()
-
 	return (
 		<section>
 			<Breadcrumbs
@@ -31,22 +30,18 @@ export default async function EstablecimientosPage() {
 							En esta sección podrás revisar los establecimientos que tienes registradas en el sistema.
 						</p>
 						<Link
-							href='/configuracion/establecimientos/nuevo'
+							href='/configuracion/establecimientos/crear'
 							className={cn(buttonVariants({ variant: 'outline' }), 'mt-4')}
 						>
 							Agregar establecimiento
 						</Link>
 					</div>
 				</div>
-				{establecimientos === null ? (
-					<div className='flex items-center justify-center h-full'>
-						<div className='flex flex-col items-center space-y-4'>No hay establecimientos registrados.</div>
-					</div>
-				) : (
-					<div className='relative py-14 pr-11'>
-						<DataTable filters={EstablecimientosFilters} data={establecimientos} columns={establecimientosColumns} />
-					</div>
-				)}
+				<Suspense
+					fallback={<DataTableSkeleton filters={EstablecimientosFilters} data={[]} columns={establecimientosColumns} />}
+				>
+					<EstablecimientosDataTableWrapper />
+				</Suspense>
 			</div>
 		</section>
 	)

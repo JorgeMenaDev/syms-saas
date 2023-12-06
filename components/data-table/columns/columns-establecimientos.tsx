@@ -151,7 +151,7 @@ export const establecimientosColumns: Array<ColumnDef<any>> = [
 				actions={[
 					{
 						label: 'Editar',
-						redirectTo: id => `/configuracion/empresas/editar/${id}`
+						redirectTo: id => `/configuracion/establecimientos/editar/${id}`
 					},
 					{
 						label: 'Eliminar',

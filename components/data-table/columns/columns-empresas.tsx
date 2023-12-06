@@ -65,12 +65,12 @@ export const empresasColumns: Array<ColumnDef<any>> = [
 		}
 	},
 	{
-		accessorKey: 'email',
-		header: ({ column }) => <DataTableColumnHeader column={column} title='Email' />,
+		accessorKey: 'correo',
+		header: ({ column }) => <DataTableColumnHeader column={column} title='Correo' />,
 		cell: ({ row }) => {
 			return (
 				<div className='flex items-center'>
-					<span>{row.getValue('email')}</span>
+					<span>{row.getValue('correo')}</span>
 				</div>
 			)
 		}

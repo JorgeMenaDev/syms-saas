@@ -32,9 +32,9 @@ export const fetchEmpresas = async () => {
 			// @ts-expect-error supabase wasn't able to infer the type of this property
 			ciiu: empresa.ciiu.codigo,
 			representanteLegal: empresa.representante_legal,
-			email: empresa.email,
+			correo: empresa.correo,
 			telefono: empresa.telefono,
-			direccion: empresa.ubicacion,
+			direccion: empresa.direccion,
 			// @ts-expect-error supabase wasn't able to infer the type of this property
 			region: empresa.region.nombre,
 			// @ts-expect-error supabase wasn't able to infer the type of this property

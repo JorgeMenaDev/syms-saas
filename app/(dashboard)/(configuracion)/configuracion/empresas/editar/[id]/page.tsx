@@ -1,12 +1,12 @@
 import { fetchEmpresaById } from '@/services/data/actions/server/empresas/get-empresa-by-id'
-import { EditEmpresaFormWrapper } from './_components/edit-empresa-form-wrapper'
+import { EditarEmpresaFormWrapper } from './_components/editar-empresa-form-wrapper'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { fetchCiudadesForSelect } from '@/services/data/actions/server/ciudades/fetchCiudades'
 import { fetchRegionesForSelect } from '@/services/data/actions/server/regiones/fetchRegiones'
 
 import { fetchCiiusForSelect } from '@/services/data/actions/server/ciuus/fetchCiius'
 
-export default async function editarEmpresaPage({ params }: { params: { id: string } }) {
+export default async function EditarEmpresaPage({ params }: { params: { id: string } }) {
 	const [empresa, ciudades, regiones, ciius] = await Promise.all([
 		fetchEmpresaById(params?.id),
 		fetchCiudadesForSelect(),
@@ -48,7 +48,7 @@ export default async function editarEmpresaPage({ params }: { params: { id: stri
 				</div>
 			</div>
 
-			<EditEmpresaFormWrapper
+			<EditarEmpresaFormWrapper
 				empresa={empresa}
 				ciudadesOptions={ciudades}
 				regionesOptions={regiones}

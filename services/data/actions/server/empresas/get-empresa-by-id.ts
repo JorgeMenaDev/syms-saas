@@ -32,9 +32,9 @@ export const fetchEmpresaById = async (id: string): Promise<any | null> => {
 		industria: empresaDetails.industria,
 		ciiu: empresaDetails.ciiu_id.toString(),
 		representanteLegal: empresaDetails.representante_legal,
-		email: empresaDetails.email,
+		correo: empresaDetails.correo,
 		telefono: empresaDetails.telefono,
-		direccion: empresaDetails.ubicacion,
+		direccion: empresaDetails.direccion,
 		region: empresaDetails.region_id.toString(),
 		ciudad: empresaDetails.ciudad_id.toString(),
 		estado: empresaDetails.estado

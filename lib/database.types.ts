@@ -70,8 +70,9 @@ export interface Database {
         Row: {
           ciiu_id: string
           ciudad_id: number
+          correo: string
           created_at: string
-          email: string
+          direccion: string
           establecimientos: string[] | null
           estado: boolean
           id: string
@@ -81,13 +82,13 @@ export interface Database {
           representante_legal: string
           rut: string
           telefono: string
-          ubicacion: string
         }
         Insert: {
           ciiu_id: string
           ciudad_id: number
+          correo: string
           created_at?: string
-          email: string
+          direccion: string
           establecimientos?: string[] | null
           estado: boolean
           id?: string
@@ -97,13 +98,13 @@ export interface Database {
           representante_legal: string
           rut: string
           telefono: string
-          ubicacion: string
         }
         Update: {
           ciiu_id?: string
           ciudad_id?: number
+          correo?: string
           created_at?: string
-          email?: string
+          direccion?: string
           establecimientos?: string[] | null
           estado?: boolean
           id?: string
@@ -113,7 +114,6 @@ export interface Database {
           representante_legal?: string
           rut?: string
           telefono?: string
-          ubicacion?: string
         }
         Relationships: [
           {

@@ -1,15 +1,17 @@
 import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
-import { DataTable } from '@/components/data-table/DataTable'
-import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
-import { fetchEmpresas } from '@/services/data/actions/server/empresas/get-empresas'
-import { EmpresasFilters } from './_components/empresas-filters'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
+import EmpresasDataTableWrapper from './_components/empresas-dataTable-wrapper'
+import { Suspense } from 'react'
+import { DataTableSkeleton } from '@/components/data-table/data-table-skeleton'
+
+import { EmpresasFilters } from './_components/empresas-filters'
+import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
+
+export const dynamic = 'force-dynamic'
 
 export default async function EmpresasPage() {
-	const empresas = await fetchEmpresas()
-
 	return (
 		<section>
 			<Breadcrumbs
@@ -30,20 +32,15 @@ export default async function EmpresasPage() {
 						<p className='text-muted-foreground'>
 							En esta sección podrás revisar las empresas que tienes registradas en el sistema.
 						</p>
-						<Link href='/configuracion/empresas/nueva' className={cn(buttonVariants({ variant: 'outline' }), 'mt-4')}>
-							Agregar empresa
+						<Link href='/configuracion/empresas/crear' className={cn(buttonVariants({ variant: 'outline' }), 'mt-4')}>
+							Nueva Empresa
 						</Link>
 					</div>
 				</div>
-				{empresas === null ? (
-					<div className='flex items-center justify-center h-full'>
-						<div className='flex flex-col items-center space-y-4'>No hay empresas registradas.</div>
-					</div>
-				) : (
-					<div className='relative py-14 pr-11'>
-						<DataTable filters={EmpresasFilters} data={empresas} columns={empresasColumns} />
-					</div>
-				)}
+
+				<Suspense fallback={<DataTableSkeleton data={[]} filters={EmpresasFilters} columns={empresasColumns} />}>
+					<EmpresasDataTableWrapper />
+				</Suspense>
 			</div>
 		</section>
 	)
