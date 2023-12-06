@@ -10,12 +10,13 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { type ConfigParameter } from './TableEntryForm'
 import { Card } from './ui/card'
+import { toast } from 'sonner'
 
 export interface EditTableEntryFormProps {
 	tableSchema: z.ZodObject<any, any, any>
 	configParameters: ConfigParameter[]
 	initialValues: Record<string, any> // Initial values for pre-filling the form
-	onSubmit: (values: any) => void
+	onSubmit: (values: any) => Promise<boolean | undefined>
 }
 
 export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
@@ -24,15 +25,30 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 	initialValues,
 	onSubmit
 }) => {
+	const [loading, setLoading] = React.useState(false)
 	const form = useForm<any>({
 		resolver: zodResolver(tableSchema),
 		defaultValues: initialValues // Set default values for the form fields
 	})
 
+	function handleSubmit(values: any) {
+		console.log({ values })
+		setLoading(true)
+		const toastId = toast.loading('Creando...')
+
+		onSubmit(values)
+			.then(() => {})
+			.catch(() => {}) // <-- this is to keep ts happy - we did all the error handling already.
+			.finally(() => {
+				toast.dismiss(toastId)
+				setLoading(false)
+			})
+	}
+
 	return (
 		<Card className='w-full border-0 p-5'>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+				<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
 					{configParameters.map((config, index) => (
 						<FormField
 							key={index}
@@ -72,7 +88,9 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 						/>
 					))}
 
-					<Button type='submit'>Actualizar</Button>
+					<Button disabled={loading} type='submit'>
+						Actualizar
+					</Button>
 				</form>
 			</Form>
 		</Card>

@@ -9,6 +9,7 @@ import { Form, FormField, FormControl, FormDescription, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Card } from './ui/card'
+import { toast } from 'sonner'
 
 export interface ConfigParameter {
 	name: string
@@ -37,13 +38,21 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 		resolver: zodResolver(tableSchema),
 		defaultValues: initialValues
 	})
+	const [loading, setLoading] = React.useState(false)
 
 	function handleSubmit(values: any) {
+		setLoading(true)
+		const toastId = toast.loading('Creando...')
+
 		onSubmit(values)
 			.then(ok => {
 				if (ok) form.reset()
 			})
 			.catch(() => {}) // <-- this is to keep ts happy - we did all the error handling already.
+			.finally(() => {
+				toast.dismiss(toastId)
+				setLoading(false)
+			})
 	}
 
 	return (
@@ -62,7 +71,7 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 									{/* inputs */}
 									{config.type === 'input' && (
 										<FormControl>
-											<Input placeholder={config.placeholder} {...field} />
+											<Input placeholder={config.placeholder} {...field} type={config.inputType} />
 										</FormControl>
 									)}
 
@@ -92,7 +101,9 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 						/>
 					))}
 
-					<Button type='submit'>Crear</Button>
+					<Button disabled={loading} type='submit'>
+						Crear
+					</Button>
 				</form>
 			</Form>
 		</Card>

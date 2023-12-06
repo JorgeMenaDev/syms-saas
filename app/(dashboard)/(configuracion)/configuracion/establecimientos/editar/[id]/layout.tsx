@@ -12,7 +12,7 @@ export default function Layout({ children, params }: { children: React.ReactNode
 						href: '/configuracion/establecimientos'
 					},
 					{
-						label: 'Editar Empresa',
+						label: 'Editar Establecimiento',
 						href: `/configuracion/establecimientos/editar/${params?.id}`,
 						active: true
 					}
@@ -20,10 +20,10 @@ export default function Layout({ children, params }: { children: React.ReactNode
 			/>
 			<div className='flex items-center justify-between space-y-2 my-14'>
 				<div>
-					<h2 className='text-2xl font-bold tracking-tight'>Formulario de edición de empresa</h2>
-					<p className='text-muted-foreground'>
-						En esta sección podrás editar una empresa. Una vez que hayas terminado de editar, haz clic en el botón
-						"Guardar" para guardar los cambios.
+					<h2 className='text-2xl font-bold tracking-tight'>Formulario de edición de Establecimiento</h2>
+					<p className='text-muted-foreground mt-2'>
+						En esta sección podrás editar una establecimiento. Una vez que hayas terminado de editar, haz clic en el
+						botón "Actualizar" para guardar los cambios.
 					</p>
 				</div>
 			</div>

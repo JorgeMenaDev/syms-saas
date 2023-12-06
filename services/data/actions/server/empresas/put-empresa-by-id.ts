@@ -1,5 +1,6 @@
 'use server'
 
+import { handleSupabaseError } from '@/lib/supabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
@@ -30,11 +31,7 @@ export async function updateEmpresa(id: string, values: any): Promise<{ error: s
 
 	try {
 		const { error } = await supabase.from('empresas').update(empresa).eq('id', id)
-		if (error) {
-			console.log({ error })
-			if (error.message.includes('empresas_rut_key')) return { error: 'El RUT ya existe.' }
-			return { error: 'Si el problema persiste, contacte a soporte.' }
-		}
+		if (error) return handleSupabaseError(error)
 
 		// revalidate cache for this path
 		revalidatePath('/configuracion/empresas')
@@ -42,7 +39,6 @@ export async function updateEmpresa(id: string, values: any): Promise<{ error: s
 		// return null if no error
 		return { error: null }
 	} catch (error) {
-		console.log({ error })
-		return { error: 'Si el problema persiste, contacte a soporte.' }
+		return handleSupabaseError(error)
 	}
 }

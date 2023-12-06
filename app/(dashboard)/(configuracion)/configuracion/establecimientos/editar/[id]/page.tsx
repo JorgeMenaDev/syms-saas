@@ -13,7 +13,6 @@ export default async function EditarEstablecimientoPage({ params }: { params: { 
 		fetchTiposDeEstablecimientosForSelect()
 	])
 
-	console.log('establecimiento', { establecimiento })
 	// This is very unlikely to happen, but to keep ts happy
 	if (establecimiento === null || ciudades === null || regiones === null || tiposDeEstablecimientos === null) {
 		return (

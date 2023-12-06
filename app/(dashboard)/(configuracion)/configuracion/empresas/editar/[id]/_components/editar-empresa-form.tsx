@@ -28,7 +28,6 @@ export function EditarEmpresaForm({
 				toast.error(`Hubo un error al editar la empresa: ${error}`)
 			} else {
 				toast.success('Empresa editada correctamente.')
-
 				return true
 			}
 		} catch (error) {

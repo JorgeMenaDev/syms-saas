@@ -1,5 +1,4 @@
 'use client'
-
 import { EditTableEntryForm } from '@/components/EditTableEntryForm'
 import { updateEstablecimiento } from '@/services/data/actions/server/establecimientos/put-establecimiento-by-id'
 import {
@@ -24,12 +23,13 @@ export function EditarEstablecimientoForm({
 }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		try {
+			console.log({ values })
 			const { error } = await updateEstablecimiento(establecimiento.id, values)
 
 			if (error) {
 				toast.error(`Hubo un error al editar el establecimiento: ${error}`)
 			} else {
-				toast.success('Empresa editada correctamente.')
+				toast.success('Establecimiento editado correctamente.')
 				return true
 			}
 		} catch (error) {
@@ -50,8 +50,6 @@ export function EditarEstablecimientoForm({
 		nopel: establecimiento.nopel ? 'activo' : 'inactivo',
 		respel: establecimiento.respel ? 'activo' : 'inactivo'
 	}
-
-	console.log({ formattedEstablecimiento })
 
 	return (
 		<EditTableEntryForm

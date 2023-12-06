@@ -15,6 +15,7 @@ export function composeEstablecimientoConfigParameters({
 			name: 'nombre',
 			label: 'Nombre',
 			type: 'input',
+			inputType: 'text',
 			placeholder: 'Nombre del establecimiento',
 			description: 'Nombre del establecimiento'
 		},
@@ -22,6 +23,7 @@ export function composeEstablecimientoConfigParameters({
 			name: 'correo',
 			label: 'Correo',
 			type: 'input',
+			inputType: 'email',
 			placeholder: 'Correo',
 			description: 'Correo electronico del Establecimiento'
 		},
@@ -29,6 +31,7 @@ export function composeEstablecimientoConfigParameters({
 			name: 'telefono',
 			label: 'Telefono',
 			type: 'input',
+			inputType: 'text',
 			placeholder: 'Telefono',
 			description: 'Telefono del establecimiento'
 		},
@@ -36,6 +39,7 @@ export function composeEstablecimientoConfigParameters({
 			name: 'direccion',
 			label: 'Direccion',
 			type: 'input',
+			inputType: 'text',
 			placeholder: 'Direccion',
 			description: 'Direccion del establecimiento'
 		},
@@ -93,11 +97,12 @@ export function composeEstablecimientoConfigParameters({
 			name: 'encargado',
 			label: 'Encargado',
 			type: 'input',
+			inputType: 'text',
 			placeholder: 'Encargado',
 			description: 'Encargado del Establecimiento'
 		},
 		{
-			name: 'tipo_establecimiento_id',
+			name: 'tipo',
 			label: 'Tipo de Establecimiento',
 			placeholder: 'Tipo de Establecimiento',
 			type: 'select',
@@ -108,6 +113,7 @@ export function composeEstablecimientoConfigParameters({
 			name: 'id_vu',
 			label: 'ID VU',
 			type: 'input',
+			inputType: 'number',
 			placeholder: 'ID VU',
 			description: 'ID VU del Establecimiento'
 		}
@@ -144,10 +150,10 @@ export function createEstablecimientosFormSchema() {
 		encargado: z.string().min(1, {
 			message: 'El encargado es requerido.'
 		}),
-		tipo_establecimiento_id: z.string().min(1, {
+		tipo: z.string().min(1, {
 			message: 'El tipo de establecimiento es requerido.'
 		}),
-		id_vu: z.string().min(1, {
+		id_vu: z.number({ coerce: true }).int().min(1, {
 			message: 'El id vu es requerido.'
 		}),
 		nopel: z.string().min(1, {

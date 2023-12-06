@@ -1,6 +1,8 @@
 'use server'
 
+import { handleSupabaseError } from '@/lib/supabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 
 // this is the type to insert a new row <- from supabase
@@ -22,22 +24,21 @@ export async function createEstablecimiento(values: any) {
 		id_vu: Number(values.id_vu),
 		nopel: values.nopel === 'activo',
 		respel: values.respel === 'activo',
-		tipo_establecimiento_id: values.tipo_establecimiento_id
+		tipo_establecimiento_id: values.tipo
 	}
 
 	console.log({ establecimiento })
 
 	try {
 		const { error } = await supabase.from('establecimientos').insert(establecimiento)
-		if (error) {
-			console.log({ error })
-			if (error.message.includes('establecimientos_id_vu_key')) return { error: 'El ID VU ya existe.' }
-			return { error: 'Si el problema persiste, contacte a soporte.' }
-		}
+		if (error) return handleSupabaseError(error)
 
+		// revalidate cache for this path
+		revalidatePath('/configuracion/establecimientos')
+
+		// return null if no error
 		return { error: null }
 	} catch (error) {
-		console.log({ error })
-		return { error: 'Si el problema persiste, contacte a soporte.' }
+		return handleSupabaseError(error)
 	}
 }
