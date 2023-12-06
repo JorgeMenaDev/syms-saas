@@ -46,7 +46,7 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 	}
 
 	return (
-		<Card className='w-full border-0 p-5'>
+		<Card className='w-full border-0 lg:p-5'>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
 					{configParameters.map((config, index) => (
