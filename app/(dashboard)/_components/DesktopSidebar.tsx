@@ -4,7 +4,7 @@ import { menu } from '@/constants/sidebar-menus'
 
 export function DesktopSidebar() {
 	return (
-		<div className='hidden border-r bg-zinc-100/40 lg:block dark:bg-zinc-800/40 max-w-[200px]'>
+		<div className='hidden border-r bg-zinc-100/40 lg:block dark:bg-zinc-800/40 max-w-[220px]'>
 			<div className='flex h-full max-h-screen flex-col gap-2'>
 				<div className='flex h-[60px] items-center border-b px-6'>
 					<Link className='flex items-center gap-2 text-primary font-semibold' href='/dashboard'>
