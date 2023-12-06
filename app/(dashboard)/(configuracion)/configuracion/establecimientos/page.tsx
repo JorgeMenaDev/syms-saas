@@ -10,7 +10,7 @@ import EstablecimientosDataTableWrapper from './_components/establecimientos-dat
 
 export default async function EstablecimientosPage() {
 	return (
-		<section>
+		<section className='p-5 md:p-0'>
 			<Breadcrumbs
 				breadcrumbs={[
 					{ label: 'Dashboard', href: '/dashboard' },
@@ -22,7 +22,7 @@ export default async function EstablecimientosPage() {
 					}
 				]}
 			/>
-			<div className='hidden h-full flex-1 flex-col space-y-8 mt-10 md:flex'>
+			<div className='h-full flex-1 flex-col space-y-8 mt-10 md:flex'>
 				<div className='flex items-center justify-between space-y-2'>
 					<div>
 						<h2 className='text-2xl font-bold tracking-tight'>Lista de establecimientos!</h2>
