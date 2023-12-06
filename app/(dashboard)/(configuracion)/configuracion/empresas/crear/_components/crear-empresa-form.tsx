@@ -8,7 +8,7 @@ import { type z } from 'zod'
 
 const formSchema = createEmpresaFormSchema()
 
-export function CrearEmpresaFormWrapper({
+export function CrearEmpresaForm({
 	ciudadesOptions,
 	regionesOptions,
 	ciiusOptions

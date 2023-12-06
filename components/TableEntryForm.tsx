@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Form, FormField, FormControl, FormDescription, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Card } from './ui/card'
 
 export interface ConfigParameter {
 	name: string
@@ -46,52 +47,54 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 	}
 
 	return (
-		<Form {...form}>
-			<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
-				{configParameters.map((config, index) => (
-					<FormField
-						key={index}
-						control={form.control}
-						name={config.name}
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>{config.label}</FormLabel>
+		<Card className='w-full border-0 p-5'>
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
+					{configParameters.map((config, index) => (
+						<FormField
+							key={index}
+							control={form.control}
+							name={config.name}
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{config.label}</FormLabel>
 
-								{/* inputs */}
-								{config.type === 'input' && (
-									<FormControl>
-										<Input placeholder={config.placeholder} {...field} />
-									</FormControl>
-								)}
-
-								{/* selects */}
-								{config.type === 'select' && (
-									<Select onValueChange={field.onChange} value={field.value}>
+									{/* inputs */}
+									{config.type === 'input' && (
 										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder={`Selecciona ${config.placeholder}`} />
-											</SelectTrigger>
+											<Input placeholder={config.placeholder} {...field} />
 										</FormControl>
-										<SelectContent>
-											{config.options?.map((option, optionIndex) => (
-												<SelectItem key={optionIndex} value={option.value}>
-													{option.label}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-								)}
+									)}
 
-								{/* Add support for other types like textarea if needed */}
-								<FormDescription>{config.description}</FormDescription>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-				))}
+									{/* selects */}
+									{config.type === 'select' && (
+										<Select onValueChange={field.onChange} value={field.value}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder={`Selecciona ${config.placeholder}`} />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												{config.options?.map((option, optionIndex) => (
+													<SelectItem key={optionIndex} value={option.value}>
+														{option.label}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+									)}
 
-				<Button type='submit'>Crear</Button>
-			</form>
-		</Form>
+									{/* Add support for other types like textarea if needed */}
+									<FormDescription>{config.description}</FormDescription>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					))}
+
+					<Button type='submit'>Crear</Button>
+				</form>
+			</Form>
+		</Card>
 	)
 }

@@ -9,7 +9,7 @@ import { DataTableSkeleton } from '@/components/data-table/data-table-skeleton'
 import { EmpresasFilters } from './_components/empresas-filters'
 import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 export default async function EmpresasPage() {
 	return (

@@ -9,6 +9,7 @@ import { Form, FormField, FormControl, FormDescription, FormItem, FormLabel, For
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { type ConfigParameter } from './TableEntryForm'
+import { Card } from './ui/card'
 
 export interface EditTableEntryFormProps {
 	tableSchema: z.ZodObject<any, any, any>
@@ -29,49 +30,51 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 	})
 
 	return (
-		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
-				{configParameters.map((config, index) => (
-					<FormField
-						key={index}
-						control={form.control}
-						name={config.name}
-						render={({ field }) => (
-							<FormItem>
-								<FormLabel>{config.label}</FormLabel>
+		<Card className='w-full border-0 p-5'>
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+					{configParameters.map((config, index) => (
+						<FormField
+							key={index}
+							control={form.control}
+							name={config.name}
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{config.label}</FormLabel>
 
-								{config.type === 'input' && (
-									<FormControl>
-										<Input placeholder={config.placeholder} {...field} />
-									</FormControl>
-								)}
-
-								{config.type === 'select' && (
-									<Select onValueChange={field.onChange} value={field.value}>
+									{config.type === 'input' && (
 										<FormControl>
-											<SelectTrigger>
-												<SelectValue placeholder={`Selecciona ${config.placeholder}`} />
-											</SelectTrigger>
+											<Input placeholder={config.placeholder} {...field} />
 										</FormControl>
-										<SelectContent>
-											{config.options?.map((option, optionIndex) => (
-												<SelectItem key={optionIndex} value={option.value}>
-													{option.label}
-												</SelectItem>
-											))}
-										</SelectContent>
-									</Select>
-								)}
+									)}
 
-								<FormDescription>{config.description}</FormDescription>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-				))}
+									{config.type === 'select' && (
+										<Select onValueChange={field.onChange} value={field.value}>
+											<FormControl>
+												<SelectTrigger>
+													<SelectValue placeholder={`Selecciona ${config.placeholder}`} />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												{config.options?.map((option, optionIndex) => (
+													<SelectItem key={optionIndex} value={option.value}>
+														{option.label}
+													</SelectItem>
+												))}
+											</SelectContent>
+										</Select>
+									)}
 
-				<Button type='submit'>Actualizar</Button>
-			</form>
-		</Form>
+									<FormDescription>{config.description}</FormDescription>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					))}
+
+					<Button type='submit'>Actualizar</Button>
+				</form>
+			</Form>
+		</Card>
 	)
 }

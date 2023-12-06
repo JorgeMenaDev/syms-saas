@@ -1,6 +1,5 @@
 import { fetchEmpresaById } from '@/services/data/actions/server/empresas/get-empresa-by-id'
-import { EditarEmpresaFormWrapper } from './_components/editar-empresa-form-wrapper'
-import Breadcrumbs from '@/components/Breadcrumbs'
+import { EditarEmpresaForm } from './_components/editar-empresa-form'
 import { fetchCiudadesForSelect } from '@/services/data/actions/server/ciudades/fetchCiudades'
 import { fetchRegionesForSelect } from '@/services/data/actions/server/regiones/fetchRegiones'
 
@@ -19,41 +18,7 @@ export default async function EditarEmpresaPage({ params }: { params: { id: stri
 		return <p>Empresa no encontrada</p>
 	}
 
-	console.log('empresa', { empresa })
-
 	return (
-		<section className='p-3'>
-			<Breadcrumbs
-				breadcrumbs={[
-					{ label: 'Dashboard', href: '/dashboard' },
-					{ label: 'Configuracion', href: '#' },
-					{
-						label: 'Empresas',
-						href: '/configuracion/empresas'
-					},
-					{
-						label: 'Editar Empresa',
-						href: `/configuracion/empresas/editar/${params?.id}`,
-						active: true
-					}
-				]}
-			/>
-			<div className='flex items-center justify-between space-y-2 my-14'>
-				<div>
-					<h2 className='text-2xl font-bold tracking-tight'>Formulario de edición de empresa</h2>
-					<p className='text-muted-foreground'>
-						En esta sección podrás editar una empresa. Una vez que hayas terminado de editar, haz clic en el botón
-						"Guardar" para guardar los cambios.
-					</p>
-				</div>
-			</div>
-
-			<EditarEmpresaFormWrapper
-				empresa={empresa}
-				ciudadesOptions={ciudades}
-				regionesOptions={regiones}
-				ciiusOptions={ciius}
-			/>
-		</section>
+		<EditarEmpresaForm empresa={empresa} ciudadesOptions={ciudades} regionesOptions={regiones} ciiusOptions={ciius} />
 	)
 }

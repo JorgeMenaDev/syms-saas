@@ -1,5 +1,4 @@
-import { EditarEstablecimientoFormWrapper } from './_components/editar-establecimiento-form-wrapper'
-import Breadcrumbs from '@/components/Breadcrumbs'
+import { EditarEstablecimientoForm } from './_components/editar-establecimiento-form'
 import { fetchCiudadesForSelect } from '@/services/data/actions/server/ciudades/fetchCiudades'
 import { fetchRegionesForSelect } from '@/services/data/actions/server/regiones/fetchRegiones'
 
@@ -23,38 +22,11 @@ export default async function EditarEstablecimientoPage({ params }: { params: { 
 	}
 
 	return (
-		<section className='p-3'>
-			<Breadcrumbs
-				breadcrumbs={[
-					{ label: 'Dashboard', href: '/dashboard' },
-					{ label: 'Configuracion', href: '#' },
-					{
-						label: 'Establecimientos',
-						href: '/configuracion/establecimientos'
-					},
-					{
-						label: 'Editar Empresa',
-						href: `/configuracion/establecimientos/editar/${params?.id}`,
-						active: true
-					}
-				]}
-			/>
-			<div className='flex items-center justify-between space-y-2 my-14'>
-				<div>
-					<h2 className='text-2xl font-bold tracking-tight'>Formulario de edición de empresa</h2>
-					<p className='text-muted-foreground'>
-						En esta sección podrás editar una empresa. Una vez que hayas terminado de editar, haz clic en el botón
-						"Guardar" para guardar los cambios.
-					</p>
-				</div>
-			</div>
-
-			<EditarEstablecimientoFormWrapper
-				establecimiento={establecimiento}
-				tiposDeEstablecimientos={tiposDeEstablecimientos}
-				ciudadesOptions={ciudades}
-				regionesOptions={regiones}
-			/>
-		</section>
+		<EditarEstablecimientoForm
+			establecimiento={establecimiento}
+			tiposDeEstablecimientos={tiposDeEstablecimientos}
+			ciudadesOptions={ciudades}
+			regionesOptions={regiones}
+		/>
 	)
 }

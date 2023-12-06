@@ -9,7 +9,7 @@ import { type z } from 'zod'
 
 const formSchema = createEmpresaFormSchema()
 
-export function EditarEmpresaFormWrapper({
+export function EditarEmpresaForm({
 	empresa,
 	ciudadesOptions,
 	regionesOptions,
