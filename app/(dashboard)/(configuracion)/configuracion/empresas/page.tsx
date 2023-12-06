@@ -13,7 +13,7 @@ import { empresasColumns } from '@/components/data-table/columns/columns-empresa
 
 export default async function EmpresasPage() {
 	return (
-		<section>
+		<section className='p-5 md:p-0'>
 			<Breadcrumbs
 				breadcrumbs={[
 					{ label: 'Dashboard', href: '/dashboard' },
@@ -25,7 +25,7 @@ export default async function EmpresasPage() {
 					}
 				]}
 			/>
-			<div className='hidden h-full flex-1 flex-col space-y-8 mt-10 md:flex'>
+			<div className='h-full flex-1 flex-col space-y-8 mt-10 md:flex'>
 				<div className='flex items-center justify-between space-y-2'>
 					<div>
 						<h2 className='text-2xl font-bold tracking-tight'>Lista de empresas!</h2>
