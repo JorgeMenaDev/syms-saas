@@ -1,4 +1,4 @@
-import { BarChartIcon, FileTextIcon, HomeIcon, UploadIcon, GearIcon } from '@radix-ui/react-icons'
+import { BarChartIcon, FileTextIcon, HomeIcon, UploadIcon, GearIcon, ArchiveIcon } from '@radix-ui/react-icons'
 
 export const menu = [
 	{
@@ -87,6 +87,21 @@ export const menu = [
 			{
 				text: 'Residuos peligrosos',
 				href: '/configuracion/residuos-peligrosos'
+			}
+		]
+	},
+	{
+		text: 'Otros Registros',
+		icon: <ArchiveIcon className='h-4 w-4' />,
+		href: '#',
+		subSections: [
+			{
+				text: 'nopels',
+				href: '/tablas/nopels'
+			},
+			{
+				text: 'respels',
+				href: '/tablas/respels'
 			}
 		]
 	}
