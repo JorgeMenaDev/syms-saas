@@ -9,8 +9,9 @@ import { useRouter } from 'next/navigation'
 // Define an interface for the action object
 export interface DataTableRowAction {
 	label: string
-	onSelect?: () => void
+	onSelect?: () => any
 	redirectTo?: (id: string) => any
+	delete?: (id: string) => any
 }
 
 // Define props for the DataTableRowActions component
@@ -34,7 +35,7 @@ export function DataTableRowActions<TData>({ row, actions }: DataTableRowActions
 				{/* Render actions based on the provided array */}
 				{actions.map((action, index) => (
 					<div key={index}>
-						{action.label === 'Editar' ? (
+						{action.label === 'Editar' && (
 							<DropdownMenuItem
 								key={index}
 								onSelect={async () => {
@@ -44,7 +45,21 @@ export function DataTableRowActions<TData>({ row, actions }: DataTableRowActions
 							>
 								{action.label}
 							</DropdownMenuItem>
-						) : (
+						)}
+
+						{action.label === 'Eliminar' && (
+							<DropdownMenuItem
+								key={index}
+								onSelect={() => {
+									// @ts-expect-error - TODO: check this later
+									action.delete(row.original.id)
+								}}
+							>
+								{action.label}
+							</DropdownMenuItem>
+						)}
+
+						{action.label !== 'Editar' && action.label !== 'Eliminar' && (
 							<DropdownMenuItem key={index} onSelect={action.onSelect}>
 								{action.label}
 							</DropdownMenuItem>
