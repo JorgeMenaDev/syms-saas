@@ -44,20 +44,20 @@ export function composeEstablecimientoConfigParameters({
 			description: 'Direccion del establecimiento'
 		},
 		{
-			name: 'region',
-			label: 'Region',
-			type: 'select',
-			placeholder: 'Region',
-			options: regionesOptions,
-			description: 'Region del establecimiento'
+			name: 'encargado',
+			label: 'Encargado',
+			type: 'input',
+			inputType: 'text',
+			placeholder: 'Encargado',
+			description: 'Encargado del Establecimiento'
 		},
 		{
-			name: 'ciudad',
-			label: 'Ciudad',
-			type: 'select',
-			placeholder: 'Ciudad',
-			options: ciudadesOptions,
-			description: 'Ciudad del establecimiento'
+			name: 'id_vu',
+			label: 'ID VU',
+			type: 'input',
+			inputType: 'number',
+			placeholder: 'ID VU',
+			description: 'ID VU del Establecimiento'
 		},
 		{
 			name: 'nopel',
@@ -94,14 +94,6 @@ export function composeEstablecimientoConfigParameters({
 			description: 'RESPEL del Establecimiento'
 		},
 		{
-			name: 'encargado',
-			label: 'Encargado',
-			type: 'input',
-			inputType: 'text',
-			placeholder: 'Encargado',
-			description: 'Encargado del Establecimiento'
-		},
-		{
 			name: 'tipo',
 			label: 'Tipo de Establecimiento',
 			placeholder: 'Tipo de Establecimiento',
@@ -109,13 +101,22 @@ export function composeEstablecimientoConfigParameters({
 			options: tiposDeEstablecimientos,
 			description: 'Tipo de Establecimiento'
 		},
+
 		{
-			name: 'id_vu',
-			label: 'ID VU',
-			type: 'input',
-			inputType: 'number',
-			placeholder: 'ID VU',
-			description: 'ID VU del Establecimiento'
+			name: 'region',
+			label: 'Region',
+			type: 'select',
+			placeholder: 'Region',
+			options: regionesOptions,
+			description: 'Region del establecimiento'
+		},
+		{
+			name: 'ciudad',
+			label: 'Ciudad',
+			type: 'select',
+			placeholder: 'Ciudad',
+			options: ciudadesOptions,
+			description: 'Ciudad del establecimiento'
 		}
 	]
 
