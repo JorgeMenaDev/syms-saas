@@ -25,7 +25,12 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 	initialValues,
 	onSubmit
 }) => {
+	const cityOptions = configParameters.find(config => config.name === 'ciudad')?.options ?? []
 	const [loading, setLoading] = React.useState(false)
+	const [selectedRegion, setSelectedRegion] = React.useState<string | null>(initialValues.region ?? null)
+	const [selectedCity, setSelectedCity] = React.useState<string | null>(initialValues.ciudad ?? null)
+	const [citiesOptions, setCitiesOptions] = React.useState(cityOptions)
+
 	const form = useForm<any>({
 		resolver: zodResolver(tableSchema),
 		defaultValues: initialValues // Set default values for the form fields
@@ -45,11 +50,35 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 			})
 	}
 
+	const configParametersWithRegionAndCity = configParameters.filter(
+		config => config.name === 'region' || config.name === 'ciudad'
+	)
+
+	const configParametersWithoutRegionAndCity = configParameters.filter(
+		config => config.name !== 'region' && config.name !== 'ciudad'
+	)
+
+	React.useEffect(() => {
+		// if user select a city first, then a region, we want to keep the city selected only if it belongs to the region
+		const city = cityOptions.find(option => option.value === selectedCity)
+		const cityBelongsToRegion = city?.idRegion === selectedRegion
+
+		if (!cityBelongsToRegion) {
+			form.setValue('ciudad', '')
+		}
+
+		if (cityOptions && selectedRegion !== null) {
+			const cityOptionsForRegion = cityOptions.filter(option => option.idRegion === selectedRegion)
+
+			setCitiesOptions(cityOptionsForRegion)
+		}
+	}, [selectedRegion])
+
 	return (
 		<Card className='w-full border-0 lg:p-5'>
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-8'>
-					{configParameters.map((config, index) => (
+					{configParametersWithoutRegionAndCity.map((config, index) => (
 						<FormField
 							key={index}
 							control={form.control}
@@ -58,13 +87,15 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 								<FormItem>
 									<FormLabel>{config.label}</FormLabel>
 
+									{/* inputs */}
 									{config.type === 'input' && (
 										<FormControl>
-											<Input placeholder={config.placeholder} {...field} />
+											<Input placeholder={config.placeholder} {...field} type={config.inputType} />
 										</FormControl>
 									)}
 
-									{config.type === 'select' && (
+									{/* selects */}
+									{config.type === 'select' && config.name !== 'region' && config.name !== 'ciudad' && (
 										<Select onValueChange={field.onChange} value={field.value}>
 											<FormControl>
 												<SelectTrigger>
@@ -81,12 +112,86 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 										</Select>
 									)}
 
+									{/* ********************* REGION AND CITIES */}
+
+									{/* Add support for other types like textarea if needed */}
 									<FormDescription>{config.description}</FormDescription>
 									<FormMessage />
 								</FormItem>
 							)}
 						/>
 					))}
+
+					{configParametersWithRegionAndCity.length > 0 &&
+						configParametersWithRegionAndCity.map((config, index) => (
+							<FormField
+								key={index}
+								control={form.control}
+								name={config.name}
+								render={({ field }) => (
+									<>
+										{config.name === 'ciudad' && (
+											<FormItem>
+												<FormLabel>{config.label}</FormLabel>
+												<Select
+													onValueChange={value => {
+														setSelectedCity(value)
+														field.onChange(value)
+													}}
+													value={field.value}
+												>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue placeholder={`Selecciona ${config.placeholder}`} />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														{citiesOptions.map((option, optionIndex) => (
+															<SelectItem key={optionIndex} value={option.value}>
+																{option.label}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
+
+												<FormDescription>{config.description}</FormDescription>
+												<FormMessage />
+											</FormItem>
+										)}
+
+										{config.name === 'region' && (
+											<FormItem>
+												<FormLabel>{config.label}</FormLabel>
+
+												<Select
+													onValueChange={value => {
+														setSelectedRegion(value)
+														field.onChange(value)
+													}}
+													value={field.value}
+												>
+													<FormControl>
+														<SelectTrigger>
+															<SelectValue placeholder={`Selecciona ${config.placeholder}`} />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														{config.options?.map((option, optionIndex) => (
+															<SelectItem key={optionIndex} value={option.value}>
+																{option.label}
+															</SelectItem>
+														))}
+													</SelectContent>
+												</Select>
+
+												<FormDescription>{config.description}</FormDescription>
+												<FormMessage />
+											</FormItem>
+										)}
+									</>
+								)}
+							/>
+						))}
 
 					<Button disabled={loading} type='submit'>
 						Actualizar
