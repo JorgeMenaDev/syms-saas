@@ -1,11 +1,7 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-const delay = async (ms: number) => await new Promise(res => setTimeout(res, ms))
-
 export const fetchEmpresaById = async (id: string): Promise<any | null> => {
-	// await delay(1000000000)
-
 	const supabase = createServerComponentClient<Database>({ cookies })
 	console.log({ id })
 	const { data } = await supabase
