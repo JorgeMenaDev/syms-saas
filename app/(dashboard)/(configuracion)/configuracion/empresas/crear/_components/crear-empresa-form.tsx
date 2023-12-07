@@ -13,7 +13,7 @@ export function CrearEmpresaForm({
 	regionesOptions,
 	ciiusOptions
 }: {
-	ciudadesOptions: Array<{ value: string; label: string }>
+	ciudadesOptions: Array<{ value: string; label: string; idRegion: string }>
 	regionesOptions: Array<{ value: string; label: string }>
 	ciiusOptions: Array<{ value: string; label: string }>
 }) {
