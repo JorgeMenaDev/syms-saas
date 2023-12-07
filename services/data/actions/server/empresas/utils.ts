@@ -1,6 +1,22 @@
 import { type ConfigParameter } from '@/components/TableEntryForm'
 import { z } from 'zod'
 
+// this is really important, because is the order we have to follow.
+// columns-wrapper follow this order.
+export const empresasColumns = [
+	'Nombre',
+	'Industria',
+	'Rut',
+	'Representante Legal',
+	'Correo',
+	'Telefono',
+	'Direccion',
+	'Estado',
+	'Ciiu',
+	'Region',
+	'Ciudad'
+]
+
 export function composeEmpresaConfigParameters({
 	ciiusOptions,
 	regionesOptions,
