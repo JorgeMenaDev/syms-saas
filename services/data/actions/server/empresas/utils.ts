@@ -8,7 +8,7 @@ export function composeEmpresaConfigParameters({
 }: {
 	ciiusOptions: Array<{ value: string; label: string }>
 	regionesOptions: Array<{ value: string; label: string }>
-	ciudadesOptions: Array<{ value: string; label: string }>
+	ciudadesOptions: Array<{ value: string; label: string; idRegion: string }>
 }) {
 	const configParameters: ConfigParameter[] = [
 		{
@@ -24,14 +24,6 @@ export function composeEmpresaConfigParameters({
 			type: 'input',
 			placeholder: 'Industria',
 			description: 'Industria de la empresa'
-		},
-		{
-			name: 'ciiu',
-			label: 'Ciiu',
-			type: 'select',
-			placeholder: 'Ciiu',
-			options: ciiusOptions,
-			description: 'Ciiu de la empresa'
 		},
 		{ name: 'rut', label: 'Rut', type: 'input', placeholder: 'Rut', description: 'Rut de la empresa' },
 		{
@@ -56,22 +48,7 @@ export function composeEmpresaConfigParameters({
 			placeholder: 'Direccion',
 			description: 'Direccion de la empresa'
 		},
-		{
-			name: 'region',
-			placeholder: 'Region',
-			label: 'Region',
-			type: 'select',
-			options: regionesOptions,
-			description: 'Region de la empresa'
-		},
-		{
-			name: 'ciudad',
-			label: 'Ciudad',
-			placeholder: 'Ciudad',
-			type: 'select',
-			options: ciudadesOptions,
-			description: 'Ciudad de la empresa'
-		},
+
 		{
 			name: 'estado',
 			label: 'Estado',
@@ -88,6 +65,30 @@ export function composeEmpresaConfigParameters({
 				}
 			],
 			description: 'Estado de la empresa'
+		},
+		{
+			name: 'ciiu',
+			label: 'Ciiu',
+			type: 'select',
+			placeholder: 'Ciiu',
+			options: ciiusOptions,
+			description: 'Ciiu de la empresa'
+		},
+		{
+			name: 'region',
+			placeholder: 'Region',
+			label: 'Region',
+			type: 'select',
+			options: regionesOptions,
+			description: 'Region de la empresa'
+		},
+		{
+			name: 'ciudad',
+			label: 'Ciudad',
+			placeholder: 'Ciudad',
+			type: 'select',
+			options: ciudadesOptions,
+			description: 'Ciudad de la empresa'
 		}
 	]
 
