@@ -18,7 +18,11 @@ export const fetchCiudadesForSelect = async () => {
 	const ciudades = await fetchCiudades()
 	if (!ciudades) return null
 
-	const ciudadesForSelect = ciudades.map(city => ({ value: city.id.toString(), label: city.nombre }))
+	const ciudadesForSelect = ciudades.map(city => ({
+		value: city.id.toString(),
+		label: city.nombre,
+		idRegion: city.id_region.toString()
+	}))
 
 	return ciudadesForSelect
 }
