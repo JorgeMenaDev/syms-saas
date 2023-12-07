@@ -2,12 +2,12 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import EmpresasDataTableWrapper from './_components/empresas-dataTable-wrapper'
+import EmpresasTable from './_components/empresas-table'
 import { Suspense } from 'react'
 import { DataTableSkeleton } from '@/components/data-table/data-table-skeleton'
 
 import { EmpresasFilters } from './_components/empresas-filters'
-import { empresasColumns } from '@/components/data-table/columns/columns-empresas'
+import { skeletonCols } from '@/components/data-table/columns/columns-empresas'
 
 // export const dynamic = 'force-dynamic'
 
@@ -38,8 +38,8 @@ export default async function EmpresasPage() {
 					</div>
 				</div>
 
-				<Suspense fallback={<DataTableSkeleton data={[]} filters={EmpresasFilters} columns={empresasColumns} />}>
-					<EmpresasDataTableWrapper />
+				<Suspense fallback={<DataTableSkeleton data={[]} filters={EmpresasFilters} columns={skeletonCols} />}>
+					<EmpresasTable />
 				</Suspense>
 			</div>
 		</section>
