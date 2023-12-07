@@ -19,6 +19,7 @@ import {
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
 import { DataTablePagination } from './data-table-pagination'
+import { GenericModal } from '../GenericModal'
 
 interface DataTableProps<TData, TValue> {
 	columns: Array<ColumnDef<TData, TValue>>
@@ -93,6 +94,12 @@ export function DataTable<TData, TValue>({ columns, data, filters: Filters }: Da
 			</div>
 
 			<DataTablePagination table={table} />
+			{/*
+			<GenericModal open={true} >
+				<div>
+					<h1>hola</h1>
+				</div>
+			</GenericModal> */}
 		</div>
 	)
 }
