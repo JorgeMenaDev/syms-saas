@@ -7,7 +7,7 @@ import { Suspense } from 'react'
 import { DataTableSkeleton } from '@/components/data-table/data-table-skeleton'
 
 import { EmpresasFilters } from './_components/empresas-filters'
-import { skeletonCols } from '@/components/data-table/columns/columns-empresas'
+import { skeletonCols } from '@/app/(dashboard)/(configuracion)/configuracion/empresas/_components/skeletons-columns'
 
 // export const dynamic = 'force-dynamic'
 
