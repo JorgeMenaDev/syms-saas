@@ -10,7 +10,7 @@ import { DataTableColumnHeader } from '@/components/data-table/data-table-column
 import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
 import { GenericModal } from '@/components/GenericModal'
 import { toast } from 'sonner'
-import { deleteEmpresaById } from '@/services/data/actions/server/empresas/delete-empresa-by-is'
+import { deleteEmpresaById } from '@/services/data/actions/server/empresas/delete-empresa-by-id'
 import { delay } from '@/utils/re-usable-functions/delay'
 
 export default function ColumnsWrapper({ empresas }: any) {
@@ -28,7 +28,7 @@ export default function ColumnsWrapper({ empresas }: any) {
 
 		const res = await deleteEmpresaById(id)
 
-		if (res) {
+		if (res.ok) {
 			await delay(1000) // <-- this is to wait for revalidatePath to finish.
 			toast.success('Empresa eliminada correctamente')
 		} else {
