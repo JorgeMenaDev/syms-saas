@@ -42,3 +42,20 @@ export async function createEmpresa(values: any): Promise<{ error: string | null
 		return handleSupabaseError(error)
 	}
 }
+
+export async function createEmpresas(empresas: any[]): Promise<{ error: string | null }> {
+	const supabase = createServerComponentClient<Database>({ cookies })
+
+	try {
+		const { error } = await supabase.from('empresas').insert(empresas)
+		if (error) return handleSupabaseError(error)
+
+		// revalidate cache for this path
+		revalidatePath('/configuracion/empresas')
+
+		// return null if no error
+		return { error: null }
+	} catch (error) {
+		return handleSupabaseError(error)
+	}
+}
