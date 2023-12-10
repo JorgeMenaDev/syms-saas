@@ -2,11 +2,11 @@ import Link from 'next/link'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { buttonVariants } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
-import { establecimientosColumns } from '@/components/data-table/columns/columns-establecimientos'
+import { skeletonCols } from './_components/skeletons-columns'
 import { EstablecimientosFilters } from './_components/establecimientos-filters'
 import { Suspense } from 'react'
 import { DataTableSkeleton } from '@/components/data-table/data-table-skeleton'
-import EstablecimientosDataTableWrapper from './_components/establecimientos-dataTable-wrapper'
+import EstablecimientosTable from './_components/establecimientos-table'
 
 export default async function EstablecimientosPage() {
 	return (
@@ -37,10 +37,8 @@ export default async function EstablecimientosPage() {
 						</Link>
 					</div>
 				</div>
-				<Suspense
-					fallback={<DataTableSkeleton filters={EstablecimientosFilters} data={[]} columns={establecimientosColumns} />}
-				>
-					<EstablecimientosDataTableWrapper />
+				<Suspense fallback={<DataTableSkeleton filters={EstablecimientosFilters} data={[]} columns={skeletonCols} />}>
+					<EstablecimientosTable />
 				</Suspense>
 			</div>
 		</section>
