@@ -1,9 +1,10 @@
 'use client'
 
 import { SelectContent } from '@radix-ui/react-select'
-import { Select, SelectGroup, SelectItem, SelectTrigger, SelectValue } from './ui/select'
+import { Select, SelectItem, SelectTrigger, SelectValue } from './ui/select'
 import { FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './ui/form'
 import Link from 'next/link'
+import { type FC } from 'react'
 
 const ciudadesOptions = [
 	{ value: '1', label: 'Santiago' },
@@ -11,7 +12,11 @@ const ciudadesOptions = [
 	{ value: '3', label: 'Concepcion' }
 ]
 
-export function SelectGeneric({ form }) {
+interface SelectGenericProps {
+	form: any
+}
+
+export const SelectGeneric: FC<SelectGenericProps> = ({ form }) => {
 	return (
 		<FormField
 			control={form.control}

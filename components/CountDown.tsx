@@ -3,8 +3,6 @@
 import { useState, useEffect } from 'react'
 import { CardContent, Card } from '@/components/ui/card'
 
-const MONK_MODE_DAYS = 21 * 24 * 60 * 60 * 1000
-
 export function CountdownComponent() {
 	const [timeLeft, setTimeLeft] = useState(calculateTimeLeft())
 
@@ -12,7 +10,7 @@ export function CountdownComponent() {
 		const targetDate = new Date()
 		targetDate.setDate(targetDate.getDate() + 21)
 
-		const difference = targetDate - new Date()
+		const difference = targetDate.getTime() - new Date().getTime()
 
 		if (difference > 0) {
 			const days = Math.floor(difference / (1000 * 60 * 60 * 24))

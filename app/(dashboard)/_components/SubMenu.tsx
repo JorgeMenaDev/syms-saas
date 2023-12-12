@@ -2,9 +2,22 @@
 
 import { ChevronDownIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
-import { useState } from 'react'
+import { type FC, useState } from 'react'
 
-export function SubMenu({ item }) {
+interface SubMenuProps {
+	item: {
+		icon?: JSX.Element
+		text: string
+		href?: string
+		subSections: Array<{
+			icon?: JSX.Element
+			text: string
+			href?: string
+		}>
+	}
+}
+
+export const SubMenu: FC<SubMenuProps> = ({ item }) => {
 	const [isOpen, setIsOpen] = useState(false)
 
 	return (
@@ -24,7 +37,7 @@ export function SubMenu({ item }) {
 					item.subSections.map((subItem, index) => (
 						<Link
 							key={index}
-							href={subItem.href}
+							href={subItem.href ?? '#'}
 							className='flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-900 transition-all hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50'
 						>
 							{subItem.icon && subItem.icon}
