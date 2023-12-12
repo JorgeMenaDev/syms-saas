@@ -3,7 +3,12 @@ const { fontFamily } = require('tailwindcss/defaultTheme')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
 	darkMode: ['class'],
-	content: ['./components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './node_modules/@tremor/**/*.{js,ts,jsx,tsx}'],
+	content: [
+		'./app/**/*.{js,ts,jsx,tsx,mdx}',
+		'./pages/**/*.{js,ts,jsx,tsx,mdx}',
+		'./components/**/*.{js,ts,jsx,tsx,mdx}',
+		'./node_modules/@tremor/**/*.{js,ts,jsx,tsx}'
+	],
 	theme: {
 		transparent: 'transparent',
 		current: 'currentColor',
