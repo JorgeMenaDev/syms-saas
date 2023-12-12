@@ -10,12 +10,12 @@ export function SubMenu({ item }) {
 	return (
 		<div>
 			<button
-				className='flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-900 transition-all hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50'
+				className='flex text items-center gap-3 rounded-lg px-3 py-2 text-zinc-900 transition-all hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50'
 				onClick={() => {
 					setIsOpen(!isOpen)
 				}}
 			>
-				{item.icon}
+				{item.icon && item.icon}
 				{item.text}
 				<ChevronDownIcon className='h-4 w-4' />
 			</button>
@@ -27,6 +27,7 @@ export function SubMenu({ item }) {
 							href={subItem.href}
 							className='flex items-center gap-3 rounded-lg px-3 py-2 text-zinc-900 transition-all hover:text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50 dark:hover:text-zinc-50'
 						>
+							{subItem.icon && subItem.icon}
 							{subItem.text}
 						</Link>
 					))}

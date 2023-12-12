@@ -1,4 +1,13 @@
-import { BarChartIcon, FileTextIcon, HomeIcon, UploadIcon, GearIcon, ArchiveIcon } from '@radix-ui/react-icons'
+import {
+	BarChartIcon,
+	FileTextIcon,
+	HomeIcon,
+	UploadIcon,
+	GearIcon,
+	ArchiveIcon,
+	MagicWandIcon,
+	ChatBubbleIcon
+} from '@radix-ui/react-icons'
 
 export const menu = [
 	{
@@ -102,6 +111,19 @@ export const menu = [
 			{
 				text: 'respels',
 				href: '/tablas/respels'
+			}
+		]
+	},
+	// add a menu for AI - users will be able to ask questin against the db in the app
+	{
+		text: 'AI',
+		icon: <MagicWandIcon className='h-4 w-4' />,
+		href: '#',
+		subSections: [
+			{
+				text: 'Chat',
+				href: '/ai',
+				icon: <ChatBubbleIcon className='h-4 w-4' />
 			}
 		]
 	}

@@ -113,20 +113,9 @@ export function composeEmpresaConfigParameters({
 
 export function createEmpresaFormSchema() {
 	const formSchema = z.object({
-		direccion: z.string().min(1, {
-			message: 'La direccion es requerida.'
-		}),
-		ciiu: z.string().min(1, {
-			message: 'El ciiu es requerido.'
-		}),
-		correo: z
-			.string()
-			.min(1, {
-				message: 'El email es requerido.'
-			})
-			.email({
-				message: 'El email debe ser valido.'
-			}),
+		direccion: z.string().min(1, { message: 'La direccion es requerida.' }),
+		ciiu: z.string().min(1, { message: 'El ciiu es requerido.' }),
+		correo: z.string().min(1, { message: 'El email es requerido.' }).email({ message: 'El email debe ser valido.' }),
 		ciudad: z.string().min(1, {
 			message: 'La ciudad es requerida.'
 		}),
