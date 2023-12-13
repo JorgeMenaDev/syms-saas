@@ -27,12 +27,9 @@ export const fetchEstablecimientos = async () => {
 		return {
 			id: item.id,
 			nombre: item.nombre,
-			// @ts-expect-error supabase wasn't able to infer the type of this property
 			tipo: item.tipo_establecimiento.nombre,
 			direccion: item.direccion,
-			// @ts-expect-error supabase wasn't able to infer the type of this property
 			ciudad: item.ciudad.nombre,
-			// @ts-expect-error supabase wasn't able to infer the type of this property
 			region: item.region.nombre,
 			encargado: item.encargado,
 			correo: item.correo,
