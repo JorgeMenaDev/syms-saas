@@ -1,6 +1,6 @@
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { PerfilFormWrapper } from './_components/perfil-form-wrapper'
-import { fetchUserProfile } from '@/services/data/actions/server/user/fetchUserProfile'
+import { fetchUserProfile } from '@/services/data/actions/server/usuarios/get-user-profile'
 
 export default async function PerfilPage() {
 	const { user } = await fetchUserProfile()
