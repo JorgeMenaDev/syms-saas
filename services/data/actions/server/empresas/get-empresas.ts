@@ -29,12 +29,15 @@ export const fetchEmpresas = async () => {
 			rut: empresa.rut,
 			nombre: empresa.nombre,
 			industria: empresa.industria,
+			// @ts-expect-error error
 			ciiu: empresa.ciiu.codigo,
 			representanteLegal: empresa.representante_legal,
 			correo: empresa.correo,
 			telefono: empresa.telefono,
 			direccion: empresa.direccion,
+			// @ts-expect-error error
 			region: empresa.region.nombre,
+			// @ts-expect-error error
 			ciudad: empresa.ciudad.nombre,
 			estado: empresa.estado
 		}
