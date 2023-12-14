@@ -27,6 +27,7 @@ module.exports = {
 		'@typescript-eslint/strict-boolean-expressions': 'off',
 		'@typescript-eslint/no-misused-promises': 'off',
 		'react/no-unescaped-entities': 'off',
+		'@typescript-eslint/naming-convention': 'off',
 		'react/prop-types': [
 			2,
 			{ ignore: ['className', 'sideOffset', 'checked', 'align', 'position', 'orientation', 'decorative'] }
