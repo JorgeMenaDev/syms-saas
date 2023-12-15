@@ -30,7 +30,10 @@ export default async function TransportistasPage() {
 						<p className='text-muted-foreground'>
 							En esta sección puedes ver la lista de transportistas que tienes registrados en el sistema.
 						</p>
-						<Link href='/configuracion/empresas/crear' className={cn(buttonVariants({ variant: 'outline' }), 'mt-4')}>
+						<Link
+							href='/configuracion/transportes/crear'
+							className={cn(buttonVariants({ variant: 'outline' }), 'mt-4')}
+						>
 							Nuevo Transportista
 						</Link>
 					</div>
