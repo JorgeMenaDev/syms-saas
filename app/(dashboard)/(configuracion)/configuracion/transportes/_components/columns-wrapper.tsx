@@ -15,6 +15,7 @@ import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import { delay } from '@/utils/re-usable-functions/delay'
 import { deleteTransportistaById } from '@/services/data/actions/server/transportistas/delete-transportista-by-id'
 import { useRouter } from 'next/navigation'
+import { Button } from '@/components/ui/button'
 
 export default function ColumnsWrapper({ transportistas }: any) {
 	const router = useRouter()
@@ -150,15 +151,19 @@ export default function ColumnsWrapper({ transportistas }: any) {
 						<span>
 							{length > 0 ? (
 								<span className='flex items-center'>
-									<span className='mr-2'>{length}</span>
-									<MagnifyingGlassIcon
-										className='w-6 h-6 cursor-pointer text-primary font-bold'
+									<Button
+										className='p-1 w-14 text-base'
+										variant='outline'
+										size='icon'
 										onClick={async () => {
 											setTransportistaId(row.original.id)
 
 											toggleCamionesModal()
 										}}
-									/>
+									>
+										{length}
+										<MagnifyingGlassIcon className='ml-2 w-6 h-6 ' />
+									</Button>
 								</span>
 							) : (
 								<span className='text-muted-foreground'>0</span>
