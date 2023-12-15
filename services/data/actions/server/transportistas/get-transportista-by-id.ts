@@ -1,11 +1,6 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-interface join {
-	ciudad: any
-	region: any
-}
-
 type Transportista = Database['public']['Tables']['transportistas']['Row']
 
 export const fetchTransportistaById = async (id: string): Promise<any | null> => {
