@@ -194,7 +194,7 @@ export default function ColumnsWrapper({ transportistas }: any) {
 					actions={[
 						{
 							label: 'Editar',
-							redirectTo: id => `/configuracion/transportistas/editar/${id}`
+							redirectTo: id => `/configuracion/transportes/editar/${id}`
 						},
 						{
 							label: 'Eliminar',
