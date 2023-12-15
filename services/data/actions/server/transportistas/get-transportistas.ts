@@ -22,10 +22,11 @@ export async function fetchTransportistas() {
 	}
 
 	const transportistas = data.map(transportista => {
-		const { razon_social, rut, direccion, region, ciudad, representante_legal, estado, autorizacion, camiones } =
+		const { id, razon_social, rut, direccion, region, ciudad, representante_legal, estado, autorizacion, camiones } =
 			transportista
 
 		return {
+			id,
 			razonSocial: razon_social,
 			rut,
 			direccion,
