@@ -9,6 +9,72 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      camiones: {
+        Row: {
+          año_camion: string
+          año_resolucion: string
+          autoridad: string
+          autoriza: string | null
+          camion: string
+          capacidad_carga: string
+          comentario: string | null
+          correo: string
+          created_at: string
+          documento: string
+          estado: boolean
+          id: string
+          modelo: string
+          patente: string
+          representante_legal: string
+          resolucion: string
+          rut: string
+          telefono: string
+          vigencia: string
+        }
+        Insert: {
+          año_camion: string
+          año_resolucion: string
+          autoridad: string
+          autoriza?: string | null
+          camion: string
+          capacidad_carga: string
+          comentario?: string | null
+          correo: string
+          created_at?: string
+          documento: string
+          estado: boolean
+          id?: string
+          modelo: string
+          patente: string
+          representante_legal: string
+          resolucion: string
+          rut: string
+          telefono: string
+          vigencia: string
+        }
+        Update: {
+          año_camion?: string
+          año_resolucion?: string
+          autoridad?: string
+          autoriza?: string | null
+          camion?: string
+          capacidad_carga?: string
+          comentario?: string | null
+          correo?: string
+          created_at?: string
+          documento?: string
+          estado?: boolean
+          id?: string
+          modelo?: string
+          patente?: string
+          representante_legal?: string
+          resolucion?: string
+          rut?: string
+          telefono?: string
+          vigencia?: string
+        }
+        Relationships: []
+      }
       ciius: {
         Row: {
           codigo: number
