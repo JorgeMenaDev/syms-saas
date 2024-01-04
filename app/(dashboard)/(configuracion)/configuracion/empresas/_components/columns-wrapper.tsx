@@ -14,14 +14,6 @@ import { toast } from 'sonner'
 import { deleteEmpresaById } from '@/services/data/actions/server/empresas/delete-empresa-by-id'
 import { delay } from '@/utils/re-usable-functions/delay'
 import { buttonVariants } from '@/components/ui/button'
-import { cpSync } from 'fs'
-
-// const csvData = [
-// 	['firstname', 'lastname', 'email'],
-// 	['Ahmed', 'Tomi', 'ah@smthing.co.com'],
-// 	['Raed', 'Labes', 'rl@smthing.co.com'],
-// 	['Yezzi', 'Min l3b', 'ymin@cocococo.com']
-// ]
 
 function convertToCSV(data: any) {
 	const csvData = []
