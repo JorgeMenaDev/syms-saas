@@ -1,6 +1,5 @@
 'use client'
 
-import { CSVLink } from 'react-csv'
 import { Fragment, useState } from 'react'
 import { EmpresasFilters } from './empresas-filters'
 import { DataTable } from '@/components/data-table/DataTable'
@@ -13,24 +12,7 @@ import { GenericModal } from '@/components/GenericModal'
 import { toast } from 'sonner'
 import { deleteEmpresaById } from '@/services/data/actions/server/empresas/delete-empresa-by-id'
 import { delay } from '@/utils/re-usable-functions/delay'
-import { buttonVariants } from '@/components/ui/button'
-
-function convertToCSV(data: any) {
-	const csvData = []
-
-	// Push header row
-	const headerRow = Object.keys(data[0])
-	csvData.push(headerRow)
-
-	// Push data rows
-	// @ts-expect-error // <--
-	data.forEach(item => {
-		const row = Object.values(item)
-		csvData.push(row)
-	})
-
-	return csvData
-}
+import { CsvButton } from '@/components/CsvButton'
 
 export default function ColumnsWrapper({ empresas }: any) {
 	const [open, setOpen] = useState(false)
@@ -219,19 +201,9 @@ export default function ColumnsWrapper({ empresas }: any) {
 		}
 	]
 
-	const csvFileNameWithTodayDate = `empresas-${new Date().toLocaleDateString()}.csv`
-
-	console.log('empresas', { empresas })
-
 	return (
 		<Fragment>
-			<CSVLink
-				filename={csvFileNameWithTodayDate}
-				data={convertToCSV(empresas)}
-				className={`mb-3 ${buttonVariants({ variant: 'outline' })}}`}
-			>
-				Descargar CSV
-			</CSVLink>
+			<CsvButton name='Empresas' data={empresas} />
 			<DataTable filters={EmpresasFilters} data={empresas} columns={empresasColumns} />
 
 			<GenericModal open={open} toggle={toggle} onConfirm={deleteEmpresa} isDisabled={isDeleting}>
