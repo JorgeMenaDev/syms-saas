@@ -11,8 +11,6 @@ export const errorMessages: ErrorMessages = {
 
 // Function to handle errors
 export function handleSupabaseError(error: any) {
-	console.log({ error })
-
 	if (error) {
 		// Check if any error message includes a key from the dictionary
 		const matchingKey = Object.keys(errorMessages).find(key => error.message.includes(key))

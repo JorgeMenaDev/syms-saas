@@ -21,7 +21,6 @@ export const fetchTransportistaById = async (id: string): Promise<any | null> =>
 	}
 
 	const transportista = transformTransportista(data[0])
-	console.log({ transportista })
 
 	return transportista
 }

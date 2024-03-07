@@ -37,7 +37,6 @@ export const EditTableEntryForm: React.FC<EditTableEntryFormProps> = ({
 	})
 
 	function handleSubmit(values: any) {
-		console.log({ values })
 		setLoading(true)
 		const toastId = toast.loading('Editando... espere un momento')
 

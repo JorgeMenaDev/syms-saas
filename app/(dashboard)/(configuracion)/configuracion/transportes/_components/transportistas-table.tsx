@@ -6,8 +6,6 @@ import { fetchTransportistas } from '@/services/data/actions/server/transportist
 export default async function TransportistasTable() {
 	const transportistas = await fetchTransportistas()
 
-	console.log(transportistas)
-
 	if (transportistas === null) {
 		return (
 			<div className='flex items-center justify-center h-full'>

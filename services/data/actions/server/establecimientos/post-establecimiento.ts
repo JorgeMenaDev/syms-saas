@@ -9,7 +9,6 @@ import { cookies } from 'next/headers'
 type Establecimiento = Database['public']['Tables']['establecimientos']['Insert']
 
 export async function createEstablecimiento(values: any) {
-	console.log({ values })
 	const supabase = createServerComponentClient<Database>({ cookies })
 
 	// transform values to match database schema
@@ -26,8 +25,6 @@ export async function createEstablecimiento(values: any) {
 		respel: values.respel === 'activo',
 		tipo_establecimiento_id: values.tipo
 	}
-
-	console.log({ establecimiento })
 
 	try {
 		const { error } = await supabase.from('establecimientos').insert(establecimiento)

@@ -9,7 +9,6 @@ import { cookies } from 'next/headers'
 type Transportista = Database['public']['Tables']['transportistas']['Update']
 
 export async function updateTransportista(id: string, values: any): Promise<{ error: string | null }> {
-	console.log({ id, values })
 	const supabase = createServerComponentClient<Database>({ cookies })
 
 	// transform values to match database schema
@@ -22,8 +21,6 @@ export async function updateTransportista(id: string, values: any): Promise<{ er
 		direccion: values.direccion,
 		region_id: Number(values.region)
 	}
-
-	console.log({ transportista })
 
 	try {
 		const { error } = await supabase.from('transportistas').update(transportista).eq('id', id)

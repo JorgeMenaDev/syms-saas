@@ -23,7 +23,6 @@ export function EditarEstablecimientoForm({
 }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		try {
-			console.log({ values })
 			const { error } = await updateEstablecimiento(establecimiento.id, values)
 
 			if (error) {

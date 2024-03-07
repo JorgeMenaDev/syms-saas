@@ -8,7 +8,6 @@ export async function deleteUsuarioById(id: string) {
 	const supabase = createServerComponentClient<Database>({ cookies })
 
 	const { status, data, error } = await supabase.from('usuarios').delete().eq('id', id)
-	console.log({ status, data, error })
 
 	if (error) return { ok: false }
 

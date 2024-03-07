@@ -6,16 +6,8 @@ type Camion = Database['public']['Tables']['camiones']['Row']
 export async function fetchCamioness() {
 	const supabase = createServerComponentClient<Database>({ cookies })
 
-	const { data, error } = await supabase
-		.from('camiones')
-		.select
-		// `*,
-		// 	region: region_id(nombre),
-		// 	ciudad: ciudad_id(nombre)
-		// `
-		()
+	const { data, error } = await supabase.from('camiones').select()
 
-	console.log({ data, error })
 	if (error) {
 		console.error(error)
 		return null
@@ -35,7 +27,6 @@ export async function fetchCamionesByTransportistaId(id: string) {
 
 	const { data, error } = await supabase.from('transportistas').select().eq('id', id)
 
-	console.log({ data, error })
 	if (error) {
 		console.error(error)
 		return null
@@ -49,14 +40,11 @@ export async function fetchCamionesByTransportistaId(id: string) {
 
 	const { data: camionesData } = await supabase.from('camiones').select().in('id', ids)
 
-	console.log({ camionesData })
 	if (!camionesData || camionesData.length === 0) {
 		return null
 	}
 
 	const camiones = camionesData.map(transformCamionData)
-
-	console.log({ camiones })
 
 	return camiones
 }

@@ -3,7 +3,6 @@ import { cookies } from 'next/headers'
 
 export const fechEstablecimientoById = async (id: string) => {
 	const supabase = createServerComponentClient<Database>({ cookies })
-	console.log({ id })
 	const { data, error } = await supabase
 		.from('establecimientos')
 		.select(
@@ -15,15 +14,11 @@ export const fechEstablecimientoById = async (id: string) => {
 		)
 		.eq('id', id)
 
-	console.log({ data, error })
-
 	if (!data || data.length === 0 || data?.[0] === null) {
 		return null
 	}
 
 	const establecimientoDetails = data?.[0]
-
-	console.log({ establecimientoDetails })
 
 	const establecimiento = {
 		id: establecimientoDetails.id,

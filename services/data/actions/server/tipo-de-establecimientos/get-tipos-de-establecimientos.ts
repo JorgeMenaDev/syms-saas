@@ -17,8 +17,6 @@ export const fetchTiposDeEstablecimientosForSelect = async () => {
 	const tiposDeEstablecimientos = await fetchTiposDeEstablecimientos()
 	if (!tiposDeEstablecimientos) return null
 
-	console.log({ tiposDeEstablecimientos })
-
 	const tiposDeEstablecimientosForSelect = tiposDeEstablecimientos.map(ciiu => ({ value: ciiu.id, label: ciiu.nombre }))
 
 	return tiposDeEstablecimientosForSelect

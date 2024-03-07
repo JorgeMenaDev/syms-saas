@@ -1,6 +1,5 @@
 export function convertToCSV(data: any) {
 	const csvData = []
-	console.log(data)
 
 	// Push header row
 	const headerRow = Object.keys(data[0])
@@ -24,8 +23,6 @@ export function convertToCSV(data: any) {
 		// const row = Object.values(item)
 		// csvData.push(row)
 	})
-
-	console.log(csvData)
 
 	return csvData
 }

@@ -42,10 +42,6 @@ export function CrearEmpresaForm({
 	// initial values are all empty strings
 	const initialValues = Object.fromEntries(configParameters.map(config => [config.name, '']))
 
-	console.log({
-		configParameters
-	})
-
 	return (
 		<TableEntryForm
 			initialValues={initialValues}

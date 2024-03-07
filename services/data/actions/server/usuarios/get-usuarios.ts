@@ -10,8 +10,6 @@ export const fetchUsuarios = async () => {
 		`
 	)
 
-	console.log({ data, error })
-
 	if (error) {
 		console.error(error)
 		return null
@@ -22,7 +20,6 @@ export const fetchUsuarios = async () => {
 	}
 
 	const formattedData = data.map(item => {
-		console.log({ item })
 		return {
 			id: item.id,
 			nombre: item.nombre,
@@ -36,8 +33,6 @@ export const fetchUsuarios = async () => {
 			activo: item.activo
 		}
 	})
-
-	console.log({ formattedData })
 
 	return formattedData
 }

@@ -5,8 +5,6 @@ import { fetchCamionesByTransportistaId, fetchCamioness } from '@/services/data/
 export default async function CamionesTable({ id }: { id?: string | null }) {
 	const camiones = id ? await fetchCamionesByTransportistaId(id) : await fetchCamioness()
 
-	console.log({ id, camiones })
-
 	if (camiones === null) {
 		return (
 			<div className='flex items-center justify-center h-full'>

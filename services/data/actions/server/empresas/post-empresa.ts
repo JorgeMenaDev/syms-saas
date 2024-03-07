@@ -9,7 +9,6 @@ import { cookies } from 'next/headers'
 type Empresa = Database['public']['Tables']['empresas']['Insert']
 
 export async function createEmpresa(values: any): Promise<{ error: string | null }> {
-	console.log({ values })
 	const supabase = createServerComponentClient<Database>({ cookies })
 
 	// transform values to match database schema
@@ -26,8 +25,6 @@ export async function createEmpresa(values: any): Promise<{ error: string | null
 		direccion: values.direccion,
 		region_id: Number(values.region)
 	}
-
-	console.log({ empresa })
 
 	try {
 		const { error } = await supabase.from('empresas').insert(empresa)

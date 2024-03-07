@@ -3,7 +3,6 @@ import { cookies } from 'next/headers'
 
 export const fetchEmpresaById = async (id: string): Promise<any | null> => {
 	const supabase = createServerComponentClient<Database>({ cookies })
-	console.log({ id })
 	const { data } = await supabase
 		.from('empresas')
 		.select(
@@ -15,15 +14,11 @@ export const fetchEmpresaById = async (id: string): Promise<any | null> => {
 		)
 		.eq('id', id)
 
-	console.log({ data })
-
 	if (!data || data.length === 0 || data?.[0] === null) {
 		return null
 	}
 
 	const empresaDetails = data?.[0]
-
-	console.log({ empresaDetails })
 
 	const empresa = {
 		id: empresaDetails.id,
@@ -39,8 +34,6 @@ export const fetchEmpresaById = async (id: string): Promise<any | null> => {
 		ciudad: empresaDetails.ciudad_id.toString(),
 		estado: empresaDetails.estado
 	}
-
-	console.log({ empresa })
 
 	return empresa
 }

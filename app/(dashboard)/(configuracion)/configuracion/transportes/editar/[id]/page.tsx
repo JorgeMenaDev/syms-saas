@@ -4,7 +4,6 @@ import { fetchRegionesForSelect } from '@/services/data/actions/server/regiones/
 import { fetchTransportistaById } from '@/services/data/actions/server/transportistas/get-transportista-by-id'
 
 export default async function EditarTransportistaPage({ params }: { params: { id: string } }) {
-	console.log({ id: params?.id })
 	const [transportista, ciudades, regiones] = await Promise.all([
 		fetchTransportistaById(params?.id),
 		fetchCiudadesForSelect(),

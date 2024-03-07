@@ -9,7 +9,6 @@ import { cookies } from 'next/headers'
 type Establecimiento = Database['public']['Tables']['establecimientos']['Update']
 
 export async function updateEstablecimiento(id: string, values: any) {
-	console.log({ id, values })
 	const supabase = createServerComponentClient<Database>({ cookies })
 
 	// transform values to match database schema
@@ -26,8 +25,6 @@ export async function updateEstablecimiento(id: string, values: any) {
 		nopel: values.nopel === 'activo',
 		respel: values.respel === 'activo'
 	}
-
-	console.log({ establecimiento })
 
 	try {
 		const { error } = await supabase.from('establecimientos').update(establecimiento).eq('id', id)

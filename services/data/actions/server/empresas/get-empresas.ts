@@ -17,8 +17,6 @@ export const fetchEmpresas = async () => {
 		return null
 	}
 
-	console.log({ data })
-
 	if (!data || data.length === 0) {
 		return null
 	}
@@ -42,8 +40,6 @@ export const fetchEmpresas = async () => {
 			estado: empresa.estado
 		}
 	})
-
-	console.log({ empresas })
 
 	return empresas
 }

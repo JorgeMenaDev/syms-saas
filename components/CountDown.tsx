@@ -34,8 +34,6 @@ export function CountdownComponent() {
 		}
 	}, [])
 
-	console.log({})
-
 	return (
 		<Card className='w-full max-w-sm mx-auto bg-white dark:bg-gray-800 shadow-md rounded-lg overflow-hidden'>
 			<CardContent className='p-4'>

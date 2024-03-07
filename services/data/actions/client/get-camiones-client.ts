@@ -3,12 +3,10 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export async function fetchCamionesClientByIds(ids: string[]) {
-	console.log({ ids })
 	const supabase = createClientComponentClient<Database>()
 
 	const { data, error } = await supabase.from('camiones').select().in('id', ids)
 
-	console.log({ data, error })
 	if (error) {
 		console.error(error)
 		return null

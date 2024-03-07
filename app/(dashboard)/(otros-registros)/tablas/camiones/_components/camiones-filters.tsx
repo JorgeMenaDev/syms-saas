@@ -27,8 +27,6 @@ function removeDuplicates(arr: any[]) {
 export function CamionesFilters<TData>({ table, data }: DataTableToolbarProps<TData>) {
 	const isFiltered = table.getState().columnFilters.length > 0
 
-	console.log({ data })
-
 	const ciiuOptions = data?.map((item: any) => {
 		return {
 			value: item.ciiu,

@@ -13,11 +13,8 @@ export const fetchEstablecimientos = async () => {
 	)
 
 	if (error) {
-		console.log({ error })
 		return null
 	}
-
-	console.log({ error, data })
 
 	if (!data || data.length === 0) {
 		return null
@@ -40,8 +37,6 @@ export const fetchEstablecimientos = async () => {
 			usuarios: item.usuarios
 		}
 	})
-
-	console.log({ establecimientos })
 
 	return establecimientos
 }

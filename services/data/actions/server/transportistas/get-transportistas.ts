@@ -11,7 +11,6 @@ export async function fetchTransportistas() {
 		`
 	)
 
-	console.log({ data, error })
 	if (error) {
 		console.error(error)
 		return null
@@ -40,8 +39,6 @@ export async function fetchTransportistas() {
 			camiones: camiones ?? 0
 		}
 	})
-
-	console.log({ transportistas })
 
 	return transportistas
 }
