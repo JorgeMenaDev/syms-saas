@@ -23,10 +23,10 @@ export default async function DashboardLayout({ children }: { children: React.Re
 	}
 
 	return (
-		<div className='grid min-h-screen w-full lg:grid-cols-[220px_1fr]'>
+		<div id='dashboard-container' className='grid min-h-screen w-full lg:grid-cols-[220px_1fr]'>
 			<DesktopSidebar />
 
-			<div className='flex flex-col'>
+			<div className='flex flex-col w-full'>
 				<Navbar user={session.user} />
 				<section className='flex-1 flex items-center justify-center p-2 lg:p-8'>
 					{/* Children is each page within (dashboard directory) */}

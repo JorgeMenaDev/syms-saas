@@ -24,5 +24,8 @@ export const fetchCiudadesForSelect = async () => {
 		idRegion: city.id_region.toString()
 	}))
 
-	return ciudadesForSelect
+	// sort city options by name by alphabetical order.
+	const sortedArray = ciudadesForSelect.toSorted((a, b) => a.label.localeCompare(b.label))
+
+	return sortedArray
 }

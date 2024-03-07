@@ -117,10 +117,7 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 														<Button
 															variant='outline'
 															role='combobox'
-															className={cn(
-																'lg:w-[1000px] xl:w-[1270px] justify-between',
-																!field.value && 'text-muted-foreground'
-															)}
+															className={cn('w-full justify-between', !field.value && 'text-muted-foreground')}
 														>
 															{field.value
 																? config.options?.find(option => option.value === field.value)?.label
@@ -129,7 +126,7 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 														</Button>
 													</FormControl>
 												</PopoverTrigger>
-												<PopoverContent className='lg:w-[1000px] xl:w-[1270px] p-0 h-96 overflow-scroll' id='test'>
+												<PopoverContent className='w-full p-0 h-96 overflow-scroll' id='test'>
 													<Command>
 														<CommandInput placeholder={`Busca ${config.placeholder}`} className='h-9' />
 														<CommandEmpty>No se encontraron opciones.</CommandEmpty>

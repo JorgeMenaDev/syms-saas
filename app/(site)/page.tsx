@@ -15,11 +15,11 @@ export default async function MainPageHome() {
 	}
 
 	return (
-		<>
+		<div id='main-container' className=''>
 			<SiteHeaderWithNoAuth />
 			<div className='flex-1 w-full flex flex-col gap-20 items-center'>
 				<HomePageHero />
 			</div>
-		</>
+		</div>
 	)
 }
