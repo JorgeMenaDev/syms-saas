@@ -8,7 +8,7 @@ export function DesktopSidebar() {
 			<div className='flex h-full max-h-screen flex-col gap-2'>
 				<div className='flex h-[60px] items-center border-b px-6'>
 					<Link className='flex items-center gap-2 text-primary font-semibold' href='/dashboard'>
-						<img src='/logo4.png' className='w-20' />
+						<img src='/logo4.png' className='w- 20' />
 					</Link>
 				</div>
 				<div className='flex-1 overflow-auto py-2'>

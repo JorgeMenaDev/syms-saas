@@ -85,7 +85,7 @@ export function composeEmpresaConfigParameters({
 		{
 			name: 'ciiu',
 			label: 'Ciiu',
-			type: 'select',
+			type: 'selectAdvanced',
 			placeholder: 'Ciiu',
 			options: ciiusOptions,
 			description: 'Ciiu de la empresa'

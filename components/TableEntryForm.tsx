@@ -11,10 +11,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Card } from './ui/card'
 import { toast } from 'sonner'
 
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { cn } from '@/lib/utils'
+import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from './ui/command'
+
 export interface ConfigParameter {
 	name: string
 	label: string
-	type: 'input' | 'select' | 'textarea' // Specify the type of the field
+	type: 'input' | 'select' | 'textarea' | 'selectAdvanced'
 	inputType?: 'text' | 'number' | 'email' | 'password' // Specify the input type for input type
 	options?: Array<{ value: string; label: string; idRegion?: string }> | undefined // Options for select type
 	placeholder?: string
@@ -102,6 +107,57 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 										<FormControl>
 											<Input placeholder={config.placeholder} {...field} type={config.inputType} />
 										</FormControl>
+									)}
+
+									{config.type === 'selectAdvanced' && (
+										<div className='d-block '>
+											<Popover>
+												<PopoverTrigger asChild>
+													<FormControl>
+														<Button
+															variant='outline'
+															role='combobox'
+															className={cn(
+																'lg:w-[1000px] xl:w-[1270px] justify-between',
+																!field.value && 'text-muted-foreground'
+															)}
+														>
+															{field.value
+																? config.options?.find(option => option.value === field.value)?.label
+																: `Selecciona ${config.placeholder}`}
+															<CaretSortIcon className='ml-2 h-4 w-4 shrink-0 opacity-50' />
+														</Button>
+													</FormControl>
+												</PopoverTrigger>
+												<PopoverContent className='lg:w-[1000px] xl:w-[1270px] p-0 h-96 overflow-scroll' id='test'>
+													<Command>
+														<CommandInput placeholder={`Busca ${config.placeholder}`} className='h-9' />
+														<CommandEmpty>No se encontraron opciones.</CommandEmpty>
+														<CommandGroup className='h-96 overflow-scroll'>
+															{config.options?.map((option, optionIndex) => (
+																<CommandItem
+																	value={option.label}
+																	key={optionIndex}
+																	onSelect={() => {
+																		form.setValue(config.name, option.value)
+																	}}
+																>
+																	{option.label}
+																	<CheckIcon
+																		className={cn(
+																			'ml-auto h-4 w-4',
+																			option.value === field.value ? 'opacity-100' : 'opacity-0'
+																		)}
+																	/>
+																</CommandItem>
+															))}
+														</CommandGroup>
+													</Command>
+												</PopoverContent>
+											</Popover>
+
+											<FormMessage />
+										</div>
 									)}
 
 									{/* selects */}
