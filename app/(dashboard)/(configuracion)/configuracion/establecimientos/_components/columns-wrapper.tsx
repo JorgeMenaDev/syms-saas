@@ -41,7 +41,6 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 		toggle()
 	}
 
-	// TODO: add intercal code, add more columns to be filter in the input box
 	const establecimientosColumns: Array<ColumnDef<any>> = [
 		{
 			accessorKey: 'id',
@@ -87,6 +86,57 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 				)
 			}
 		},
+		// TODO: Empresa
+		{
+			accessorKey: 'tipo',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='Tipo' />,
+			cell: ({ row }) => {
+				return (
+					<div className='flex items-center'>
+						<span>{row.getValue('tipo')}</span>
+					</div>
+				)
+			}
+		},
+		{
+			accessorKey: 'region',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='Región' />,
+			cell: ({ row }) => {
+				return (
+					<div className='flex items-center'>
+						<span>{row.getValue('region')}</span>
+					</div>
+				)
+			},
+			filterFn: (row, id, value) => {
+				return value.includes(row.getValue(id))
+			}
+		},
+		{
+			accessorKey: 'ciudad',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='Comuna' />,
+			cell: ({ row }) => {
+				return (
+					<div className='flex items-center'>
+						<span>{row.getValue('ciudad')}</span>
+					</div>
+				)
+			},
+			filterFn: (row, id, value) => {
+				return value.includes(row.getValue(id))
+			}
+		},
+		{
+			accessorKey: 'encargado',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='Encargado' />,
+			cell: ({ row }) => {
+				return (
+					<div className='flex items-center'>
+						<span>{row.getValue('encargado')}</span>
+					</div>
+				)
+			}
+		},
 		{
 			accessorKey: 'correo',
 			header: ({ column }) => <DataTableColumnHeader column={column} title='Correo' />,
@@ -94,17 +144,6 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 				return (
 					<div className='flex items-center'>
 						<span>{row.getValue('correo')}</span>
-					</div>
-				)
-			}
-		},
-		{
-			accessorKey: 'telefono',
-			header: ({ column }) => <DataTableColumnHeader column={column} title='Teléfono' />,
-			cell: ({ row }) => {
-				return (
-					<div className='flex items-center'>
-						<span>{row.getValue('telefono')}</span>
 					</div>
 				)
 			}
@@ -121,32 +160,14 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 			}
 		},
 		{
-			accessorKey: 'encargado',
-			header: ({ column }) => <DataTableColumnHeader column={column} title='Encargado' />,
+			accessorKey: 'telefono',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='Teléfono' />,
 			cell: ({ row }) => {
 				return (
 					<div className='flex items-center'>
-						<span>{row.getValue('encargado')}</span>
+						<span>{row.getValue('telefono')}</span>
 					</div>
 				)
-			}
-		},
-
-		{
-			accessorKey: 'nopel',
-			header: ({ column }) => <DataTableColumnHeader column={column} title='NOPEL' />,
-			cell: ({ row }) => {
-				const value = row.getValue('nopel')
-				return (
-					<div className='flex items-center'>
-						<span>
-							<span>{value ? 'Activo' : 'Inactivo'}</span>
-						</span>
-					</div>
-				)
-			},
-			filterFn: (row, id, value) => {
-				return value.includes(row.getValue(id))
 			}
 		},
 		{
@@ -166,24 +187,15 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 			}
 		},
 		{
-			accessorKey: 'tipo',
-			header: ({ column }) => <DataTableColumnHeader column={column} title='Tipo' />,
+			accessorKey: 'nopel',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='NOPEL' />,
 			cell: ({ row }) => {
+				const value = row.getValue('nopel')
 				return (
 					<div className='flex items-center'>
-						<span>{row.getValue('tipo')}</span>
-					</div>
-				)
-			}
-		},
-
-		{
-			accessorKey: 'ciudad',
-			header: ({ column }) => <DataTableColumnHeader column={column} title='Comuna' />,
-			cell: ({ row }) => {
-				return (
-					<div className='flex items-center'>
-						<span>{row.getValue('ciudad')}</span>
+						<span>
+							<span>{value ? 'Activo' : 'Inactivo'}</span>
+						</span>
 					</div>
 				)
 			},
@@ -202,20 +214,7 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 				)
 			}
 		},
-		{
-			accessorKey: 'region',
-			header: ({ column }) => <DataTableColumnHeader column={column} title='Región' />,
-			cell: ({ row }) => {
-				return (
-					<div className='flex items-center'>
-						<span>{row.getValue('region')}</span>
-					</div>
-				)
-			},
-			filterFn: (row, id, value) => {
-				return value.includes(row.getValue(id))
-			}
-		},
+
 		{
 			id: 'actions',
 			cell: ({ row }) => (
@@ -238,10 +237,6 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 			)
 		}
 	]
-
-	console.log({
-		establecimientos
-	})
 
 	return (
 		<Fragment>
