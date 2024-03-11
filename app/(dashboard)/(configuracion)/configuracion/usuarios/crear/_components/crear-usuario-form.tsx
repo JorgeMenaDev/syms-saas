@@ -11,7 +11,7 @@ import { type z } from 'zod'
 
 const formSchema = createEstablecimientosFormSchema()
 
-export function CrearEstablecimientoForm({
+export function CrearUsuarioForm({
 	ciudadesOptions,
 	regionesOptions,
 	tiposDeEstablecimientos

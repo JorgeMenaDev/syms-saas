@@ -30,7 +30,7 @@ export default async function UsuariosPage() {
 						<p className='text-muted-foreground'>
 							En esta sección puedes ver y administrar los usuarios de la plataforma.
 						</p>
-						<Link href='/configuracion/empresas/crear' className={cn(buttonVariants({ variant: 'outline' }), 'mt-4')}>
+						<Link href='/configuracion/usuarios/crear' className={cn(buttonVariants({ variant: 'outline' }), 'mt-4')}>
 							Nuevo Usuario
 						</Link>
 					</div>

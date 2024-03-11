@@ -8,20 +8,21 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 					{ label: 'Dashboard', href: '/dashboard' },
 					{ label: 'Configuracion', href: '#' },
 					{
-						label: 'Establecimientos',
-						href: '/configuracion/establecimientos'
+						label: 'Usuarios',
+						href: '/configuracion/usuarios',
+						active: false
 					},
 					{
-						label: 'Nuevo Establecimiento',
-						href: '/configuracion/establecimientos/crear',
+						label: 'Nuevo Usuario',
+						href: '/configuracion/usuarios/crear',
 						active: true
 					}
 				]}
 			/>
 			<div className='flex items-center justify-between space-y-2 my-14'>
 				<div>
-					<h2 className='text-2xl font-bold tracking-tight'>Formulario de nuevo Establecimiento!</h2>
-					<p className='text-muted-foreground mt-2'>En esta sección podrás crear un nuevo Establecimiento.</p>
+					<h2 className='text-2xl font-bold tracking-tight'>Formulario de nuevo Usuario</h2>
+					<p className='text-muted-foreground mt-2'>En esta sección podrás crear un nuevo Usuario.</p>
 				</div>
 			</div>
 

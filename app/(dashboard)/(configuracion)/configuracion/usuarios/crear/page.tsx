@@ -1,6 +1,6 @@
 import { fetchCiudadesForSelect } from '@/services/data/actions/server/ciudades/fetchCiudades'
 import { fetchRegionesForSelect } from '@/services/data/actions/server/regiones/fetchRegiones'
-import { CrearEstablecimientoForm } from './_components/crear-usuario-form'
+import { CrearUsuarioForm } from './_components/crear-usuario-form'
 import { fetchTiposDeEstablecimientosForSelect } from '@/services/data/actions/server/tipo-de-establecimientos/get-tipos-de-establecimientos'
 
 export default async function CrearEstablecimientoPage() {
@@ -16,7 +16,7 @@ export default async function CrearEstablecimientoPage() {
 	}
 
 	return (
-		<CrearEstablecimientoForm
+		<CrearUsuarioForm
 			ciudadesOptions={ciudades}
 			regionesOptions={regiones}
 			tiposDeEstablecimientos={tiposDeEstablecimientos}
