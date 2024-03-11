@@ -1,0 +1,11 @@
+QA:
+
+1. If I add a new column to a table, what do I do? to update the table, new page, edit page.
+A:
+1. [] Find the get api call that get's the table. e.g. get-establecimientos.ts
+  ...and add the new column/row and make sure the function returns the new column/row.
+2. [] Most pages have a columns-wrapper, where the columns for the table are defined.
+  ...Add the new column/row there. That should be enough to display the table.
+3. [] Find the page where the new row is created. e.g. .../configuracion/establecimientos/crear/page.tsx.
+  ... [] Then, depends of what the row is, you need to fetch the info for dropdowns,
+  ... [] update the configParameters, the table schema, the function that gets the submit and send it to the server(supabase).

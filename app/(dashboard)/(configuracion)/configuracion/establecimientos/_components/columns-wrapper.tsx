@@ -86,7 +86,17 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 				)
 			}
 		},
-		// TODO: Empresa
+		{
+			accessorKey: 'empresa',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='Empresa' />,
+			cell: ({ row }) => {
+				return (
+					<div className='flex items-center'>
+						<span>{row.getValue('empresa')}</span>
+					</div>
+				)
+			}
+		},
 		{
 			accessorKey: 'tipo',
 			header: ({ column }) => <DataTableColumnHeader column={column} title='Tipo' />,

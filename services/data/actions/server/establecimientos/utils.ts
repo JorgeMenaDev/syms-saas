@@ -20,11 +20,13 @@ export const establecimientosColumns = [
 export function composeEstablecimientoConfigParameters({
 	regionesOptions,
 	ciudadesOptions,
-	tiposDeEstablecimientos
+	tiposDeEstablecimientos,
+	empresasOptions
 }: {
 	regionesOptions: Array<{ value: string; label: string }>
 	ciudadesOptions: Array<{ value: string; label: string }>
 	tiposDeEstablecimientos: Array<{ value: string; label: string }>
+	empresasOptions: Array<{ value: string; label: string }>
 }) {
 	const configParameters: ConfigParameter[] = [
 		{
@@ -42,6 +44,14 @@ export function composeEstablecimientoConfigParameters({
 			inputType: 'text',
 			placeholder: 'Codigo Interno',
 			description: 'Codigo Interno del Establecimiento'
+		},
+		{
+			name: 'empresa',
+			label: 'Empresa',
+			type: 'select',
+			placeholder: 'Empresa',
+			options: empresasOptions,
+			description: 'Empresa a la que pertenece el establecimiento'
 		},
 		{
 			name: 'correo',
@@ -154,6 +164,9 @@ export function createEstablecimientosFormSchema() {
 		}),
 		codigo_interno: z.string().min(1, {
 			message: 'El codigo interno es requerido.'
+		}),
+		empresa: z.string().min(1, {
+			message: 'La empresa es requerida.'
 		}),
 		correo: z
 			.string()

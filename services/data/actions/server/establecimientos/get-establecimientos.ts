@@ -8,10 +8,12 @@ export const fetchEstablecimientos = async () => {
 		`*,
       region: region_id(nombre),
       ciudad: ciudad_id(nombre),
+      empresa: empresa_id(nombre),
       tipo_establecimiento: tipo_establecimiento_id(nombre)
     `
 	)
 
+	console.error({ error })
 	if (error) {
 		return null
 	}
@@ -25,6 +27,8 @@ export const fetchEstablecimientos = async () => {
 			id: item.id,
 			nombre: item.nombre,
 			codigo_interno: item.codigo_interno,
+			// @ts-expect-error - This is a supabase query
+			empresa: item.empresa?.nombre,
 			// @ts-expect-error - This is a supabase query
 			tipo: item.tipo_establecimiento.nombre,
 			direccion: item.direccion,

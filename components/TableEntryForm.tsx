@@ -109,6 +109,7 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 										</FormControl>
 									)}
 
+									{/* advanced means you can search */}
 									{config.type === 'selectAdvanced' && (
 										<div className='d-block '>
 											<Popover>
@@ -174,8 +175,6 @@ export const TableEntryForm: React.FC<DynamicTableEntryFormProps> = ({
 											</SelectContent>
 										</Select>
 									)}
-
-									{/* ********************* REGION AND CITIES */}
 
 									{/* Add support for other types like textarea if needed */}
 									<FormDescription>{config.description}</FormDescription>

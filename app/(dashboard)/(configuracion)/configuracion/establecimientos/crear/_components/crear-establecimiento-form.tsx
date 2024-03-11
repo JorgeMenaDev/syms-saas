@@ -14,10 +14,12 @@ const formSchema = createEstablecimientosFormSchema()
 export function CrearEstablecimientoForm({
 	ciudadesOptions,
 	regionesOptions,
+	empresasOptions,
 	tiposDeEstablecimientos
 }: {
 	ciudadesOptions: Array<{ value: string; label: string }>
 	regionesOptions: Array<{ value: string; label: string }>
+	empresasOptions: Array<{ value: string; label: string }>
 	tiposDeEstablecimientos: Array<{ value: string; label: string }>
 }) {
 	async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -39,7 +41,8 @@ export function CrearEstablecimientoForm({
 	const configParameters = composeEstablecimientoConfigParameters({
 		ciudadesOptions,
 		regionesOptions,
-		tiposDeEstablecimientos
+		tiposDeEstablecimientos,
+		empresasOptions
 	})
 
 	// initial values are all empty strings

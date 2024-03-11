@@ -16,6 +16,7 @@ export async function createEstablecimiento(values: any) {
 		ciudad_id: Number(values.ciudad),
 		nombre: values.nombre,
 		telefono: values.telefono,
+		empresa_id: values.empresa,
 		region_id: Number(values.region),
 		correo: values.correo,
 		direccion: values.direccion,
