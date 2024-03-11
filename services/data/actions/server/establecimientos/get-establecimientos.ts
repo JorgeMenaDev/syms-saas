@@ -24,9 +24,13 @@ export const fetchEstablecimientos = async () => {
 		return {
 			id: item.id,
 			nombre: item.nombre,
+			codigo_interno: item.codigo_interno,
+			// @ts-expect-error - This is a supabase query
 			tipo: item.tipo_establecimiento.nombre,
 			direccion: item.direccion,
+			// @ts-expect-error - This is a supabase query
 			ciudad: item.ciudad.nombre,
+			// @ts-expect-error - This is a supabase query
 			region: item.region.nombre,
 			encargado: item.encargado,
 			correo: item.correo,
