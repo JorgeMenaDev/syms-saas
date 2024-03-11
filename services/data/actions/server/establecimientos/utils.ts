@@ -36,6 +36,14 @@ export function composeEstablecimientoConfigParameters({
 			description: 'Nombre del establecimiento'
 		},
 		{
+			name: 'codigo_interno',
+			label: 'Codigo Interno',
+			type: 'input',
+			inputType: 'text',
+			placeholder: 'Codigo Interno',
+			description: 'Codigo Interno del Establecimiento'
+		},
+		{
 			name: 'correo',
 			label: 'Correo',
 			type: 'input',
@@ -143,6 +151,9 @@ export function createEstablecimientosFormSchema() {
 	const formSchema = z.object({
 		direccion: z.string().min(1, {
 			message: 'La direccion es requerida.'
+		}),
+		codigo_interno: z.string().min(1, {
+			message: 'El codigo interno es requerido.'
 		}),
 		correo: z
 			.string()
