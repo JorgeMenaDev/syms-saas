@@ -10,6 +10,7 @@ type Establecimiento = Database['public']['Tables']['establecimientos']['Update'
 
 export async function updateEstablecimiento(id: string, values: any) {
 	const supabase = createServerComponentClient<Database>({ cookies })
+	console.log({ id, values })
 
 	// transform values to match database schema
 	const establecimiento: Establecimiento = {
@@ -23,7 +24,8 @@ export async function updateEstablecimiento(id: string, values: any) {
 		tipo_establecimiento_id: values.tipo,
 		id_vu: Number(values.id_vu),
 		nopel: values.nopel === 'activo',
-		respel: values.respel === 'activo'
+		respel: values.respel === 'activo',
+		codigo_interno: values.codigo_interno
 	}
 
 	try {
