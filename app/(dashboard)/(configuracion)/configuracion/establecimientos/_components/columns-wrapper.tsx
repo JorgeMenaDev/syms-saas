@@ -41,7 +41,19 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 		toggle()
 	}
 
+	// TODO: add intercal code, add more columns to be filter in the input box
 	const establecimientosColumns: Array<ColumnDef<any>> = [
+		{
+			accessorKey: 'id',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='ID' />,
+			cell: ({ row }) => {
+				return (
+					<div className='flex items-center'>
+						<span>{row.getValue('id')}</span>
+					</div>
+				)
+			}
+		},
 		{
 			accessorKey: 'nombre',
 			header: ({ column }) => <DataTableColumnHeader column={column} title='Nombre' />,
@@ -49,6 +61,28 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 				return (
 					<div className='flex items-center'>
 						<span>{row.getValue('nombre')}</span>
+					</div>
+				)
+			}
+		},
+		{
+			accessorKey: 'id_vu',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='ID VU' />,
+			cell: ({ row }) => {
+				return (
+					<div className='flex items-center'>
+						<span>{row.getValue('id_vu')}</span>
+					</div>
+				)
+			}
+		},
+		{
+			accessorKey: 'codigo_interno',
+			header: ({ column }) => <DataTableColumnHeader column={column} title='Codigo Interno' />,
+			cell: ({ row }) => {
+				return (
+					<div className='flex items-center'>
+						<span>{row.getValue('codigo_interno')}</span>
 					</div>
 				)
 			}
@@ -97,17 +131,7 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 				)
 			}
 		},
-		{
-			accessorKey: 'id_vu',
-			header: ({ column }) => <DataTableColumnHeader column={column} title='ID VU' />,
-			cell: ({ row }) => {
-				return (
-					<div className='flex items-center'>
-						<span>{row.getValue('id_vu')}</span>
-					</div>
-				)
-			}
-		},
+
 		{
 			accessorKey: 'nopel',
 			header: ({ column }) => <DataTableColumnHeader column={column} title='NOPEL' />,
@@ -214,6 +238,10 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 			)
 		}
 	]
+
+	console.log({
+		establecimientos
+	})
 
 	return (
 		<Fragment>
