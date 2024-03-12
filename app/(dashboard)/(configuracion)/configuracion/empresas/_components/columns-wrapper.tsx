@@ -13,6 +13,7 @@ import { toast } from 'sonner'
 import { deleteEmpresaById } from '@/services/data/actions/server/empresas/delete-empresa-by-id'
 import { delay } from '@/utils/re-usable-functions/delay'
 import { CsvButton } from '@/components/CsvButton'
+import { ExcelButton } from '@/components/ExcelButton'
 
 export default function ColumnsWrapper({ empresas }: any) {
 	const [open, setOpen] = useState(false)
@@ -203,7 +204,10 @@ export default function ColumnsWrapper({ empresas }: any) {
 
 	return (
 		<Fragment>
-			<CsvButton name='Empresas' data={empresas} />
+			<div className='flex items-center mb-3 gap-2'>
+				<CsvButton name='Empresas' data={empresas} />
+				<ExcelButton name='Empresas' data={empresas} />
+			</div>
 			<DataTable filters={EmpresasFilters} data={empresas} columns={empresasColumns} />
 
 			<GenericModal open={open} toggle={toggle} onConfirm={deleteEmpresa} isDisabled={isDeleting}>
