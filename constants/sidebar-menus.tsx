@@ -4,11 +4,10 @@ import {
 	HomeIcon,
 	UploadIcon,
 	GearIcon,
-	ArchiveIcon,
 	MagicWandIcon,
 	ChatBubbleIcon
 } from '@radix-ui/react-icons'
-import { IconTruck } from '@tabler/icons-react'
+
 export const menu = [
 	{
 		text: 'Home',
@@ -99,26 +98,26 @@ export const menu = [
 			}
 		]
 	},
-	{
-		text: 'Otros Registros',
-		icon: <ArchiveIcon className='h-4 w-4' />,
-		href: '#',
-		subSections: [
-			{
-				text: 'Nopels',
-				href: '/tablas/nopels'
-			},
-			{
-				text: 'Respels',
-				href: '/tablas/respels'
-			},
-			{
-				text: 'Camiones',
-				href: '/tablas/camiones',
-				icon: <IconTruck className='h-5 w-5' />
-			}
-		]
-	},
+	// {
+	// 	text: 'Otros Registros',
+	// 	icon: <ArchiveIcon className='h-4 w-4' />,
+	// 	href: '#',
+	// 	subSections: [
+	// 		{
+	// 			text: 'Nopels',
+	// 			href: '/tablas/nopels'
+	// 		},
+	// 		{
+	// 			text: 'Respels',
+	// 			href: '/tablas/respels'
+	// 		},
+	// 		{
+	// 			text: 'Camiones',
+	// 			href: '/tablas/camiones',
+	// 			icon: <IconTruck className='h-5 w-5' />
+	// 		}
+	// 	]
+	// },
 	// add a menu for AI - users will be able to ask questin against the db in the app
 	{
 		text: 'AI',
