@@ -15,51 +15,6 @@ export const menu = [
 		href: '/dashboard'
 	},
 	{
-		text: 'Estadistica',
-		icon: <BarChartIcon className='h-4 w-4' />,
-		href: '#',
-		subSections: [
-			{
-				text: 'Residuos no peligrosos',
-				href: '/estadistica/residuos-no-peligrosos'
-			},
-			{
-				text: 'Residuos peligrosos',
-				href: '/estadistica/residuos-peligrosos'
-			}
-		]
-	},
-	{
-		text: 'Informes',
-		icon: <FileTextIcon className='h-4 w-4' />,
-		href: '#',
-		subSections: [
-			{
-				text: 'Residuos no peligrosos',
-				href: '/informes/residuos-no-peligrosos'
-			},
-			{
-				text: 'Residuos peligrosos',
-				href: '/informes/residuos-peligrosos'
-			}
-		]
-	},
-	{
-		text: 'Carga Datos',
-		icon: <UploadIcon className='h-4 w-4' />,
-		href: '#',
-		subSections: [
-			{
-				text: 'Residuos no peligrosos',
-				href: '/carga-datos/residuos-no-peligrosos'
-			},
-			{
-				text: 'Residuos peligrosos',
-				href: '/carga-datos/residuos-peligrosos'
-			}
-		]
-	},
-	{
 		text: 'Configuración',
 		icon: <GearIcon className='h-4 w-4' />,
 		href: '#',
@@ -98,6 +53,64 @@ export const menu = [
 			}
 		]
 	},
+	{
+		text: 'Estadistica',
+		icon: <BarChartIcon className='h-4 w-4' />,
+		href: '#',
+		subSections: [
+			{
+				text: 'Residuos no peligrosos',
+				href: '/estadistica/residuos-no-peligrosos'
+			},
+			{
+				text: 'Residuos peligrosos',
+				href: '/estadistica/residuos-peligrosos'
+			}
+		]
+	},
+	{
+		text: 'Carga Datos',
+		icon: <UploadIcon className='h-4 w-4' />,
+		href: '#',
+		subSections: [
+			{
+				text: 'Residuos no peligrosos',
+				href: '/carga-datos/residuos-no-peligrosos'
+			},
+			{
+				text: 'Residuos peligrosos',
+				href: '/carga-datos/residuos-peligrosos'
+			}
+		]
+	},
+	{
+		text: 'Informes',
+		icon: <FileTextIcon className='h-4 w-4' />,
+		href: '#',
+		subSections: [
+			{
+				text: 'Residuos no peligrosos',
+				href: '/informes/residuos-no-peligrosos'
+			},
+			{
+				text: 'Residuos peligrosos',
+				href: '/informes/residuos-peligrosos'
+			}
+		]
+	},
+	{
+		text: 'AI',
+		icon: <MagicWandIcon className='h-5 w-5' />,
+		href: '#',
+		subSections: [
+			{
+				text: 'Chat',
+				href: '/ai',
+				icon: <ChatBubbleIcon className='h-4 w-4' />
+			}
+		]
+	}
+
 	// {
 	// 	text: 'Otros Registros',
 	// 	icon: <ArchiveIcon className='h-4 w-4' />,
@@ -119,16 +132,4 @@ export const menu = [
 	// 	]
 	// },
 	// add a menu for AI - users will be able to ask questin against the db in the app
-	{
-		text: 'AI',
-		icon: <MagicWandIcon className='h-5 w-5' />,
-		href: '#',
-		subSections: [
-			{
-				text: 'Chat',
-				href: '/ai',
-				icon: <ChatBubbleIcon className='h-4 w-4' />
-			}
-		]
-	}
 ]
