@@ -12,7 +12,7 @@ import { GenericModal } from '@/components/GenericModal'
 import { toast } from 'sonner'
 import { delay } from '@/utils/re-usable-functions/delay'
 import { deleteEstablecimientoById } from '@/services/data/actions/server/establecimientos/delete-establecimiento-by-id'
-import { CsvButton } from '@/components/CsvButton'
+import { DownloadButtons } from '@/components/DownloadButtons'
 
 export default function ColumnsWrapper({ establecimientos }: any) {
 	const [open, setOpen] = useState(false)
@@ -250,7 +250,7 @@ export default function ColumnsWrapper({ establecimientos }: any) {
 
 	return (
 		<Fragment>
-			<CsvButton name='Establecimientos' data={establecimientos} />
+			<DownloadButtons data={establecimientos} name='establecimientos' />
 			<DataTable filters={EstablecimientosFilters} data={establecimientos} columns={establecimientosColumns} />
 			<GenericModal open={open} toggle={toggle} onConfirm={deleteEstablecimiento} isDisabled={isDeleting}>
 				<span className=' font-semibold'>Se eliminarán todos los datos relacionados a este establecimiento.</span>

@@ -9,28 +9,10 @@ import { DataTableColumnHeader } from '@/components/data-table/data-table-column
 import { DataTableRowActions } from '@/components/data-table/data-table-row-actions'
 import { GenericModal } from '@/components/GenericModal'
 import { toast } from 'sonner'
-import { CSVLink } from 'react-csv'
 
 import { delay } from '@/utils/re-usable-functions/delay'
 import { deleteUsuarioById } from '@/services/data/actions/server/usuarios/delete-usuario-by-id'
-import { buttonVariants } from '@/components/ui/button'
-
-function convertToCSV(data: any) {
-	const csvData = []
-
-	// Push header row
-	const headerRow = Object.keys(data[0])
-	csvData.push(headerRow)
-
-	// Push data rows
-	// @ts-expect-error // <--
-	data.forEach(item => {
-		const row = Object.values(item)
-		csvData.push(row)
-	})
-
-	return csvData
-}
+import { DownloadButtons } from '@/components/DownloadButtons'
 
 export default function ColumnsWrapper({ usuarios }: any) {
 	const [open, setOpen] = useState(false)
@@ -193,17 +175,9 @@ export default function ColumnsWrapper({ usuarios }: any) {
 		}
 	]
 
-	const csvFileNameWithTodayDate = `usuarios-${new Date().toLocaleDateString()}.csv`
-
 	return (
 		<Fragment>
-			<CSVLink
-				filename={csvFileNameWithTodayDate}
-				data={convertToCSV(usuarios)}
-				className={`mb-3 ${buttonVariants({ variant: 'outline' })}}`}
-			>
-				Descargar CSV
-			</CSVLink>
+			<DownloadButtons data={usuarios} name='usuarios' />
 			<DataTable data={usuarios} columns={usuariosColumns} />
 			<GenericModal open={open} toggle={toggle} onConfirm={deleteEmpresa} isDisabled={isDeleting}>
 				<span className='font-semibold'>Se eliminarán todos los datos relacionados a esta empresa.</span>
